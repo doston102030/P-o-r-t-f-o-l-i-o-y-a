@@ -1,0 +1,118 @@
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: #0a0f1c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    overflow: hidden;
+}
+
+.preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+        visibility 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.preloader-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 90vw;
+}
+
+.preloader-text {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    letter-spacing: -0.02em;
+}
+
+.preloader-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealLetter 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+.preloader-text span.space {
+    width: 0.3em;
+}
+
+@keyframes revealLetter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.preloader-line {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: 24px;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.line-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, #6382ff, transparent);
+    animation: loadingLine 2s ease-in-out infinite;
+}
+
+@keyframes loadingLine {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Background Effects */
+.bg-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(99, 130, 255, 0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    filter: blur(80px);
+    animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+@media (max-width: 768px) {
+    .preloader-text {
+        font-size: 1.5rem;
+        padding: 0 20px;
+    }
+}

@@ -1,0 +1,106 @@
+import { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import './Hero.css';
+
+export default function Hero() {
+  const { t } = useLanguage();
+  const [fsData, setFsData] = useState(null);
+
+  useEffect(() => {
+    getDoc(doc(db, 'portfolio', 'hero')).then(snap => {
+      if (snap.exists()) setFsData(snap.data());
+    }).catch(err => console.error("Firestore error:", err));
+  }, []);
+
+  if (!fsData) return <section className="hero section" id="home" style={{ minHeight: '100vh' }} />;
+
+  const val = (fsKey, tKey) => (fsData && fsData[fsKey]) || t(tKey);
+
+  return (
+    <section className="hero section" id="home">
+      {/* Background orbs */}
+      <div className="hero-orb hero-orb--1" />
+      <div className="hero-orb hero-orb--2" />
+      <div className="hero-orb hero-orb--3" />
+
+      <div className="container hero-container">
+        {/* LEFT CONTENT */}
+        <div className="hero-content">
+          <div className="hero-badge animate-fade-up">
+            <span className="badge-dot" />
+            {val('badge', 'hero.badge')}
+          </div>
+
+          <h1 className="hero-name animate-fade-up delay-1">
+            {val('name1', 'Abdumajid')}<br />
+            <span className="gradient-text">{val('name2', 'Xolmatov')}</span>
+          </h1>
+
+          <div className="hero-role animate-fade-up delay-2">
+            <span className="role-line" />
+            {val('role', 'hero.role')}
+          </div>
+
+          <p className="hero-tagline animate-fade-up delay-3">
+            {val('tagline', 'hero.tagline')}
+          </p>
+
+          <div className="hero-actions animate-fade-up delay-4">
+            <a href={fsData.cvUrl || "/cv.pdf"} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+              </svg>
+              {t('hero.downloadCv')}
+            </a>
+            <a href="#contact" className="btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+              {t('hero.contactMe')}
+            </a>
+          </div>
+
+          <div className="hero-stack animate-fade-up delay-5">
+            <span className="stack-label">Stack:</span>
+            {(fsData?.stack ? fsData.stack.split(',').map(s => s.trim()) : ['React', 'Next.js', 'TypeScript', 'Tailwind']).map(tech => (
+              <span key={tech} className="stack-pill">{tech}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT: AVATAR */}
+        <div className="hero-visual animate-fade-up delay-3">
+          <div className="hero-avatar-wrapper">
+            <div className="hero-avatar-ring" />
+            <div className="hero-avatar-ring hero-avatar-ring--2" />
+            <div className="hero-avatar">
+              <div className="hero-avatar-inner">
+                {fsData.avatarUrl ? (
+                  <img src={fsData.avatarUrl} alt="Profile" className="hero-img" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <>
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="avatar-svg">
+                      <circle cx="50" cy="38" r="20" fill="#6382ff" opacity="0.7" />
+                      <ellipse cx="50" cy="85" rx="30" ry="20" fill="#6382ff" opacity="0.5" />
+                    </svg>
+                    <span className="avatar-initials">{val('initials', 'AX')}</span>
+                  </>
+                )}
+              </div>
+            </div>
+            {/* floating badges */}
+            <div className="avatar-badge avatar-badge--tl">
+              <span>⚡</span> {val('badgeTL', 'hero.dev')}
+            </div>
+            <div className="avatar-badge avatar-badge--br">
+              <span>🏆</span> {val('badgeBR', 'hero.years')}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  );
+}

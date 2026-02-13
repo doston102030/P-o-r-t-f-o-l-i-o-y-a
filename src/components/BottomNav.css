@@ -1,0 +1,124 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: none;
+}
+
+.bottom-nav-container {
+    display: flex;
+    align-items: center;
+    background: var(--bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 4px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    gap: 2px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+[data-theme='light'] .bottom-nav-container {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .bottom-nav-container {
+    background: rgba(15, 23, 42, 0.92);
+}
+
+.bottom-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 10px;
+    border-radius: 50px;
+    color: var(--text-muted);
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    position: relative;
+}
+
+.bottom-nav-item:hover {
+    color: var(--text);
+}
+
+.bottom-nav-item.active {
+    background: var(--accent);
+    color: #fff;
+    padding: 8px 16px;
+    box-shadow: 0 3px 12px var(--glow);
+}
+
+.bottom-nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bottom-nav-icon svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.25s;
+}
+
+.bottom-nav-item.active .bottom-nav-icon svg {
+    transform: scale(1.05);
+}
+
+.bottom-nav-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    font-family: 'Syne', sans-serif;
+    animation: bnSlideIn 0.25s ease forwards;
+    overflow: hidden;
+}
+
+@keyframes bnSlideIn {
+    from {
+        opacity: 0;
+        max-width: 0;
+        transform: translateX(-6px);
+    }
+
+    to {
+        opacity: 1;
+        max-width: 100px;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .bottom-nav {
+        display: block;
+    }
+}
+
+@media (max-width: 360px) {
+    .bottom-nav-container {
+        padding: 5px;
+        gap: 2px;
+    }
+
+    .bottom-nav-item {
+        padding: 8px 10px;
+    }
+
+    .bottom-nav-item.active {
+        padding: 8px 16px;
+    }
+
+    .bottom-nav-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .bottom-nav-label {
+        font-size: 0.72rem;
+    }
+}
