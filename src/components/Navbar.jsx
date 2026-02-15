@@ -52,8 +52,8 @@ export default function Navbar() {
       <div className="nav-container container">
         <a href="#home" className="nav-logo">
           <span className="logo-bracket">&lt;</span>
-          AX
-          <span className="logo-bracket">/&gt;</span>
+          Uzdev
+          <span className="logo-bracket">&gt;</span>
         </a>
 
         <nav className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
