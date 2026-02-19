@@ -5,13 +5,13 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export default function AdminHero() {
     const [data, setData] = useState({
-        name1: 'Abdumajid',
-        name2: 'Xolmatov',
+        name1: 'Adhamjonov',
+        name2: 'Doston',
         role: 'Frontend Developer',
         tagline: 'Zamonaviy va chiroyli web saytlar yarataman',
         badge: '✋ Salom, men frontend dasturchiman',
         stack: 'React, Next.js, TypeScript, Tailwind',
-        initials: 'AX',
+        initials: 'DA',
         badgeTL: '⚡ Tez va sifatli',
         badgeBR: '🏆 3+ yil tajriba',
         avatarUrl: '',

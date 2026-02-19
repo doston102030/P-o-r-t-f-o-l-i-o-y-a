@@ -35,10 +35,10 @@ export default function About() {
           <div className="about-visual animate-fade-up">
             <div className="about-card">
               <div className="about-card-avatar">
-                <span>AX</span>
+                <span>DA</span>
               </div>
               <div className="about-card-info">
-                <h4>{val('cardName', 'Abdumajid Xolmatov')}</h4>
+                <h4>{val('cardName', 'Adhamjonov Doston')}</h4>
                 <p>{val('cardRole', 'Frontend Developer')}</p>
                 <div className="about-card-location">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

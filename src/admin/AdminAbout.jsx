@@ -4,7 +4,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 export default function AdminAbout() {
     const [data, setData] = useState({
-        cardName: 'Abdumajid Xolmatov',
+        cardName: 'Adhamjonov Doston',
         cardRole: 'Frontend Developer',
         cardLocation: 'Tashkent, Uzbekistan',
         cardBadge1: 'Open to work',

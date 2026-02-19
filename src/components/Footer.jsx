@@ -52,7 +52,7 @@ export default function Footer() {
       <div className="container footer-container">
         <div className="footer-brand">
           <a href="#home" className="footer-logo">
-            <span className="logo-bracket">&lt;</span>AX<span className="logo-bracket">/&gt;</span>
+            <span className="logo-bracket">&lt;</span>DA<span className="logo-bracket">/&gt;</span>
           </a>
           <p className="footer-tagline">{t('footer.tagline')}</p>
         </div>
@@ -78,7 +78,7 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p className="footer-copy">© {year} <span className="gradient-text">Abdumajid Xolmatov</span>. {t('footer.rights')}</p>
+          <p className="footer-copy">© {year} <span className="gradient-text">Adhamjonov Doston</span>. {t('footer.rights')}</p>
           <p className="footer-made">{t('footer.made')}</p>
         </div>
       </div>
