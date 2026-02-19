@@ -6,6 +6,7 @@ import AdminSkills from './AdminSkills';
 import AdminProjects from './AdminProjects';
 import AdminContact from './AdminContact';
 import AdminLogs from './AdminLogs';
+import AdminSocials from './AdminSocials';
 import './admin.css';
 
 const navItems = [
@@ -15,6 +16,7 @@ const navItems = [
     { id: 'projects', label: 'Loyihalar', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" /></svg> },
     { id: 'contact', label: 'Aloqa', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg> },
     { id: 'logs', label: 'Xabarlar', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l4 4M3 9h18M3 5h18M3 13h18M3 17H3" /></svg> },
+    { id: 'socials', label: 'Ijtimoiy', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg> },
 ];
 
 export default function AdminLayout() {
@@ -44,6 +46,7 @@ export default function AdminLayout() {
             case 'projects': return <AdminProjects />;
             case 'contact': return <AdminContact />;
             case 'logs': return <AdminLogs />;
+            case 'socials': return <AdminSocials />;
             default: return <AdminHero />;
         }
     };

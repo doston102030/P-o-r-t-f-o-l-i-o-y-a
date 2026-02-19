@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Background from './components/Background';
 import CursorLight from './components/CursorLight';
@@ -11,15 +12,19 @@ import Contact from './components/Contact';
 import AdminLogin from './admin/AdminLogin';
 import AdminLayout from './admin/AdminLayout';
 import Preloader from './components/Preloader';
+import ProjectsPortal from './components/ProjectsPortal';
+import Footer from './components/Footer';
 import './index.css';
 
 function Portfolio() {
+  const [portalOpen, setPortalOpen] = useState(false);
+
   return (
     <div className="app">
       <Background />
       <CursorLight />
       <Preloader />
-      <Navbar />
+      <Navbar onPortalOpen={() => setPortalOpen(true)} />
       <main>
         <Hero />
         <About />
@@ -27,7 +32,9 @@ function Portfolio() {
         <Projects />
         <Contact />
       </main>
+      <Footer />
       <BottomNav />
+      <ProjectsPortal open={portalOpen} onClose={() => setPortalOpen(false)} />
     </div>
   );
 }
@@ -41,3 +48,4 @@ export default function App() {
     </Routes>
   );
 }
+
