@@ -1,0 +1,323 @@
+.cosmic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 20% 80%, rgba(99, 102, 241, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, #0f0d24 0%, #08061a 100%);
+    transition: background 1.2s ease;
+}
+
+[data-theme='light'] .cosmic-background {
+    background:
+        radial-gradient(ellipse at 20% 80%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, #eef2ff 0%, #f8fafc 100%);
+}
+
+/* ═══════════════════════════════════════════
+   ⭐ STARS — Multi-color Twinkling
+   ═══════════════════════════════════════════ */
+.stars-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle var(--duration) ease-in-out infinite;
+}
+
+/* Multi-color stars via nth-child */
+.star:nth-child(5n+1) {
+    background: #e0e7ff;
+    box-shadow: 0 0 6px 1px rgba(224, 231, 255, 0.4);
+}
+
+.star:nth-child(5n+2) {
+    background: #c7d2fe;
+    box-shadow: 0 0 6px 1px rgba(199, 210, 254, 0.3);
+}
+
+.star:nth-child(5n+3) {
+    background: #a5b4fc;
+    box-shadow: 0 0 8px 1px rgba(165, 180, 252, 0.3);
+}
+
+.star:nth-child(5n+4) {
+    background: #c4b5fd;
+    box-shadow: 0 0 6px 1px rgba(196, 181, 253, 0.3);
+}
+
+.star:nth-child(5n+5) {
+    background: #fde68a;
+    box-shadow: 0 0 8px 2px rgba(253, 230, 138, 0.3);
+}
+
+/* Bigger accent stars */
+.star:nth-child(10n) {
+    background: #818cf8;
+    box-shadow: 0 0 12px 3px rgba(129, 140, 248, 0.5);
+}
+
+.star:nth-child(15n) {
+    background: #a78bfa;
+    box-shadow: 0 0 14px 3px rgba(167, 139, 250, 0.4);
+}
+
+/* Light mode stars — deep indigo/purple visible on white */
+[data-theme='light'] .star {
+    opacity: 0;
+    /* base reset, overridden below */
+}
+
+[data-theme='light'] .star:nth-child(5n+1) {
+    background: #4f46e5;
+    box-shadow: 0 0 5px 1px rgba(79, 70, 229, 0.25);
+    opacity: 0.5;
+}
+
+[data-theme='light'] .star:nth-child(5n+2) {
+    background: #6366f1;
+    box-shadow: 0 0 4px 1px rgba(99, 102, 241, 0.2);
+    opacity: 0.4;
+}
+
+[data-theme='light'] .star:nth-child(5n+3) {
+    background: #7c3aed;
+    box-shadow: 0 0 5px 1px rgba(124, 58, 237, 0.2);
+    opacity: 0.45;
+}
+
+[data-theme='light'] .star:nth-child(5n+4) {
+    background: #8b5cf6;
+    box-shadow: 0 0 4px 1px rgba(139, 92, 246, 0.18);
+    opacity: 0.35;
+}
+
+[data-theme='light'] .star:nth-child(5n+5) {
+    background: #6d28d9;
+    box-shadow: 0 0 4px 1px rgba(109, 40, 217, 0.18);
+    opacity: 0.3;
+}
+
+/* Accent stars — bolder */
+[data-theme='light'] .star:nth-child(10n) {
+    background: #4338ca;
+    box-shadow: 0 0 8px 2px rgba(67, 56, 202, 0.3);
+    opacity: 0.6;
+}
+
+[data-theme='light'] .star:nth-child(15n) {
+    background: #5b21b6;
+    box-shadow: 0 0 10px 3px rgba(91, 33, 182, 0.25);
+    opacity: 0.65;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        transform: scale(0.8);
+        opacity: 0.3;
+    }
+
+    25% {
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0.6;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   ☄️ METEORS — Colorful Shooting Stars
+   ═══════════════════════════════════════════ */
+.meteor {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    animation: shootingStar var(--m-duration) linear infinite;
+    animation-delay: var(--m-delay);
+}
+
+/* Multi-color meteors */
+.meteor:nth-child(3n+1) {
+    background: linear-gradient(90deg, #818cf8, #c7d2fe, transparent);
+    box-shadow:
+        0 0 15px 3px rgba(129, 140, 248, 0.5),
+        0 0 30px 5px rgba(129, 140, 248, 0.2);
+}
+
+.meteor:nth-child(3n+2) {
+    background: linear-gradient(90deg, #a78bfa, #ddd6fe, transparent);
+    box-shadow:
+        0 0 15px 3px rgba(167, 139, 250, 0.5),
+        0 0 30px 5px rgba(167, 139, 250, 0.2);
+}
+
+.meteor:nth-child(3n+3) {
+    background: linear-gradient(90deg, #c084fc, #e9d5ff, transparent);
+    box-shadow:
+        0 0 15px 3px rgba(192, 132, 252, 0.5),
+        0 0 30px 5px rgba(192, 132, 252, 0.2);
+}
+
+/* Meteor trail */
+.meteor::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(129, 140, 248, 0.5), transparent);
+    border-radius: 50%;
+}
+
+.meteor:nth-child(3n+2)::after {
+    background: linear-gradient(90deg, rgba(167, 139, 250, 0.5), transparent);
+    width: 60px;
+}
+
+.meteor:nth-child(3n+3)::after {
+    background: linear-gradient(90deg, rgba(192, 132, 252, 0.5), transparent);
+    width: 100px;
+}
+
+[data-theme='light'] .meteor {
+    box-shadow: 0 0 10px 2px rgba(99, 102, 241, 0.15);
+}
+
+[data-theme='light'] .meteor:nth-child(3n+1) {
+    background: linear-gradient(90deg, #6366f1, #a5b4fc, transparent);
+}
+
+[data-theme='light'] .meteor:nth-child(3n+2) {
+    background: linear-gradient(90deg, #8b5cf6, #c4b5fd, transparent);
+}
+
+[data-theme='light'] .meteor:nth-child(3n+3) {
+    background: linear-gradient(90deg, #7c3aed, #a78bfa, transparent);
+}
+
+[data-theme='light'] .meteor::after {
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.2), transparent);
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: rotate(215deg) translateX(0);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(215deg) translateX(-1200px);
+        opacity: 0;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   🌌 NEBULAE — Living Color Clouds
+   ═══════════════════════════════════════════ */
+.nebula {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+/* Nebula 1: Indigo — top right, drifts slowly */
+.nebula-1 {
+    top: -150px;
+    right: -150px;
+    background: radial-gradient(circle, #6366f1 0%, #4f46e5 30%, transparent 70%);
+    animation: nebulaDrift1 20s ease-in-out infinite;
+}
+
+/* Nebula 2: Purple — bottom left, drifts opposite */
+.nebula-2 {
+    bottom: -150px;
+    left: -150px;
+    background: radial-gradient(circle, #a855f7 0%, #7c3aed 30%, transparent 70%);
+    animation: nebulaDrift2 25s ease-in-out infinite;
+}
+
+@keyframes nebulaDrift1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.12;
+    }
+
+    33% {
+        transform: translate(-40px, 30px) scale(1.1);
+        opacity: 0.18;
+    }
+
+    66% {
+        transform: translate(20px, -20px) scale(0.95);
+        opacity: 0.10;
+    }
+}
+
+@keyframes nebulaDrift2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.10;
+    }
+
+    40% {
+        transform: translate(50px, -30px) scale(1.15);
+        opacity: 0.16;
+    }
+
+    70% {
+        transform: translate(-30px, 20px) scale(0.9);
+        opacity: 0.08;
+    }
+}
+
+[data-theme='light'] .nebula {
+    opacity: 0.04;
+    filter: blur(150px);
+}
+
+[data-theme='light'] .nebula-1 {
+    background: radial-gradient(circle, #818cf8 0%, #6366f1 30%, transparent 70%);
+}
+
+[data-theme='light'] .nebula-2 {
+    background: radial-gradient(circle, #a78bfa 0%, #8b5cf6 30%, transparent 70%);
+}

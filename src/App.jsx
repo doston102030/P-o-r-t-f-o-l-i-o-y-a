@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import Background from './components/Background';
+import CursorLight from './components/CursorLight';
 import Navbar from './components/Navbar';
 import BottomNav from './components/BottomNav';
 import Hero from './components/Hero';
@@ -14,6 +16,8 @@ import './index.css';
 function Portfolio() {
   return (
     <div className="app">
+      <Background />
+      <CursorLight />
       <Preloader />
       <Navbar />
       <main>

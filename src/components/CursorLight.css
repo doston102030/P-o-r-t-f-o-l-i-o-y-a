@@ -1,0 +1,188 @@
+/* ═══════════════════════════════════════════════════
+   💡 CURSOR LIGHT SYSTEM — Spotlight + Trail + Dot
+   ═══════════════════════════════════════════════════ */
+
+/* Hide native cursor only on desktop */
+@media (min-width: 769px) {
+    * {
+        cursor: none !important;
+    }
+}
+
+/* ── 1. LARGE LANTERN SPOTLIGHT ── */
+.cursor-spotlight {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    /* Centered around origin — JS applies transform: translate(x,y) */
+    top: 0;
+    left: 0;
+    margin-top: -300px;
+    margin-left: -300px;
+    background: radial-gradient(circle at center,
+            rgba(129, 140, 248, 0.10) 0%,
+            rgba(139, 92, 246, 0.06) 25%,
+            rgba(192, 132, 252, 0.03) 50%,
+            transparent 70%);
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+
+[data-theme='light'] .cursor-spotlight {
+    background: radial-gradient(circle at center,
+            rgba(99, 102, 241, 0.12) 0%,
+            rgba(139, 92, 246, 0.06) 30%,
+            rgba(167, 139, 250, 0.02) 55%,
+            transparent 70%);
+    /* normal blend so it shows on white background */
+    mix-blend-mode: normal;
+}
+
+/* ── 2. CURSOR DOT ── */
+.cursor-dot {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    margin-top: -5px;
+    margin-left: -5px;
+    background: #818cf8;
+    box-shadow:
+        0 0 10px 3px rgba(129, 140, 248, 0.6),
+        0 0 20px 6px rgba(129, 140, 248, 0.25),
+        0 0 40px 10px rgba(167, 139, 250, 0.1);
+    transition: width 0.2s ease, height 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    will-change: transform;
+}
+
+.cursor-dot.hovering {
+    width: 18px;
+    height: 18px;
+    background: #a78bfa;
+    box-shadow:
+        0 0 15px 5px rgba(167, 139, 250, 0.8),
+        0 0 30px 10px rgba(167, 139, 250, 0.35),
+        0 0 60px 20px rgba(192, 132, 252, 0.15);
+}
+
+.cursor-dot.clicking {
+    width: 8px;
+    height: 8px;
+    background: #c084fc;
+    box-shadow:
+        0 0 20px 8px rgba(192, 132, 252, 0.9),
+        0 0 40px 15px rgba(192, 132, 252, 0.4);
+}
+
+/* Light mode dot — darker so it shows on white */
+[data-theme='light'] .cursor-dot {
+    background: #4f46e5;
+    box-shadow:
+        0 0 10px 3px rgba(79, 70, 229, 0.55),
+        0 0 20px 6px rgba(79, 70, 229, 0.2),
+        0 0 35px 10px rgba(99, 102, 241, 0.08);
+}
+
+[data-theme='light'] .cursor-dot.hovering {
+    width: 18px;
+    height: 18px;
+    background: #6d28d9;
+    box-shadow:
+        0 0 14px 5px rgba(109, 40, 217, 0.65),
+        0 0 28px 10px rgba(109, 40, 217, 0.25),
+        0 0 50px 18px rgba(124, 58, 237, 0.1);
+}
+
+[data-theme='light'] .cursor-dot.clicking {
+    background: #7c3aed;
+    box-shadow:
+        0 0 18px 7px rgba(124, 58, 237, 0.8),
+        0 0 35px 14px rgba(124, 58, 237, 0.3);
+}
+
+/* ── 3. TRAIL PARTICLES ── */
+.cursor-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    transition: opacity 0.1s ease;
+
+    /* Size fades along trail */
+    width: calc(8px - var(--i) * 0.45px);
+    height: calc(8px - var(--i) * 0.45px);
+    margin-top: calc(-4px + var(--i) * 0.225px);
+    margin-left: calc(-4px + var(--i) * 0.225px);
+    opacity: calc(0.6 - var(--i) * 0.045);
+
+    /* Dark mode: bright indigo-violet gradient trail */
+    background: #818cf8;
+    box-shadow:
+        0 0 6px 2px rgba(129, 140, 248, 0.45),
+        0 0 12px 4px rgba(167, 139, 250, 0.15);
+}
+
+/* Color shifts at different trail positions */
+.cursor-trail:nth-child(n+2):nth-child(-n+5) {
+    background: #a78bfa;
+    box-shadow: 0 0 6px 2px rgba(167, 139, 250, 0.4);
+}
+
+.cursor-trail:nth-child(n+6):nth-child(-n+9) {
+    background: #c084fc;
+    box-shadow: 0 0 5px 2px rgba(192, 132, 252, 0.35);
+}
+
+.cursor-trail:nth-child(n+10) {
+    background: #d8b4fe;
+    box-shadow: 0 0 4px 1px rgba(216, 180, 254, 0.25);
+}
+
+/* Light mode: deeper colors so trail shows on white */
+[data-theme='light'] .cursor-trail {
+    opacity: calc(0.55 - var(--i) * 0.04);
+    box-shadow: 0 0 5px 2px rgba(79, 70, 229, 0.3);
+}
+
+[data-theme='light'] .cursor-trail:nth-child(1) {
+    background: #4f46e5;
+}
+
+[data-theme='light'] .cursor-trail:nth-child(n+2):nth-child(-n+5) {
+    background: #6d28d9;
+    box-shadow: 0 0 5px 2px rgba(109, 40, 217, 0.3);
+}
+
+[data-theme='light'] .cursor-trail:nth-child(n+6):nth-child(-n+9) {
+    background: #7c3aed;
+    box-shadow: 0 0 4px 1px rgba(124, 58, 237, 0.25);
+}
+
+[data-theme='light'] .cursor-trail:nth-child(n+10) {
+    background: #8b5cf6;
+    box-shadow: 0 0 4px 1px rgba(139, 92, 246, 0.2);
+}
+
+/* ── HIDE ALL ON MOBILE ── */
+@media (max-width: 768px) {
+
+    .cursor-spotlight,
+    .cursor-dot,
+    .cursor-trail {
+        display: none;
+    }
+
+    * {
+        cursor: auto !important;
+    }
+}

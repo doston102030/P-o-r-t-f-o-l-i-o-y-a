@@ -12,43 +12,94 @@ const Gradients = () => (
       </linearGradient>
       <radialGradient id="sun-gradient" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stopColor="#fbbf24" />
-        <stop offset="100%" stopColor="#f59e0b" />
+        <stop offset="70%" stopColor="#f59e0b" />
+        <stop offset="100%" stopColor="#d97706" />
       </radialGradient>
       <radialGradient id="moon-gradient" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="#e2e8f0" />
+        <stop offset="0%" stopColor="#f8fafc" />
         <stop offset="100%" stopColor="#94a3b8" />
       </radialGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="1.5" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      </filter>
     </defs>
   </svg>
 );
 
-const GlobeIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" stroke="url(#premium-gradient)" strokeWidth="2" />
-    <path d="M2.5 12H21.5" stroke="url(#premium-gradient)" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M12 2.5C14.5 5 16 8.5 16 12C16 15.5 14.5 19 12 21.5C9.5 19 8 15.5 8 12C8 8.5 9.5 5 12 2.5Z" stroke="url(#premium-gradient)" strokeWidth="1.5" strokeLinecap="round" />
+const UZFlag = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" filter="url(#glow)">
+    <clipPath id="clip-uz">
+      <circle cx="12" cy="12" r="10" />
+    </clipPath>
+    <g clipPath="url(#clip-uz)">
+      <rect width="24" height="6.6" fill="#0099B5" />
+      <rect y="6.6" width="24" height="0.4" fill="#CE1126" />
+      <rect y="7" width="24" height="10" fill="white" />
+      <rect y="17" width="24" height="0.4" fill="#CE1126" />
+      <rect y="17.4" width="24" height="6.6" fill="#1EB53A" />
+      <circle cx="6" cy="3.5" r="1.5" fill="white" />
+      <circle cx="6.8" cy="3.5" r="1.5" fill="#0099B5" />
+      <circle cx="10" cy="2.5" r="0.3" fill="white" />
+      <circle cx="11" cy="2.5" r="0.3" fill="white" />
+      <circle cx="10" cy="4.5" r="0.3" fill="white" />
+    </g>
+    <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+  </svg>
+);
+
+const RUFlag = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" filter="url(#glow)">
+    <clipPath id="clip-ru">
+      <circle cx="12" cy="12" r="10" />
+    </clipPath>
+    <g clipPath="url(#clip-ru)">
+      <rect width="24" height="8" fill="white" />
+      <rect y="8" width="24" height="8" fill="#0039A6" />
+      <rect y="16" width="24" height="8" fill="#D52B1E" />
+    </g>
+    <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+  </svg>
+);
+
+const ENFlag = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" filter="url(#glow)">
+    <clipPath id="clip-en">
+      <circle cx="12" cy="12" r="10" />
+    </clipPath>
+    <g clipPath="url(#clip-en)">
+      <rect width="24" height="24" fill="#012169" />
+      <path d="M0 0L24 24M24 0L0 24" stroke="white" strokeWidth="2.5" />
+      <path d="M0 0L24 24M24 0L0 24" stroke="#C8102E" strokeWidth="1.5" />
+      <path d="M12 0V24M0 12H24" stroke="white" strokeWidth="4" />
+      <path d="M12 0V24M0 12H24" stroke="#C8102E" strokeWidth="2.5" />
+    </g>
+    <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
   </svg>
 );
 
 const MoonIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" fill="url(#moon-gradient)" stroke="#94a3b8" strokeWidth="0.5" />
-    <circle cx="18" cy="7" r="1" fill="white" fillOpacity="0.4" />
-    <circle cx="14" cy="4" r="0.5" fill="white" fillOpacity="0.3" />
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" fill="url(#moon-gradient)" />
+    <circle cx="15" cy="10" r="0.8" fill="white" fillOpacity="0.4" />
+    <circle cx="12" cy="15" r="1.2" fill="white" fillOpacity="0.2" />
+    <path d="M18 5L17 7L19 7L18 5Z" fill="#6366f1" fillOpacity="0.6" />
   </svg>
 );
 
 const SunIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="12" cy="12" r="5" fill="url(#sun-gradient)" />
-    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-      <line
+    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+      <rect
         key={angle}
-        x1="12" y1="3" x2="12" y2="1"
-        stroke="#fbbf24" strokeWidth="2" strokeLinecap="round"
+        x="11.5" y="1" width="1" height={i % 2 === 0 ? "4" : "2"}
+        rx="0.5"
+        fill="#fbbf24"
         transform={`rotate(${angle} 12 12)`}
       />
     ))}
+    <circle cx="12" cy="12" r="8" stroke="#fbbf24" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.3" />
   </svg>
 );
 
@@ -70,7 +121,32 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Intersection Observer for active section detection
+    const options = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px', // Center-of-viewport trigger
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    }, options);
+
+    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -82,10 +158,10 @@ export default function Navbar() {
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <Gradients />
-      <div className="nav-container container">
+      <div className="nav-container">
         <a href="#home" className="nav-logo">
           <span className="logo-bracket">&lt;</span>
-          Uzdev
+          <span className="logo-text">Uzdev</span>
           <span className="logo-bracket">&gt;</span>
         </a>
 
@@ -94,7 +170,7 @@ export default function Navbar() {
             <a
               key={link.key}
               href={link.href}
-              className={`nav-link ${active === link.href.replace('#', '') ? 'nav-link--active' : ''}`}
+              className={active === link.href.replace('#', '') ? 'active' : ''}
               onClick={() => setActive(link.href.replace('#', ''))}
             >
               {t(link.key)}
@@ -103,40 +179,39 @@ export default function Navbar() {
         </nav>
 
         {/* Controls */}
-        <div className="nav-controls controls-on-top">
+        <div className="nav-controls">
           {/* Language Dropdown */}
-          <div className="lang-dropdown" onClick={(e) => e.stopPropagation()}>
+          <div className="lang-dropdown">
             <button
-              className="lang-current premium-btn"
-              onClick={() => setLangOpen(!langOpen)}
+              className="lang-toggle"
+              onClick={(e) => { e.stopPropagation(); setLangOpen(!langOpen); }}
               aria-label="Change language"
             >
-              <GlobeIcon />
+              {language === 'uz' ? <UZFlag /> : language === 'ru' ? <RUFlag /> : <ENFlag />}
               <span className="lang-code">{language.toUpperCase()}</span>
-              <svg className={`lang-chevron ${langOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
             </button>
-            {langOpen && (
-              <div className="lang-menu">
-                {['uz', 'ru', 'en'].map((lang) => (
-                  <button
-                    key={lang}
-                    className={`lang-option ${language === lang ? 'lang-option--active' : ''}`}
-                    onClick={() => { setLanguage(lang); setLangOpen(false); }}
-                  >
-                    <span>{lang.toUpperCase()}</span>
-                  </button>
-                ))}
-              </div>
-            )}
+            <div className={`lang-menu ${langOpen ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
+              {[
+                { code: 'uz', icon: <UZFlag /> },
+                { code: 'ru', icon: <RUFlag /> },
+                { code: 'en', icon: <ENFlag /> }
+              ].map((lang) => (
+                <div
+                  key={lang.code}
+                  className={`lang-item ${language === lang.code ? 'active' : ''}`}
+                  onClick={() => { setLanguage(lang.code); setLangOpen(false); }}
+                >
+                  <span className="lang-item-icon">{lang.icon}</span>
+                  {lang.code.toUpperCase()}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Theme Toggle */}
-          <button className="theme-toggle premium-btn" onClick={toggleTheme} aria-label="Toggle theme">
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
-
         </div>
       </div>
     </header>
