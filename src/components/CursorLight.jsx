@@ -54,8 +54,8 @@ export default function CursorLight() {
             }
 
             // Spotlight slowly lags behind
-            spotPosRef.current.x = lerp(spotPosRef.current.x, targetRef.current.x, 0.06);
-            spotPosRef.current.y = lerp(spotPosRef.current.y, targetRef.current.y, 0.06);
+            spotPosRef.current.x = lerp(spotPosRef.current.x, targetRef.current.x, 0.18);
+            spotPosRef.current.y = lerp(spotPosRef.current.y, targetRef.current.y, 0.18);
 
             if (spotRef.current) {
                 spotRef.current.style.transform = `translate(${spotPosRef.current.x}px, ${spotPosRef.current.y}px)`;

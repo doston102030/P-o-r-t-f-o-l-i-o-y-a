@@ -2,7 +2,7 @@
 .portal-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 9999;
+    z-index: 100000;
     background: rgba(4, 7, 18, 0.88);
     backdrop-filter: blur(6px);
     display: flex;
@@ -38,7 +38,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    z-index: 10001;
+    z-index: 100001;
 }
 
 .portal-close:hover {
@@ -167,7 +167,7 @@
     letter-spacing: 0.02em;
 }
 
-/* ── PROJECT GRID ── */
+/* ── PROJECT/AI GRID ── */
 .portal-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -175,24 +175,110 @@
     width: 90%;
 }
 
-/* ── EACH PROJECT CARD ── */
-.portal-card {
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(10, 20, 50, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    animation: cardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    backdrop-filter: blur(4px);
+.portal-grid--ai {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    width: 88%;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
-.portal-card:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    border-color: rgba(120, 180, 255, 0.4);
+.portal-grid--ai::-webkit-scrollbar {
+    display: none;
+}
+
+/* ── OLD PROJECT CARD (kept for reference) ── */
+.portal-card {
+    border-radius: 12px;
+    display: grid;
+    gap: 12px;
+}
+
+/* 📱 AI Tool Card */
+.portal-ai-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(10, 20, 50, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    animation: cardIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(6px);
+    position: relative;
+    overflow: hidden;
+}
+
+.portal-ai-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--tool-color) 15%, transparent), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portal-ai-card:hover {
+    border-color: color-mix(in srgb, var(--tool-color) 60%, transparent);
+    transform: translateX(4px);
+    background: rgba(20, 30, 70, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.portal-ai-card:hover::before {
+    opacity: 1;
+}
+
+.portal-ai-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 1.2rem;
+    z-index: 1;
+}
+
+.portal-ai-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 1;
+}
+
+.portal-ai-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.portal-ai-by {
+    font-size: 0.68rem;
+    color: rgba(180, 200, 255, 0.55);
+    font-weight: 500;
+}
+
+.portal-ai-arrow {
+    color: color-mix(in srgb, var(--tool-color) 80%, white);
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 0.25s ease;
+    z-index: 1;
+}
+
+.portal-ai-card:hover .portal-ai-arrow {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 @keyframes cardIn {
@@ -205,60 +291,6 @@
         opacity: 1;
         transform: translateY(0) scale(1);
     }
-}
-
-.portal-card-img {
-    width: 100%;
-    height: 90px;
-    object-fit: cover;
-    display: block;
-}
-
-.portal-card-placeholder {
-    width: 100%;
-    height: 90px;
-    background: linear-gradient(135deg, rgba(80, 130, 255, 0.2), rgba(120, 60, 200, 0.2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.portal-card-emoji {
-    font-size: 2rem;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-}
-
-.portal-card-info {
-    padding: 8px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.portal-card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.9);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.portal-card-tags {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-}
-
-.portal-card-tag {
-    font-size: 0.6rem;
-    color: rgba(150, 200, 255, 0.85);
-    background: rgba(80, 130, 255, 0.15);
-    border: 1px solid rgba(80, 130, 255, 0.2);
-    border-radius: 4px;
-    padding: 1px 6px;
-    font-weight: 600;
 }
 
 /* ── RESPONSIVE ── */
@@ -286,11 +318,6 @@
     .portal-ring--3 {
         width: 265px;
         height: 265px;
-    }
-
-    .portal-card-img,
-    .portal-card-placeholder {
-        height: 64px;
     }
 
     .portal-grid {

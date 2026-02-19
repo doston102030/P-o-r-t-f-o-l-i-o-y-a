@@ -13,7 +13,6 @@ import AdminLogin from './admin/AdminLogin';
 import AdminLayout from './admin/AdminLayout';
 import Preloader from './components/Preloader';
 import ProjectsPortal from './components/ProjectsPortal';
-import Footer from './components/Footer';
 import './index.css';
 
 function Portfolio() {
@@ -24,15 +23,14 @@ function Portfolio() {
       <Background />
       <CursorLight />
       <Preloader />
-      <Navbar onPortalOpen={() => setPortalOpen(true)} />
+      <Navbar />
       <main>
-        <Hero />
+        <Hero onPortalOpen={() => setPortalOpen(true)} />
         <About />
         <Skills />
         <Projects />
         <Contact />
       </main>
-      <Footer />
       <BottomNav />
       <ProjectsPortal open={portalOpen} onClose={() => setPortalOpen(false)} />
     </div>

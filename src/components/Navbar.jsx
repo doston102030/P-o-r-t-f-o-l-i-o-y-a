@@ -103,7 +103,7 @@ const SunIcon = () => (
   </svg>
 );
 
-export default function Navbar({ onPortalOpen }) {
+export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
@@ -161,7 +161,7 @@ export default function Navbar({ onPortalOpen }) {
       <div className="nav-container">
         <a href="#home" className="nav-logo">
           <span className="logo-bracket">&lt;</span>
-          <span className="logo-text">Uzdev</span>
+          <span className="logo-text">DA</span>
           <span className="logo-bracket">&gt;</span>
         </a>
 
@@ -180,24 +180,6 @@ export default function Navbar({ onPortalOpen }) {
 
         {/* Controls */}
         <div className="nav-controls">
-          {/* Portal trigger button */}
-          <button
-            className="portal-trigger-btn"
-            onClick={onPortalOpen}
-            aria-label="Loyihalar portalini ochish"
-            title="Loyihalarni ko'rish"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="4" />
-              <line x1="12" y1="2" x2="12" y2="8" />
-              <line x1="12" y1="16" x2="12" y2="22" />
-              <line x1="2" y1="12" x2="8" y2="12" />
-              <line x1="16" y1="12" x2="22" y2="12" />
-            </svg>
-            <span>Portal</span>
-          </button>
-
           <div className="lang-dropdown">
             <button
               className="lang-toggle"

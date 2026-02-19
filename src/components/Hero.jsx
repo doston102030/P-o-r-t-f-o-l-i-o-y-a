@@ -4,7 +4,7 @@ import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import './Hero.css';
 
-export default function Hero() {
+export default function Hero({ onPortalOpen }) {
   const { t } = useLanguage();
   const [fsData, setFsData] = useState(null);
 
@@ -34,8 +34,8 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-name animate-fade-up delay-1">
-            {val('name1', 'Abdumajid')}<br />
-            <span className="gradient-text">{val('name2', 'Xolmatov')}</span>
+            {val('name1', 'Adhamjonov')}<br />
+            <span className="gradient-text">{val('name2', 'Doston')}</span>
           </h1>
 
           <div className="hero-role animate-fade-up delay-2">
@@ -85,7 +85,7 @@ export default function Hero() {
                       <circle cx="50" cy="38" r="20" fill="#6382ff" opacity="0.7" />
                       <ellipse cx="50" cy="85" rx="30" ry="20" fill="#6382ff" opacity="0.5" />
                     </svg>
-                    <span className="avatar-initials">{val('initials', 'AX')}</span>
+                    <span className="avatar-initials">{val('initials', 'DA')}</span>
                   </>
                 )}
               </div>
@@ -101,6 +101,15 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Floating AI Portal Trigger */}
+      <button className="btn-portal-floating" onClick={onPortalOpen}>
+        <div className="btn-portal-glow" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 3c.3 1.3 1.2 2.2 2.5 2.5a3 3 0 0 1 0 5c-1.3.3-2.2 1.2-2.5 2.5a3 3 0 0 1-5 0c-.3-1.3-1.2-2.2-2.5-2.5a3 3 0 0 1 0-5c1.3-.3 2.2-1.2 2.5-2.5a3 3 0 0 1 5 0z" />
+          <path d="M19 13c.3 1.3 1.2 2.2 2.5 2.5a3 3 0 0 1 0 5c-1.3.3-2.2 1.2-2.5 2.5a3 3 0 0 1-5 0c-.3-1.3-1.2-2.2-2.5-2.5a3 3 0 0 1 0-5c1.3-.3 2.2-1.2 2.5-2.5a3 3 0 0 1 5 0z" opacity="0.6" />
+        </svg>
+        <span>Top AI</span>
+      </button>
     </section>
   );
 }

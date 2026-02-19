@@ -2,30 +2,24 @@
    💡 CURSOR LIGHT SYSTEM — Spotlight + Trail + Dot
    ═══════════════════════════════════════════════════ */
 
-/* Hide native cursor only on desktop */
-@media (min-width: 769px) {
-    * {
-        cursor: none !important;
-    }
-}
+/* Custom cursor dot o'chirildi — tizim kursori ishlatiladi */
 
 /* ── 1. LARGE LANTERN SPOTLIGHT ── */
 .cursor-spotlight {
     position: fixed;
     pointer-events: none;
     z-index: 1;
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     border-radius: 50%;
-    /* Centered around origin — JS applies transform: translate(x,y) */
     top: 0;
     left: 0;
-    margin-top: -300px;
-    margin-left: -300px;
+    margin-top: -350px;
+    margin-left: -350px;
     background: radial-gradient(circle at center,
-            rgba(129, 140, 248, 0.10) 0%,
-            rgba(139, 92, 246, 0.06) 25%,
-            rgba(192, 132, 252, 0.03) 50%,
+            rgba(129, 140, 248, 0.22) 0%,
+            rgba(139, 92, 246, 0.14) 25%,
+            rgba(192, 132, 252, 0.07) 50%,
             transparent 70%);
     mix-blend-mode: screen;
     will-change: transform;
@@ -33,78 +27,17 @@
 
 [data-theme='light'] .cursor-spotlight {
     background: radial-gradient(circle at center,
-            rgba(99, 102, 241, 0.12) 0%,
-            rgba(139, 92, 246, 0.06) 30%,
-            rgba(167, 139, 250, 0.02) 55%,
+            rgba(99, 102, 241, 0.22) 0%,
+            rgba(139, 92, 246, 0.12) 30%,
+            rgba(167, 139, 250, 0.05) 55%,
             transparent 70%);
-    /* normal blend so it shows on white background */
     mix-blend-mode: normal;
 }
 
-/* ── 2. CURSOR DOT ── */
-.cursor-dot {
-    position: fixed;
-    pointer-events: none;
-    z-index: 99999;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    top: 0;
-    left: 0;
-    margin-top: -5px;
-    margin-left: -5px;
-    background: #818cf8;
-    box-shadow:
-        0 0 10px 3px rgba(129, 140, 248, 0.6),
-        0 0 20px 6px rgba(129, 140, 248, 0.25),
-        0 0 40px 10px rgba(167, 139, 250, 0.1);
-    transition: width 0.2s ease, height 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    will-change: transform;
-}
-
-.cursor-dot.hovering {
-    width: 18px;
-    height: 18px;
-    background: #a78bfa;
-    box-shadow:
-        0 0 15px 5px rgba(167, 139, 250, 0.8),
-        0 0 30px 10px rgba(167, 139, 250, 0.35),
-        0 0 60px 20px rgba(192, 132, 252, 0.15);
-}
-
-.cursor-dot.clicking {
-    width: 8px;
-    height: 8px;
-    background: #c084fc;
-    box-shadow:
-        0 0 20px 8px rgba(192, 132, 252, 0.9),
-        0 0 40px 15px rgba(192, 132, 252, 0.4);
-}
-
-/* Light mode dot — darker so it shows on white */
-[data-theme='light'] .cursor-dot {
-    background: #4f46e5;
-    box-shadow:
-        0 0 10px 3px rgba(79, 70, 229, 0.55),
-        0 0 20px 6px rgba(79, 70, 229, 0.2),
-        0 0 35px 10px rgba(99, 102, 241, 0.08);
-}
-
-[data-theme='light'] .cursor-dot.hovering {
-    width: 18px;
-    height: 18px;
-    background: #6d28d9;
-    box-shadow:
-        0 0 14px 5px rgba(109, 40, 217, 0.65),
-        0 0 28px 10px rgba(109, 40, 217, 0.25),
-        0 0 50px 18px rgba(124, 58, 237, 0.1);
-}
-
-[data-theme='light'] .cursor-dot.clicking {
-    background: #7c3aed;
-    box-shadow:
-        0 0 18px 7px rgba(124, 58, 237, 0.8),
-        0 0 35px 14px rgba(124, 58, 237, 0.3);
+/* Cursor dot va trail o'chirildi */
+.cursor-dot,
+.cursor-trail {
+    display: none !important;
 }
 
 /* ── 3. TRAIL PARTICLES ── */
