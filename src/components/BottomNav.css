@@ -1,56 +1,83 @@
 .bottom-nav {
     position: fixed;
-    bottom: 20px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
     display: none;
+    animation: floatingBar 4s ease-in-out infinite;
+}
+
+@keyframes floatingBar {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, -6px);
+    }
 }
 
 .bottom-nav-container {
     display: flex;
     align-items: center;
-    background: var(--bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 4px;
-    border-radius: 50px;
-    border: 1px solid var(--border);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-    gap: 2px;
-    transition: background 0.2s, box-shadow 0.2s;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    padding: 6px;
+    border-radius: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 0 1px 1px rgba(255, 255, 255, 0.05);
+    gap: 4px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme='light'] .bottom-nav-container {
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme='dark'] .bottom-nav-container {
-    background: rgba(15, 23, 42, 0.92);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12),
+        inset 0 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
 .bottom-nav-item {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 8px 10px;
-    border-radius: 50px;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 40px;
     color: var(--text-muted);
-    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
     position: relative;
+    overflow: hidden;
 }
 
-.bottom-nav-item:hover {
-    color: var(--text);
+.bottom-nav-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.bottom-nav-item:hover::before {
+    width: 150%;
+    height: 150%;
 }
 
 .bottom-nav-item.active {
-    background: var(--accent);
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
     color: #fff;
-    padding: 8px 16px;
-    box-shadow: 0 3px 12px var(--glow);
+    padding: 10px 20px;
+    box-shadow: 0 8px 16px rgba(79, 70, 229, 0.3);
 }
 
 .bottom-nav-icon {
@@ -58,37 +85,40 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    z-index: 1;
 }
 
 .bottom-nav-icon svg {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.25s;
+    width: 20px;
+    height: 20px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .bottom-nav-item.active .bottom-nav-icon svg {
-    transform: scale(1.05);
+    transform: scale(1.1) translateY(-1px);
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
 }
 
 .bottom-nav-label {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 700;
     white-space: nowrap;
     font-family: 'Syne', sans-serif;
-    animation: bnSlideIn 0.25s ease forwards;
-    overflow: hidden;
+    letter-spacing: 0.02em;
+    animation: bnSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    z-index: 1;
 }
 
 @keyframes bnSlideIn {
     from {
         opacity: 0;
         max-width: 0;
-        transform: translateX(-6px);
+        transform: translateX(-10px);
     }
 
     to {
         opacity: 1;
-        max-width: 100px;
+        max-width: 120px;
         transform: translateX(0);
     }
 }
@@ -99,26 +129,13 @@
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
+    .bottom-nav {
+        bottom: 16px;
+    }
+
     .bottom-nav-container {
         padding: 5px;
         gap: 2px;
-    }
-
-    .bottom-nav-item {
-        padding: 8px 10px;
-    }
-
-    .bottom-nav-item.active {
-        padding: 8px 16px;
-    }
-
-    .bottom-nav-icon svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .bottom-nav-label {
-        font-size: 0.72rem;
     }
 }
