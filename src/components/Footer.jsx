@@ -52,7 +52,7 @@ export default function Footer() {
       <div className="container footer-container">
         <div className="footer-brand">
           <a href="#home" className="footer-logo">
-            <span className="logo-bracket">&lt;</span>DA<span className="logo-bracket">/&gt;</span>
+            <span className="logo-bracket">&lt;</span>Uzdev<span className="logo-bracket">/&gt;</span>
           </a>
           <p className="footer-tagline">{t('footer.tagline')}</p>
         </div>

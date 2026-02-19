@@ -161,7 +161,7 @@ export default function Navbar() {
       <div className="nav-container">
         <a href="#home" className="nav-logo">
           <span className="logo-bracket">&lt;</span>
-          <span className="logo-text">DA</span>
+          <span className="logo-text">Uzdev</span>
           <span className="logo-bracket">&gt;</span>
         </a>
 

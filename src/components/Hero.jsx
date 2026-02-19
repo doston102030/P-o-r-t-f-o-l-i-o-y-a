@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import './Hero.css';
 
 export default function Hero({ onPortalOpen }) {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const [fsData, setFsData] = useState(null);
 
   useEffect(() => {
@@ -80,13 +82,36 @@ export default function Hero({ onPortalOpen }) {
                 {fsData.avatarUrl ? (
                   <img src={fsData.avatarUrl} alt="Profile" className="hero-img" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 ) : (
-                  <>
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="avatar-svg">
-                      <circle cx="50" cy="38" r="20" fill="#6382ff" opacity="0.7" />
-                      <ellipse cx="50" cy="85" rx="30" ry="20" fill="#6382ff" opacity="0.5" />
-                    </svg>
-                    <span className="avatar-initials">{val('initials', 'DA')}</span>
-                  </>
+                  <div className="illustration-wrapper">
+                    {/* Local Image Fallback */}
+                    <img
+                      src="/avatar.jpg"
+                      alt="Profile"
+                      className="hero-img local-avatar"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, zIndex: 5 }}
+                      onLoad={(e) => {
+                        const placeholder = e.target.parentElement.querySelector('.avatar-placeholder');
+                        if (placeholder) placeholder.style.opacity = '0';
+                      }}
+                      onError={(e) => e.target.style.display = 'none'}
+                    />
+
+                    {/* Theme-based Illustration (Optional) */}
+                    <div className={`hero-illustration ${theme}`}>
+                      <img src="/hero-day.png" alt="" className="illustration-img day" onError={(e) => e.target.style.display = 'none'} />
+                      <img src="/hero-night.png" alt="" className="illustration-img night" onError={(e) => e.target.style.display = 'none'} />
+                    </div>
+
+                    {/* Initials Placeholder - only visible if image fails */}
+                    <div className="avatar-placeholder" style={{ transition: 'opacity 0.6s ease' }}>
+                      <div className="placeholder-glow" />
+                      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="avatar-svg">
+                        <circle cx="50" cy="38" r="20" fill="#6382ff" opacity="0.3" />
+                        <ellipse cx="50" cy="85" rx="30" ry="20" fill="#6382ff" opacity="0.2" />
+                      </svg>
+                      <span className="avatar-initials">{val('initials', 'DA')}</span>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
