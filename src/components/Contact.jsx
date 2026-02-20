@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { db } from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import './Contact.css';
 
 export default function Contact() {
@@ -67,7 +67,6 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { addDoc, collection, serverTimestamp } = await import('firebase/firestore');
       await addDoc(collection(db, 'messages'), {
         ...formData,
         timestamp: serverTimestamp(),

@@ -6,132 +6,308 @@
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    --mouse-x: 0px;
+    --mouse-y: 0px;
     background:
-        radial-gradient(ellipse at 20% 80%, rgba(99, 102, 241, 0.10) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom, #0f0d24 0%, #08061a 100%);
+        radial-gradient(ellipse at 20% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 40%),
+        radial-gradient(ellipse at bottom, #0a0818 0%, #06040f 100%);
     transition: background 1.2s ease;
 }
 
 [data-theme='light'] .cosmic-background {
     background:
-        radial-gradient(ellipse at 20% 80%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.04) 0%, transparent 50%),
         radial-gradient(ellipse at bottom, #eef2ff 0%, #f8fafc 100%);
 }
 
 /* ═══════════════════════════════════════════
-   ⭐ STARS — Multi-color Twinkling
+   🟣 FLOATING ORBS — Ambient Glow
+   ═══════════════════════════════════════════ */
+.orbs-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-orb {
+    position: absolute;
+    width: var(--orb-size);
+    height: var(--orb-size);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--orb-color), transparent 70%);
+    filter: blur(50px);
+    opacity: 0.15;
+    animation: orbFloat linear infinite;
+    will-change: transform;
+}
+
+.floating-orb:nth-child(1) {
+    animation-name: orbFloat1;
+}
+
+.floating-orb:nth-child(2) {
+    animation-name: orbFloat2;
+}
+
+.floating-orb:nth-child(3) {
+    animation-name: orbFloat3;
+}
+
+.floating-orb:nth-child(4) {
+    animation-name: orbFloat1;
+    animation-direction: reverse;
+}
+
+.floating-orb:nth-child(5) {
+    animation-name: orbFloat2;
+    animation-direction: reverse;
+}
+
+@keyframes orbFloat1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.12;
+    }
+
+    25% {
+        transform: translate(80px, -50px) scale(1.15);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: translate(-40px, 60px) scale(0.95);
+        opacity: 0.1;
+    }
+
+    75% {
+        transform: translate(50px, 30px) scale(1.08);
+        opacity: 0.16;
+    }
+}
+
+@keyframes orbFloat2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.1;
+    }
+
+    30% {
+        transform: translate(-60px, 40px) scale(1.2);
+        opacity: 0.18;
+    }
+
+    60% {
+        transform: translate(50px, -70px) scale(0.9);
+        opacity: 0.08;
+    }
+
+    80% {
+        transform: translate(-30px, -40px) scale(1.12);
+        opacity: 0.15;
+    }
+}
+
+@keyframes orbFloat3 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.11;
+    }
+
+    20% {
+        transform: translate(40px, 60px) scale(1.25);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: translate(-70px, -30px) scale(0.85);
+        opacity: 0.07;
+    }
+
+    70% {
+        transform: translate(60px, -50px) scale(1.15);
+        opacity: 0.16;
+    }
+}
+
+[data-theme='light'] .floating-orb {
+    opacity: 0.04;
+    filter: blur(80px);
+}
+
+/* ═══════════════════════════════════════════
+   ⭐ STARS — YORQIN, multi-layered
    ═══════════════════════════════════════════ */
 .stars-container {
     position: absolute;
     width: 100%;
     height: 100%;
+    transform: translate(var(--mouse-x), var(--mouse-y));
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
 }
 
 .star {
     position: absolute;
     border-radius: 50%;
-    opacity: 0;
+    animation-fill-mode: both;
+}
+
+/* ──── Small stars ──── */
+.star--small {
+    background: #e0e7ff;
+    box-shadow: 0 0 6px 2px rgba(224, 231, 255, 0.5);
     animation: twinkle var(--duration) ease-in-out infinite;
 }
 
-/* Multi-color stars via nth-child */
-.star:nth-child(5n+1) {
-    background: #e0e7ff;
-    box-shadow: 0 0 6px 1px rgba(224, 231, 255, 0.4);
-}
-
-.star:nth-child(5n+2) {
+.star--small:nth-child(7n+1) {
     background: #c7d2fe;
-    box-shadow: 0 0 6px 1px rgba(199, 210, 254, 0.3);
+    box-shadow: 0 0 6px 2px rgba(199, 210, 254, 0.5);
 }
 
-.star:nth-child(5n+3) {
-    background: #a5b4fc;
-    box-shadow: 0 0 8px 1px rgba(165, 180, 252, 0.3);
+.star--small:nth-child(7n+2) {
+    background: #e0e7ff;
+    box-shadow: 0 0 5px 2px rgba(224, 231, 255, 0.4);
 }
 
-.star:nth-child(5n+4) {
-    background: #c4b5fd;
-    box-shadow: 0 0 6px 1px rgba(196, 181, 253, 0.3);
+.star--small:nth-child(7n+3) {
+    background: #ddd6fe;
+    box-shadow: 0 0 6px 2px rgba(221, 214, 254, 0.5);
 }
 
-.star:nth-child(5n+5) {
+.star--small:nth-child(7n+4) {
+    background: #bfdbfe;
+    box-shadow: 0 0 5px 2px rgba(191, 219, 254, 0.4);
+}
+
+.star--small:nth-child(7n+5) {
     background: #fde68a;
-    box-shadow: 0 0 8px 2px rgba(253, 230, 138, 0.3);
+    box-shadow: 0 0 8px 2px rgba(253, 230, 138, 0.5);
 }
 
-/* Bigger accent stars */
-.star:nth-child(10n) {
+.star--small:nth-child(7n+6) {
+    background: #a5f3fc;
+    box-shadow: 0 0 6px 2px rgba(165, 243, 252, 0.4);
+}
+
+.star--small:nth-child(7n+7) {
+    background: #fecaca;
+    box-shadow: 0 0 6px 2px rgba(254, 202, 202, 0.4);
+}
+
+/* ──── Medium stars ──── */
+.star--medium {
     background: #818cf8;
-    box-shadow: 0 0 12px 3px rgba(129, 140, 248, 0.5);
+    box-shadow: 0 0 12px 4px rgba(129, 140, 248, 0.6);
+    animation: twinkleMedium var(--duration) ease-in-out infinite;
 }
 
-.star:nth-child(15n) {
+.star--medium:nth-child(5n+1) {
     background: #a78bfa;
-    box-shadow: 0 0 14px 3px rgba(167, 139, 250, 0.4);
+    box-shadow: 0 0 14px 4px rgba(167, 139, 250, 0.6);
 }
 
-/* Light mode stars — deep indigo/purple visible on white */
-[data-theme='light'] .star {
-    opacity: 0;
-    /* base reset, overridden below */
+.star--medium:nth-child(5n+2) {
+    background: #818cf8;
+    box-shadow: 0 0 12px 4px rgba(129, 140, 248, 0.6);
 }
 
-[data-theme='light'] .star:nth-child(5n+1) {
-    background: #4f46e5;
-    box-shadow: 0 0 5px 1px rgba(79, 70, 229, 0.25);
-    opacity: 0.5;
+.star--medium:nth-child(5n+3) {
+    background: #67e8f9;
+    box-shadow: 0 0 14px 4px rgba(103, 232, 249, 0.5);
 }
 
-[data-theme='light'] .star:nth-child(5n+2) {
-    background: #6366f1;
-    box-shadow: 0 0 4px 1px rgba(99, 102, 241, 0.2);
-    opacity: 0.4;
+.star--medium:nth-child(5n+4) {
+    background: #fbbf24;
+    box-shadow: 0 0 14px 4px rgba(251, 191, 36, 0.6);
 }
 
-[data-theme='light'] .star:nth-child(5n+3) {
-    background: #7c3aed;
-    box-shadow: 0 0 5px 1px rgba(124, 58, 237, 0.2);
-    opacity: 0.45;
+.star--medium:nth-child(5n+5) {
+    background: #f472b6;
+    box-shadow: 0 0 14px 4px rgba(244, 114, 182, 0.5);
 }
 
-[data-theme='light'] .star:nth-child(5n+4) {
-    background: #8b5cf6;
-    box-shadow: 0 0 4px 1px rgba(139, 92, 246, 0.18);
-    opacity: 0.35;
+/* ──── Bright stars — KATTA, cross-glow ──── */
+.star--bright {
+    background: #ffffff;
+    box-shadow:
+        0 0 15px 5px rgba(255, 255, 255, 0.8),
+        0 0 40px 10px rgba(129, 140, 248, 0.4),
+        0 0 60px 15px rgba(99, 102, 241, 0.15);
+    animation: twinkleBright var(--duration) ease-in-out infinite;
 }
 
-[data-theme='light'] .star:nth-child(5n+5) {
-    background: #6d28d9;
-    box-shadow: 0 0 4px 1px rgba(109, 40, 217, 0.18);
-    opacity: 0.3;
+/* Cross-shaped lens flare for bright stars */
+.star--bright::before,
+.star--bright::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
 }
 
-/* Accent stars — bolder */
-[data-theme='light'] .star:nth-child(10n) {
-    background: #4338ca;
-    box-shadow: 0 0 8px 2px rgba(67, 56, 202, 0.3);
-    opacity: 0.6;
+.star--bright::before {
+    width: 300%;
+    height: 40%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
 }
 
-[data-theme='light'] .star:nth-child(15n) {
-    background: #5b21b6;
-    box-shadow: 0 0 10px 3px rgba(91, 33, 182, 0.25);
-    opacity: 0.65;
+.star--bright::after {
+    width: 40%;
+    height: 300%;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.7), transparent);
 }
 
+.star--bright:nth-child(4n+1) {
+    box-shadow:
+        0 0 15px 5px rgba(99, 102, 241, 0.8),
+        0 0 40px 10px rgba(99, 102, 241, 0.3),
+        0 0 70px 20px rgba(99, 102, 241, 0.1);
+}
+
+.star--bright:nth-child(4n+2) {
+    box-shadow:
+        0 0 15px 5px rgba(167, 139, 250, 0.8),
+        0 0 40px 10px rgba(167, 139, 250, 0.3),
+        0 0 70px 20px rgba(167, 139, 250, 0.1);
+}
+
+.star--bright:nth-child(4n+3) {
+    box-shadow:
+        0 0 18px 6px rgba(6, 182, 212, 0.8),
+        0 0 45px 12px rgba(6, 182, 212, 0.3),
+        0 0 70px 20px rgba(6, 182, 212, 0.1);
+}
+
+.star--bright:nth-child(4n+4) {
+    box-shadow:
+        0 0 15px 5px rgba(251, 191, 36, 0.8),
+        0 0 40px 10px rgba(251, 191, 36, 0.3),
+        0 0 70px 20px rgba(251, 191, 36, 0.1);
+}
+
+/* ──── Star Animations ──── */
 @keyframes twinkle {
 
     0%,
     100% {
         transform: scale(0.8);
-        opacity: 0.3;
+        opacity: 0.35;
     }
 
     25% {
-        opacity: 0.8;
+        opacity: 0.75;
     }
 
     50% {
@@ -140,17 +316,160 @@
     }
 
     75% {
+        opacity: 0.55;
+    }
+}
+
+@keyframes twinkleMedium {
+
+    0%,
+    100% {
+        transform: scale(0.7);
+        opacity: 0.4;
+    }
+
+    30% {
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: scale(1.6);
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.65;
+    }
+}
+
+@keyframes twinkleBright {
+
+    0%,
+    100% {
+        transform: scale(0.6);
+        opacity: 0.5;
+    }
+
+    20% {
+        opacity: 0.85;
+    }
+
+    50% {
+        transform: scale(1.8) rotate(45deg);
+        opacity: 1;
+    }
+
+    80% {
         opacity: 0.6;
     }
+}
+
+/* ──── Light mode stars ──── */
+[data-theme='light'] .star--small {
+    background: #6366f1;
+    box-shadow: 0 0 5px 2px rgba(99, 102, 241, 0.3);
+}
+
+[data-theme='light'] .star--medium {
+    background: #4f46e5;
+    box-shadow: 0 0 8px 3px rgba(79, 70, 229, 0.35);
+}
+
+[data-theme='light'] .star--bright {
+    background: #4338ca;
+    box-shadow: 0 0 12px 4px rgba(67, 56, 202, 0.4), 0 0 30px 8px rgba(67, 56, 202, 0.15);
+}
+
+[data-theme='light'] .star--bright::before,
+[data-theme='light'] .star--bright::after {
+    background: linear-gradient(90deg, transparent, rgba(67, 56, 202, 0.4), transparent);
+}
+
+/* ═══════════════════════════════════════════
+   ✨ CONSTELLATION LINES
+   ═══════════════════════════════════════════ */
+.constellation-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.25;
+}
+
+.constellation-line {
+    stroke: rgba(129, 140, 248, 0.5);
+    stroke-width: 0.8;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawLine 4s ease-in-out forwards;
+}
+
+@keyframes drawLine {
+    0% {
+        stroke-dashoffset: 200;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.5;
+    }
+}
+
+[data-theme='light'] .constellation-svg {
+    opacity: 0.1;
+}
+
+[data-theme='light'] .constellation-line {
+    stroke: rgba(99, 102, 241, 0.35);
+}
+
+/* ═══════════════════════════════════════════
+   📐 GRID OVERLAY — Subtle tech pattern
+   ═══════════════════════════════════════════ */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.3) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 70%);
+}
+
+[data-theme='light'] .grid-overlay {
+    opacity: 0.025;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
 }
 
 /* ═══════════════════════════════════════════
    ☄️ METEORS — Colorful Shooting Stars
    ═══════════════════════════════════════════ */
+.meteors-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
 .meteor {
     position: absolute;
-    width: 2px;
-    height: 2px;
+    width: 3px;
+    height: 3px;
     border-radius: 50%;
     opacity: 0;
     pointer-events: none;
@@ -158,26 +477,38 @@
     animation-delay: var(--m-delay);
 }
 
+.meteor--large {
+    width: 4px;
+    height: 4px;
+}
+
 /* Multi-color meteors */
-.meteor:nth-child(3n+1) {
+.meteor:nth-child(4n+1) {
     background: linear-gradient(90deg, #818cf8, #c7d2fe, transparent);
     box-shadow:
-        0 0 15px 3px rgba(129, 140, 248, 0.5),
-        0 0 30px 5px rgba(129, 140, 248, 0.2);
+        0 0 20px 4px rgba(129, 140, 248, 0.6),
+        0 0 50px 10px rgba(129, 140, 248, 0.2);
 }
 
-.meteor:nth-child(3n+2) {
+.meteor:nth-child(4n+2) {
     background: linear-gradient(90deg, #a78bfa, #ddd6fe, transparent);
     box-shadow:
-        0 0 15px 3px rgba(167, 139, 250, 0.5),
-        0 0 30px 5px rgba(167, 139, 250, 0.2);
+        0 0 20px 4px rgba(167, 139, 250, 0.6),
+        0 0 50px 10px rgba(167, 139, 250, 0.2);
 }
 
-.meteor:nth-child(3n+3) {
-    background: linear-gradient(90deg, #c084fc, #e9d5ff, transparent);
+.meteor:nth-child(4n+3) {
+    background: linear-gradient(90deg, #06b6d4, #a5f3fc, transparent);
     box-shadow:
-        0 0 15px 3px rgba(192, 132, 252, 0.5),
-        0 0 30px 5px rgba(192, 132, 252, 0.2);
+        0 0 20px 4px rgba(6, 182, 212, 0.6),
+        0 0 50px 10px rgba(6, 182, 212, 0.2);
+}
+
+.meteor:nth-child(4n+4) {
+    background: linear-gradient(90deg, #ec4899, #fbcfe8, transparent);
+    box-shadow:
+        0 0 20px 4px rgba(236, 72, 153, 0.6),
+        0 0 50px 10px rgba(236, 72, 153, 0.2);
 }
 
 /* Meteor trail */
@@ -186,36 +517,46 @@
     position: absolute;
     top: 0;
     left: 5px;
-    width: 80px;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(129, 140, 248, 0.5), transparent);
+    height: 1.5px;
     border-radius: 50%;
 }
 
-.meteor:nth-child(3n+2)::after {
-    background: linear-gradient(90deg, rgba(167, 139, 250, 0.5), transparent);
-    width: 60px;
+.meteor--small::after {
+    width: 80px;
+    background: linear-gradient(90deg, rgba(129, 140, 248, 0.5), transparent);
 }
 
-.meteor:nth-child(3n+3)::after {
-    background: linear-gradient(90deg, rgba(192, 132, 252, 0.5), transparent);
-    width: 100px;
+.meteor--large::after {
+    width: 150px;
+    background: linear-gradient(90deg, rgba(167, 139, 250, 0.6), transparent);
+}
+
+.meteor:nth-child(4n+3)::after {
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.5), transparent);
+}
+
+.meteor:nth-child(4n+4)::after {
+    background: linear-gradient(90deg, rgba(236, 72, 153, 0.5), transparent);
 }
 
 [data-theme='light'] .meteor {
-    box-shadow: 0 0 10px 2px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 0 12px 3px rgba(99, 102, 241, 0.2);
 }
 
-[data-theme='light'] .meteor:nth-child(3n+1) {
+[data-theme='light'] .meteor:nth-child(4n+1) {
     background: linear-gradient(90deg, #6366f1, #a5b4fc, transparent);
 }
 
-[data-theme='light'] .meteor:nth-child(3n+2) {
+[data-theme='light'] .meteor:nth-child(4n+2) {
     background: linear-gradient(90deg, #8b5cf6, #c4b5fd, transparent);
 }
 
-[data-theme='light'] .meteor:nth-child(3n+3) {
-    background: linear-gradient(90deg, #7c3aed, #a78bfa, transparent);
+[data-theme='light'] .meteor:nth-child(4n+3) {
+    background: linear-gradient(90deg, #0891b2, #67e8f9, transparent);
+}
+
+[data-theme='light'] .meteor:nth-child(4n+4) {
+    background: linear-gradient(90deg, #db2777, #f9a8d4, transparent);
 }
 
 [data-theme='light'] .meteor::after {
@@ -228,16 +569,16 @@
         opacity: 0;
     }
 
-    5% {
+    3% {
         opacity: 1;
     }
 
-    70% {
-        opacity: 1;
+    60% {
+        opacity: 0.8;
     }
 
     100% {
-        transform: rotate(215deg) translateX(-1200px);
+        transform: rotate(215deg) translateX(-1400px);
         opacity: 0;
     }
 }
@@ -247,28 +588,41 @@
    ═══════════════════════════════════════════ */
 .nebula {
     position: absolute;
-    width: 700px;
-    height: 700px;
+    width: 800px;
+    height: 800px;
     border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.12;
+    filter: blur(100px);
+    opacity: 0.15;
     pointer-events: none;
+    will-change: transform, opacity;
 }
 
-/* Nebula 1: Indigo — top right, drifts slowly */
+/* Nebula 1: Indigo — top right */
 .nebula-1 {
-    top: -150px;
-    right: -150px;
+    top: -200px;
+    right: -200px;
     background: radial-gradient(circle, #6366f1 0%, #4f46e5 30%, transparent 70%);
-    animation: nebulaDrift1 20s ease-in-out infinite;
+    animation: nebulaDrift1 18s ease-in-out infinite;
 }
 
-/* Nebula 2: Purple — bottom left, drifts opposite */
+/* Nebula 2: Purple — bottom left */
 .nebula-2 {
-    bottom: -150px;
-    left: -150px;
+    bottom: -200px;
+    left: -200px;
     background: radial-gradient(circle, #a855f7 0%, #7c3aed 30%, transparent 70%);
-    animation: nebulaDrift2 25s ease-in-out infinite;
+    animation: nebulaDrift2 22s ease-in-out infinite;
+}
+
+/* Nebula 3: Cyan — center */
+.nebula-3 {
+    top: 40%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #06b6d4 0%, #0891b2 30%, transparent 70%);
+    animation: nebulaDrift3 28s ease-in-out infinite;
+    opacity: 0.08;
 }
 
 @keyframes nebulaDrift1 {
@@ -276,17 +630,17 @@
     0%,
     100% {
         transform: translate(0, 0) scale(1);
-        opacity: 0.12;
+        opacity: 0.15;
     }
 
     33% {
-        transform: translate(-40px, 30px) scale(1.1);
-        opacity: 0.18;
+        transform: translate(-50px, 40px) scale(1.15);
+        opacity: 0.22;
     }
 
     66% {
-        transform: translate(20px, -20px) scale(0.95);
-        opacity: 0.10;
+        transform: translate(30px, -25px) scale(0.95);
+        opacity: 0.12;
     }
 }
 
@@ -295,17 +649,36 @@
     0%,
     100% {
         transform: translate(0, 0) scale(1);
-        opacity: 0.10;
+        opacity: 0.12;
     }
 
     40% {
-        transform: translate(50px, -30px) scale(1.15);
-        opacity: 0.16;
+        transform: translate(60px, -40px) scale(1.2);
+        opacity: 0.2;
     }
 
     70% {
-        transform: translate(-30px, 20px) scale(0.9);
+        transform: translate(-40px, 25px) scale(0.9);
+        opacity: 0.10;
+    }
+}
+
+@keyframes nebulaDrift3 {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
         opacity: 0.08;
+    }
+
+    30% {
+        transform: translate(-45%, -55%) scale(1.25);
+        opacity: 0.14;
+    }
+
+    60% {
+        transform: translate(-55%, -45%) scale(0.85);
+        opacity: 0.05;
     }
 }
 
@@ -320,4 +693,48 @@
 
 [data-theme='light'] .nebula-2 {
     background: radial-gradient(circle, #a78bfa 0%, #8b5cf6 30%, transparent 70%);
+}
+
+[data-theme='light'] .nebula-3 {
+    background: radial-gradient(circle, #22d3ee 0%, #06b6d4 30%, transparent 70%);
+    opacity: 0.025;
+}
+
+/* ═══════════════════════════════════════════
+   📱 PERFORMANCE — Mobile optimization
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .constellation-svg {
+        display: none;
+    }
+
+    .grid-overlay {
+        display: none;
+    }
+
+    .nebula-3 {
+        display: none;
+    }
+
+    .floating-orb:nth-child(n+4) {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .star,
+    .meteor,
+    .nebula,
+    .floating-orb {
+        animation: none !important;
+    }
+
+    .star {
+        opacity: 0.6;
+    }
+
+    .meteor {
+        display: none;
+    }
 }
