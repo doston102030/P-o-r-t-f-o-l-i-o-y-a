@@ -17,8 +17,8 @@
 }
 
 .about-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(99, 130, 255, 0.1);
   border-radius: 24px;
   padding: 32px;
   width: 100%;
@@ -26,13 +26,14 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  transition: transform 0.4s, box-shadow 0.4s;
-  backdrop-filter: blur(12px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 [data-theme='light'] .about-card {
   background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
 }
 
 .about-card::before {
@@ -47,7 +48,10 @@
 
 .about-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(99, 130, 255, 0.25);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(99, 130, 255, 0.1);
 }
 
 .about-card-avatar {
@@ -169,15 +173,32 @@
 }
 
 .stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.3);
+  border: 1px solid rgba(99, 130, 255, 0.08);
   border-radius: 20px;
   padding: 28px 20px;
   text-align: center;
-  transition: all 0.35s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
 }
 
 [data-theme='light'] .stat-card {
@@ -187,8 +208,10 @@
 
 .stat-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(99, 130, 255, 0.25);
-  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(99, 130, 255, 0.2);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(99, 130, 255, 0.08);
 }
 
 .stat-icon {

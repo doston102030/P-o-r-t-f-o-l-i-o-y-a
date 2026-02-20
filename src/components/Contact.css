@@ -46,12 +46,13 @@
   align-items: center;
   gap: 14px;
   padding: 16px 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.3);
+  border: 1px solid rgba(99, 130, 255, 0.06);
   border-radius: 16px;
   text-decoration: none;
-  transition: all 0.3s;
-  backdrop-filter: blur(8px);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 [data-theme='light'] .contact-detail-item {
@@ -153,13 +154,14 @@
 
 /* ── FORM ── */
 .contact-form-wrapper {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(99, 130, 255, 0.08);
   border-radius: 24px;
   padding: 36px;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 [data-theme='light'] .contact-form-wrapper {
@@ -224,8 +226,8 @@
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--accent);
-  background: var(--surface2);
-  box-shadow: 0 0 0 4px rgba(99, 130, 255, 0.08);
+  background: rgba(99, 130, 255, 0.04);
+  box-shadow: 0 0 0 3px rgba(99, 130, 255, 0.06);
 }
 
 /* Success */

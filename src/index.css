@@ -147,12 +147,12 @@ img {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 6s ease infinite;
+  animation: gradientShift 4s ease infinite;
 }
 
 @keyframes gradientShift {
@@ -172,8 +172,9 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 28px;
-  background: linear-gradient(135deg, var(--accent), #5a76e6);
+  padding: 13px 30px;
+  background: linear-gradient(135deg, var(--accent), #5a76e6, var(--accent2));
+  background-size: 200% 200%;
   color: #fff;
   font-family: 'Syne', sans-serif;
   font-weight: 700;
@@ -181,33 +182,37 @@ img {
   border-radius: 14px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px var(--glow);
+  box-shadow: 0 4px 20px var(--glow);
 }
 
 .btn-primary::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(rgba(255, 255, 255, 0.15), transparent 60%);
   opacity: 1;
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px var(--glow);
-  filter: brightness(1.05);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 35px var(--glow);
+  background-position: 100% 50%;
+}
+
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 .btn-outline {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 28px;
-  background: transparent;
+  padding: 13px 30px;
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text);
   font-family: 'Syne', sans-serif;
   font-weight: 700;
@@ -215,16 +220,25 @@ img {
   border-radius: 14px;
   border: 1.5px solid var(--border);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='light'] .btn-outline {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .btn-outline:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background: rgba(99, 130, 255, 0.04);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 20px rgba(99, 130, 255, 0.05);
+  background: rgba(99, 130, 255, 0.06);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(99, 130, 255, 0.08);
+}
+
+.btn-outline:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 /* ── ANIMATIONS ── */
