@@ -1,5 +1,5 @@
 .footer {
-  background: var(--bg2);
+  background: transparent;
   border-top: 1px solid var(--border);
   position: relative;
 }
@@ -34,7 +34,9 @@
   transition: opacity 0.3s;
 }
 
-.footer-logo:hover { opacity: 0.8; }
+.footer-logo:hover {
+  opacity: 0.8;
+}
 
 .footer-tagline {
   font-size: 0.82rem;
@@ -66,11 +68,14 @@
 }
 
 .footer-social-btn {
-  width: 40px; height: 40px;
+  width: 40px;
+  height: 40px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-muted);
   transition: all 0.3s;
 }
@@ -114,6 +119,14 @@
     text-align: center;
     gap: 24px;
   }
-  .footer-nav { justify-content: center; }
-  .footer-bottom-inner { flex-direction: column; gap: 8px; text-align: center; }
+
+  .footer-nav {
+    justify-content: center;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
 }

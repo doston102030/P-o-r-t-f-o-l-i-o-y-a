@@ -1,5 +1,5 @@
 .contact-section {
-  background: var(--bg);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -199,7 +199,7 @@
 
 .form-group input,
 .form-group textarea {
-  background: var(--bg);
+  background: var(--surface2);
   border: 1.5px solid var(--border);
   border-radius: 14px;
   padding: 14px 16px;

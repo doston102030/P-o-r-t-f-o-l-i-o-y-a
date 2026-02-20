@@ -1,5 +1,5 @@
 .skills-section {
-  background: var(--bg);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
