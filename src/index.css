@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ── THEME: DARK (default / Cyber-Premium) ── */
 :root {
   --bg: #0d0b1e;

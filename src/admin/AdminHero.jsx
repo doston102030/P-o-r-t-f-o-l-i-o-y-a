@@ -14,53 +14,93 @@ export default function AdminHero() {
         initials: 'DA',
         badgeTL: '⚡ Tez va sifatli',
         badgeBR: '🏆 3+ yil tajriba',
-        avatarUrl: '',
         cvUrl: '',
     });
     const [saving, setSaving] = useState(false);
-    const [uploading, setUploading] = useState(false);
+    const [cvUploading, setCvUploading] = useState(false);
+    const [cvProgress, setCvProgress] = useState('');
     const [toast, setToast] = useState('');
 
     useEffect(() => {
         getDoc(doc(db, 'portfolio', 'hero')).then((snap) => {
-            if (snap.exists()) setData(snap.data());
+            if (snap.exists()) {
+                const snapData = snap.data();
+                // avatarUrl ni olib tashlaymiz, kerak emas
+                const { avatarUrl, ...rest } = snapData;
+                setData(prev => ({ ...prev, ...rest }));
+            }
         }).catch(() => { });
     }, []);
 
-    const handleFileUpload = async (e, type) => {
+    const handleCvUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
-        setUploading(true);
+        // Faqat PDF tekshirish
+        if (!file.name.toLowerCase().endsWith('.pdf')) {
+            showToast('❌ Faqat PDF fayl yuklang!');
+            e.target.value = '';
+            return;
+        }
+
+        // 10MB dan katta bo'lsa
+        if (file.size > 10 * 1024 * 1024) {
+            showToast('❌ Fayl hajmi 10MB dan katta!');
+            e.target.value = '';
+            return;
+        }
+
+        setCvUploading(true);
+        setCvProgress('📤 Yuklanmoqda...');
+
         try {
-            const folder = type === 'cv' ? 'docs' : 'images';
-            const fileRef = ref(storage, `portfolio/${folder}/${Date.now()}_${file.name}`);
+            const fileName = `cv_${Date.now()}_${file.name}`;
+            const fileRef = ref(storage, `portfolio/docs/${fileName}`);
+
+            setCvProgress('📤 Firebase ga yuklanmoqda...');
             await uploadBytes(fileRef, file);
+
+            setCvProgress('🔗 URL olinmoqda...');
             const url = await getDownloadURL(fileRef);
 
-            setData(prev => ({
-                ...prev,
-                [type === 'cv' ? 'cvUrl' : 'avatarUrl']: url
-            }));
-            setToast(`${type === 'cv' ? 'CV' : 'Rasm'} yuklandi! ✅`);
+            setData(prev => ({ ...prev, cvUrl: url }));
+            showToast('✅ CV muvaffaqiyatli yuklandi!');
+            setCvProgress('');
         } catch (err) {
-            console.error("Upload error:", err);
-            setToast('Yuklashda xatolik: ' + err.message);
+            console.error("CV Upload error:", err);
+
+            // Aniq xatolik xabarlarini ko'rsatish
+            let errorMsg = 'Yuklashda xatolik!';
+            if (err.code === 'storage/unauthorized') {
+                errorMsg = '🔒 Firebase Storage ruxsati yo\'q! Firebase Console → Storage → Rules ni tekshiring';
+            } else if (err.code === 'storage/canceled') {
+                errorMsg = '❌ Yuklash bekor qilindi';
+            } else if (err.code === 'storage/unknown') {
+                errorMsg = '❌ Noma\'lum xatolik. Internet aloqangizni tekshiring';
+            } else {
+                errorMsg = '❌ ' + err.message;
+            }
+
+            showToast(errorMsg);
+            setCvProgress('');
         } finally {
-            setUploading(false);
-            setTimeout(() => setToast(''), 3000);
+            setCvUploading(false);
+            e.target.value = '';
         }
+    };
+
+    const showToast = (msg) => {
+        setToast(msg);
+        setTimeout(() => setToast(''), 4000);
     };
 
     const handleSave = async () => {
         setSaving(true);
         try {
             await setDoc(doc(db, 'portfolio', 'hero'), data);
-            setToast('Saqlandi! ✅');
-            setTimeout(() => setToast(''), 2500);
+            showToast('✅ Saqlandi!');
         } catch (err) {
-            setToast('Xatolik: ' + err.message);
-            setTimeout(() => setToast(''), 3000);
+            showToast('❌ Xatolik: ' + err.message);
         }
         setSaving(false);
     };
@@ -93,46 +133,66 @@ export default function AdminHero() {
                     <input value={data.initials} onChange={(e) => setData({ ...data, initials: e.target.value })} maxLength={3} />
                 </div>
 
-                <div className="admin-form-group">
-                    <label>Avatar Rasm</label>
-                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handleFileUpload(e, 'avatar')}
-                            style={{ padding: '8px' }}
-                            disabled={uploading}
-                        />
-                        {uploading && <span style={{ fontSize: '0.9rem', color: 'var(--accent)' }}>Yuklanmoqda...</span>}
-                    </div>
-                    <input
-                        value={data.avatarUrl}
-                        onChange={(e) => setData({ ...data, avatarUrl: e.target.value })}
-                        placeholder="Yoki URL kiriting..."
-                        style={{ marginTop: '10px' }}
-                    />
-                    {data.avatarUrl && (
-                        <img src={data.avatarUrl} alt="Preview" style={{ width: 60, height: 60, borderRadius: '50%', marginTop: 10, objectFit: 'cover' }} />
-                    )}
-                </div>
-
+                {/* CV UPLOAD */}
                 <div className="admin-form-group">
                     <label>CV Fayl (PDF)</label>
-                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <input
                             type="file"
-                            accept=".pdf"
-                            onChange={(e) => handleFileUpload(e, 'cv')}
+                            accept=".pdf,application/pdf"
+                            onChange={handleCvUpload}
                             style={{ padding: '8px' }}
-                            disabled={uploading}
+                            disabled={cvUploading}
                         />
+                        {cvUploading && (
+                            <span style={{
+                                fontSize: '0.85rem',
+                                color: '#6382ff',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                            }}>
+                                <span style={{
+                                    width: '14px',
+                                    height: '14px',
+                                    border: '2px solid rgba(99,130,255,0.2)',
+                                    borderTop: '2px solid #6382ff',
+                                    borderRadius: '50%',
+                                    display: 'inline-block',
+                                    animation: 'spin 0.8s linear infinite'
+                                }} />
+                                {cvProgress}
+                            </span>
+                        )}
                     </div>
                     <input
                         value={data.cvUrl}
                         onChange={(e) => setData({ ...data, cvUrl: e.target.value })}
-                        placeholder="Yoki URL kiriting..."
+                        placeholder="Yoki CV URL kiriting..."
                         style={{ marginTop: '10px' }}
                     />
+                    {data.cvUrl && (
+                        <div style={{
+                            marginTop: '10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            padding: '10px 14px',
+                            background: 'rgba(99, 130, 255, 0.06)',
+                            borderRadius: '10px',
+                            border: '1px solid rgba(99, 130, 255, 0.15)'
+                        }}>
+                            <span style={{ fontSize: '1.2rem' }}>📄</span>
+                            <a
+                                href={data.cvUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: '#6382ff', fontSize: '0.85rem', wordBreak: 'break-all' }}
+                            >
+                                CV yuklangan ✅ (Ko'rish uchun bosing)
+                            </a>
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -166,11 +226,18 @@ export default function AdminHero() {
                 </div>
             </div>
 
-            <button className="admin-save-btn" onClick={handleSave} disabled={saving || uploading}>
+            <button className="admin-save-btn" onClick={handleSave} disabled={saving || cvUploading}>
                 {saving ? '⏳ Saqlanmoqda...' : '💾 Saqlash'}
             </button>
 
             {toast && <div className="admin-toast">{toast}</div>}
+
+            <style>{`
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `}</style>
         </div>
     );
 }
+
