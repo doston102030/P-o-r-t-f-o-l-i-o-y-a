@@ -87,11 +87,26 @@ export default function Skills() {
 
   useEffect(() => {
     getDoc(doc(db, 'portfolio', 'skills')).then(snap => {
+      let dbItems = [];
       if (snap.exists() && snap.data().items) {
-        setSkills(snap.data().items);
-      } else {
-        setSkills(defaultSkills);
+        dbItems = snap.data().items;
       }
+
+      // 💎 Master Merge: Ensure essential skills from defaultSkills are always present
+      // but prioritize any custom data from DB for those same skills.
+      const essentialNames = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'JS', 'TypeScript'];
+      const merged = [...dbItems];
+
+      defaultSkills.forEach(defSkill => {
+        const exists = merged.some(s => s.name === defSkill.name ||
+          (essentialNames.includes(s.name) && essentialNames.includes(defSkill.name)));
+
+        if (!exists && essentialNames.includes(defSkill.name)) {
+          merged.push(defSkill);
+        }
+      });
+
+      setSkills(merged.length > 0 ? merged : defaultSkills);
       setLoading(false);
     }).catch(err => {
       console.error("Firestore error:", err);
@@ -102,45 +117,51 @@ export default function Skills() {
 
   if (loading) return <section className="section skills-section" id="skills" style={{ minHeight: '400px' }} />;
 
-  // 📂 Categorize skills logically
-  const languagesOrder = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'TypeScript'];
+  // 📂 Categorize skills dynamically from DB categories
+  const languagesOrder = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'JS', 'TypeScript'];
+
   const categorizedSkills = {
     languages: skills
-      .filter(s => languagesOrder.includes(s.name))
+      .filter(s => s.category === 'languages')
       .sort((a, b) => languagesOrder.indexOf(a.name) - languagesOrder.indexOf(b.name)),
-    libraries: skills.filter(s => ['React', 'Next.js', 'Tailwind CSS'].includes(s.name)),
-    tools: skills.filter(s => ['Git', 'GitHub', 'REST API'].includes(s.name))
+    libraries: skills.filter(s => s.category === 'libraries'),
+    tools: skills.filter(s => s.category === 'tools')
   };
 
-  const renderSkillGroup = (categoryKey, skillList) => (
-    <div className="skills-category-group animate-fade-up">
-      <h3 className="skills-category-title">{t(`skills.${categoryKey}`)}</h3>
-      <div className="skills-grid-minimal">
-        {skillList.map((skill, i) => {
-          // Normalize names for minimalist look
-          let displayName = skill.name;
-          if (displayName === 'HTML5') displayName = 'HTML';
-          if (displayName === 'CSS3') displayName = 'CSS';
+  const renderSkillGroup = (categoryKey, skillList) => {
+    if (skillList.length === 0) return null;
 
-          return (
-            <div
-              key={skill.name}
-              className="skill-card-minimal"
-              style={{ '--skill-color': skill.color, animationDelay: `${i * 0.05}s` }}
-            >
-              <div className="skill-icon-glow" />
-              <div className="skill-icon-container">
-                <div className="skill-svg-minimal" style={{ color: skill.color }}>
-                  {svgIcons[skill.name] || <span>{skill.icon}</span>}
+    return (
+      <div className="skills-category-group animate-fade-up">
+        <h3 className="skills-category-title">{t(`skills.${categoryKey}`)}</h3>
+        <div className="skills-grid-minimal">
+          {skillList.map((skill, i) => {
+            // 🌬 Normalize names for a clean "Quiet Luxury" look
+            let displayName = skill.name;
+            if (displayName === 'HTML5' || displayName === 'HTML') displayName = 'HTML';
+            if (displayName === 'CSS3' || displayName === 'CSS') displayName = 'CSS';
+            if (displayName === 'JavaScript' || displayName === 'JS') displayName = 'JavaScript';
+
+            return (
+              <div
+                key={skill.name}
+                className="skill-card-minimal"
+                style={{ '--skill-color': skill.color, animationDelay: `${i * 0.05}s` }}
+              >
+                <div className="skill-icon-glow" />
+                <div className="skill-icon-container">
+                  <div className="skill-svg-minimal" style={{ color: skill.color }}>
+                    {svgIcons[skill.name] || svgIcons[displayName] || <span>{skill.icon}</span>}
+                  </div>
                 </div>
+                <span className="skill-name-minimal">{displayName}</span>
               </div>
-              <span className="skill-name-minimal">{displayName}</span>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section className="section skills-section" id="skills">

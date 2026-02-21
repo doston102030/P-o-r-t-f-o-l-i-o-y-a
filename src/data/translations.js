@@ -44,7 +44,7 @@ export const translations = {
             title: 'Mening',
             titleGradient: 'Texnik Bilimlarim',
             subtitle: 'Zamonaviy va tez ishlovchi veb-ilovalarni yaratishda foydalanadigan texnologiyalarim',
-            languages: 'Tillarni',
+            languages: 'Tillar',
             libraries: 'Libraries & Frameworks',
             tools: 'Tools & Libraries'
         },

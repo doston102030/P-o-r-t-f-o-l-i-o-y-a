@@ -38,48 +38,48 @@
 .skills-container-minimal {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 45px;
 }
 
 .skills-category-group {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .skills-category-title {
   font-family: 'Syne', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 800;
   color: var(--text-dim);
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  opacity: 0.5;
-  padding-left: 10px;
-  border-left: 2px solid var(--accent);
+  letter-spacing: 0.3em;
+  opacity: 0.4;
+  padding-left: 8px;
+  border-left: 1.5px solid var(--accent);
 }
 
 .skills-grid-minimal {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
 }
 
-/* ── MINIMAL CARD (Quiet Luxury) ── */
+/* ── ULTRA-MINIMAL CARD (Quiet Luxury) ── */
 .skill-card-minimal {
   position: relative;
-  background: rgba(255, 255, 255, 0.015);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 20px;
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   cursor: default;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .skill-icon-glow {
@@ -88,94 +88,94 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 0% 0%, var(--skill-color), transparent 60%);
+  background: radial-gradient(circle at 10% 10%, var(--skill-color), transparent 50%);
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.6s ease;
   pointer-events: none;
 }
 
 .skill-card-minimal:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .skill-card-minimal:hover .skill-icon-glow {
-  opacity: 0.08;
+  opacity: 0.06;
 }
 
 .skill-icon-container {
-  width: 44px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s ease;
+  transition: all 0.5s ease;
   flex-shrink: 0;
 }
 
 .skill-card-minimal:hover .skill-icon-container {
-  background: rgba(255, 255, 255, 0.08);
-  transform: scale(1.1) rotate(5deg);
+  background: rgba(255, 255, 255, 0.06);
+  transform: scale(1.05);
 }
 
 .skill-svg-minimal {
-  width: 22px;
-  height: 22px;
-  filter: drop-shadow(0 0 10px currentColor);
-  transition: all 0.4s ease;
+  width: 18px;
+  height: 18px;
+  filter: saturate(0.8);
+  transition: all 0.5s ease;
 }
 
 .skill-card-minimal:hover .skill-svg-minimal {
-  filter: drop-shadow(0 0 15px currentColor) brightness(1.2);
+  filter: saturate(1.2) drop-shadow(0 0 10px currentColor);
+  transform: scale(1.1);
 }
 
 .skill-name-minimal {
   font-family: 'Syne', sans-serif;
   font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  transition: color 0.4s ease;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+  transition: all 0.5s ease;
 }
 
 .skill-card-minimal:hover .skill-name-minimal {
   color: #fff;
+  letter-spacing: 0.05em;
 }
 
 [data-theme='light'] .skill-card-minimal {
-  background: rgba(0, 0, 0, 0.015);
-  border-color: rgba(0, 0, 0, 0.05);
-}
-
-[data-theme='light'] .skill-card-minimal:hover {
-  background: rgba(0, 0, 0, 0.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.01);
+  border-color: rgba(0, 0, 0, 0.03);
 }
 
 [data-theme='light'] .skill-name-minimal {
-  color: #333;
+  color: #555;
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .skills-grid-minimal {
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .skills-container-minimal {
-    gap: 40px;
+    gap: 35px;
   }
 }
 
 @media (max-width: 480px) {
   .skill-card-minimal {
-    padding: 16px;
+    padding: 12px 14px;
+    border-radius: 14px;
   }
 
   .skill-name-minimal {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 }
