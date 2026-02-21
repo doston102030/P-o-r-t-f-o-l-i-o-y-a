@@ -78,7 +78,7 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p className="footer-copy">© {year} <span className="gradient-text">Adhamjonov Doston</span>. {t('footer.rights')}</p>
+          <p className="footer-copy">© {year} <span className="bright-glow-name">Adhamjonov Doston</span>. {t('footer.rights')}</p>
           <p className="footer-made">{t('footer.made')}</p>
         </div>
       </div>

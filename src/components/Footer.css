@@ -111,6 +111,31 @@
   color: var(--text-dim);
 }
 
+.bright-glow-name {
+  background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  filter: drop-shadow(0 0 8px rgba(109, 99, 255, 0.5));
+  animation: namePulse 4s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes namePulse {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px rgba(109, 99, 255, 0.3));
+    transform: scale(1);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 12px rgba(109, 99, 255, 0.8));
+    transform: scale(1.02);
+  }
+}
+
 .footer-made {
   font-size: 0.82rem;
   color: var(--text-dim);
