@@ -11,7 +11,7 @@ export const translations = {
         hero: {
             badge: 'Ishlashga tayyorman',
             role: 'Frontend Dasturchi (React)',
-            tagline: 'Men toza kod va chiroyli interfeyslar orqali zamonaviy va tez ishlovchi veb-ilovalarni yarataman.',
+            tagline: 'Zamonaviy tezkor va yuqori samarali web ilovalar yarataman. Toza arxitektura mukammal UX va yuqori performance — mening standartim. G‘oyalarni real va ishlaydigan mahsulotga aylantiraman',
             downloadCv: 'CV yuklab olish',
             contactMe: "Bog'lanish",
             scroll: 'Pastga aylantiring',
@@ -82,7 +82,7 @@ export const translations = {
         hero: {
             badge: 'Открыт к предложениям',
             role: 'Frontend Разработчик (React)',
-            tagline: 'Я создаю современные и быстрые веб-приложения с чистым кодом и красивым интерфейсом.',
+            tagline: 'Создаю современные, быстрые и высокоэффективные веб-приложения. Чистая архитектура, безупречный UX и высокая производительность — мой стандарт. Превращаю идеи в реальные и работающие продукты.',
             downloadCv: 'Скачать CV',
             contactMe: 'Связаться',
             scroll: 'Листайте вниз',
@@ -153,7 +153,7 @@ export const translations = {
         hero: {
             badge: 'Available for work',
             role: 'Frontend Developer (React)',
-            tagline: 'I build modern and fast web applications with clean code and beautiful interfaces that users love.',
+            tagline: 'I create modern, fast, and high-performance web applications. Clean architecture, perfect UX, and high performance are my standards. I turn ideas into real, working products.',
             downloadCv: 'Download CV',
             contactMe: 'Contact Me',
             scroll: 'Scroll down',

@@ -30,24 +30,37 @@ export default function Hero({ onPortalOpen }) {
       <div className="container hero-container">
         {/* LEFT CONTENT */}
         <div className="hero-content">
-          <div className="hero-badge animate-fade-up">
-            <span className="badge-dot" />
-            {val('badge', 'hero.badge')}
-          </div>
+
 
           <h1 className="hero-name animate-fade-up delay-1">
             {val('name1', 'Adhamjonov')}<br />
             <span className="gradient-text">{val('name2', 'Doston')}</span>
           </h1>
 
-          <div className="hero-role animate-fade-up delay-2">
-            <span className="role-line" />
-            {val('role', 'hero.role')}
+          <div className="hero-role-wrapper animate-fade-up delay-2">
+            <div className="premium-badge">
+              <span className="badge-glow" />
+              <span className="badge-text">
+                {val('role', 'hero.role').split('').map((char, i) => (
+                  <span key={i} className="letter">{char === ' ' ? '\u00A0' : char}</span>
+                ))}
+              </span>
+            </div>
           </div>
 
-          <p className="hero-tagline animate-fade-up delay-3">
-            {val('tagline', 'hero.tagline')}
-          </p>
+          <div className="hero-tagline-mega animate-fade-up delay-3">
+            {[
+              { icon: '⚡', text: t('hero.tagline').split('.')[0], color: 'emerald' },
+              { icon: '💎', text: t('hero.tagline').split('.')[1], color: 'sky' },
+              { icon: '🚀', text: t('hero.tagline').split('.')[2], color: 'amber' }
+            ].map((item, idx) => item.text && (
+              <div key={idx} className={`tagline-card card-${item.color}`}>
+                <span className="card-icon">{item.icon}</span>
+                <p className="card-text">{item.text.trim()}</p>
+                <div className="card-shine" />
+              </div>
+            ))}
+          </div>
 
           <div className="hero-actions animate-fade-up delay-4">
             <a href={fsData.cvUrl || "/cv.pdf"} download="Adhamjonov_Doston_CV.pdf" className="btn-primary">
@@ -62,12 +75,13 @@ export default function Hero({ onPortalOpen }) {
               </svg>
               {t('hero.contactMe')}
             </a>
+
           </div>
 
           <div className="hero-stack animate-fade-up delay-5">
             <span className="stack-label">Stack:</span>
-            {(fsData?.stack ? fsData.stack.split(',').map(s => s.trim()) : ['React', 'Next.js', 'TypeScript', 'Tailwind']).map(tech => (
-              <span key={tech} className="stack-pill">{tech}</span>
+            {(fsData?.stack ? fsData.stack.split(',').map(s => s.trim()) : ['React', 'TypeScript', 'Tailwind']).map(tech => (
+              <span key={tech} className={`stack-pill pill-${tech.toLowerCase().replace('.', '').replace(/\s+/g, '')}`}>{tech}</span>
             ))}
           </div>
         </div>
@@ -123,6 +137,7 @@ export default function Hero({ onPortalOpen }) {
               <span>🏆</span> {val('badgeBR', 'hero.years')}
             </div>
           </div>
+
         </div>
       </div>
 

@@ -254,6 +254,18 @@
   font-size: 0.95rem;
 }
 
+/* ── BUTTON OVERRIDE ── */
+.contact-form .btn-primary {
+  background: linear-gradient(135deg, #7c3aed, #4338ca, #7c3aed);
+  background-size: 200% 200%;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+}
+
+.contact-form .btn-primary:hover {
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.6);
+  background-position: 100% 50%;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .contact-grid {
