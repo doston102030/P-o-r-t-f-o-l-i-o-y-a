@@ -38,144 +38,223 @@
 .skills-container-minimal {
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  gap: 60px;
 }
 
 .skills-category-group {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .skills-category-title {
   font-family: 'Syne', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 800;
   color: var(--text-dim);
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  opacity: 0.4;
-  padding-left: 8px;
-  border-left: 1.5px solid var(--accent);
+  letter-spacing: 0.4em;
+  opacity: 0.5;
+  /* Increased slightly for rainbow visibility */
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+
+.title-letter {
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.title-letter:nth-child(6n+1) {
+  color: #8B5CF6;
+}
+
+/* Violet */
+.title-letter:nth-child(6n+2) {
+  color: #06B6D4;
+}
+
+/* Cyan */
+.title-letter:nth-child(6n+3) {
+  color: #F43F5E;
+}
+
+/* Rose */
+.title-letter:nth-child(6n+4) {
+  color: #F59E0B;
+}
+
+/* Amber */
+.title-letter:nth-child(6n+5) {
+  color: #10B981;
+}
+
+/* Emerald */
+.title-letter:nth-child(6n+0) {
+  color: #3B82F6;
+}
+
+/* Blue */
+
+.skills-category-group:hover .title-letter {
+  transform: translateY(-2px) scale(1.1);
+  filter: brightness(1.2);
+  text-shadow: 0 0 8px currentColor;
+}
+
+.skills-category-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.5;
 }
 
 .skills-grid-minimal {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 120px));
+  gap: 40px 20px;
+  justify-content: center;
+  justify-items: center;
 }
 
-/* ── ULTRA-MINIMAL CARD (Quiet Luxury) ── */
-.skill-card-minimal {
-  position: relative;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  border-radius: 16px;
-  padding: 14px 18px;
+/* ── ULTRA-COMPACT ITEM (Quiet Luxury / Space) ── */
+.skill-item-compact {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 12px;
   cursor: default;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100px;
 }
 
-.skill-icon-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 10% 10%, var(--skill-color), transparent 50%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  pointer-events: none;
-}
-
-.skill-card-minimal:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.025);
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.skill-card-minimal:hover .skill-icon-glow {
-  opacity: 0.06;
-}
-
-.skill-icon-container {
-  width: 36px;
-  height: 36px;
+.skill-icon-circle {
+  position: relative;
+  width: 52px;
+  height: 52px;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
-  flex-shrink: 0;
+  overflow: clip;
+  /* Glow effect boundries */
 }
 
-.skill-card-minimal:hover .skill-icon-container {
-  background: rgba(255, 255, 255, 0.06);
-  transform: scale(1.05);
+.skill-circle-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--skill-color), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
-.skill-svg-minimal {
-  width: 18px;
-  height: 18px;
-  filter: saturate(0.8);
+.skill-item-compact:hover {
+  transform: translateY(-5px);
+}
+
+.skill-item-compact:hover .skill-icon-circle {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.skill-item-compact:hover .skill-circle-glow {
+  opacity: 0.15;
+}
+
+.skill-svg-wrapper {
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
   transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.skill-card-minimal:hover .skill-svg-minimal {
-  filter: saturate(1.2) drop-shadow(0 0 10px currentColor);
+.skill-item-compact:hover .skill-svg-wrapper {
+  opacity: 1;
   transform: scale(1.1);
+  filter: drop-shadow(0 0 8px currentColor);
 }
 
-.skill-name-minimal {
+.skill-name-compact {
   font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  letter-spacing: 0.02em;
-  transition: all 0.5s ease;
-}
-
-.skill-card-minimal:hover .skill-name-minimal {
-  color: #fff;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--text-muted);
   letter-spacing: 0.05em;
+  transition: all 0.5s ease;
+  text-align: center;
+  opacity: 0.8;
 }
 
-[data-theme='light'] .skill-card-minimal {
-  background: rgba(0, 0, 0, 0.01);
-  border-color: rgba(0, 0, 0, 0.03);
+.skill-item-compact:hover .skill-name-compact {
+  color: #fff;
+  opacity: 1;
+  letter-spacing: 0.08em;
 }
 
-[data-theme='light'] .skill-name-minimal {
-  color: #555;
+[data-theme='light'] .skill-icon-circle {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='light'] .skill-name-compact {
+  color: #666;
+}
+
+[data-theme='light'] .skill-item-compact:hover .skill-name-compact {
+  color: #000;
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .skills-grid-minimal {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 30px 15px;
   }
 
   .skills-container-minimal {
-    gap: 35px;
+    gap: 45px;
+  }
+
+  .skill-icon-circle {
+    width: 46px;
+    height: 46px;
+  }
+
+  .skill-svg-wrapper {
+    width: 20px;
+    height: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .skill-card-minimal {
-    padding: 12px 14px;
-    border-radius: 14px;
+  .skills-grid-minimal {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 5px;
   }
 
-  .skill-name-minimal {
-    font-size: 0.8rem;
+  .skill-item-compact {
+    width: 100%;
+  }
+
+  .skill-name-compact {
+    font-size: 0.65rem;
+    letter-spacing: 0.02em;
   }
 }

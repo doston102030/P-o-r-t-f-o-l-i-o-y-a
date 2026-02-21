@@ -40,13 +40,16 @@ export const translations = {
             }
         },
         skills: {
-            tag: 'Texnologiyalar',
+            tag: 'TEXNOLOGIYALAR',
             title: 'Mening',
             titleGradient: 'Texnik Bilimlarim',
             subtitle: 'Zamonaviy va tez ishlovchi veb-ilovalarni yaratishda foydalanadigan texnologiyalarim',
-            languages: 'Tillar',
-            libraries: 'Libraries & Frameworks',
-            tools: 'Tools & Libraries'
+            languages: 'Frontend Fundamentals',
+            frameworks: 'Frameworks & Libraries',
+            styling: 'Styling & UI',
+            tools: 'Tools & Utilities',
+            backend: 'Backend Services',
+            additional: 'Qo\'shimcha'
         },
         projects: {
             tag: 'Portfolio',
@@ -120,13 +123,16 @@ export const translations = {
             }
         },
         skills: {
-            tag: 'Стек Технологий',
+            tag: 'ТЕХНОЛОГИИ',
             title: 'Мои',
-            titleGradient: 'Навыки',
-            subtitle: 'Технологии, которые я использую для создания современных веб-приложений',
-            languages: 'Языки',
-            libraries: 'Библиотеки и Фреймворки',
-            tools: 'Инструменты и Утилиты'
+            titleGradient: 'Технические Навыки',
+            subtitle: 'Технологии, которые я использую для создания современных и быстрых веб-приложений',
+            languages: 'Frontend Fundamentals',
+            frameworks: 'Frameworks & Libraries',
+            styling: 'Styling & UI',
+            tools: 'Tools & Utilities',
+            backend: 'Backend Services',
+            additional: 'Дополнительно'
         },
         projects: {
             tag: 'Портфолио',
@@ -200,13 +206,16 @@ export const translations = {
             }
         },
         skills: {
-            tag: 'What I work with',
+            tag: 'TECHNOLOGIES',
             title: 'My',
-            titleGradient: 'Tech Stack',
-            subtitle: 'Technologies I use to build modern, performant web applications',
-            languages: 'Languages',
-            libraries: 'Libraries & Frameworks',
-            tools: 'Tools & Libraries'
+            titleGradient: 'Technical Skills',
+            subtitle: 'Technologies I use to build modern and fast web applications',
+            languages: 'Frontend Fundamentals',
+            frameworks: 'Frameworks & Libraries',
+            styling: 'Styling & UI',
+            tools: 'Tools & Utilities',
+            backend: 'Backend Services',
+            additional: 'Additional'
         },
         projects: {
             tag: 'Portfolio',

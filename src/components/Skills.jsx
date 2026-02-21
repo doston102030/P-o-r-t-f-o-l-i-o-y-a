@@ -5,19 +5,50 @@ import { doc, getDoc } from 'firebase/firestore';
 import './Skills.css';
 
 const defaultSkills = [
-  { name: 'HTML5', icon: '🟠', level: 98, color: '#e34f26' },
-  { name: 'CSS3', icon: '🔵', level: 95, color: '#264de4' },
-  { name: 'JavaScript', icon: '🟡', level: 93, color: '#f7df1e' },
-  { name: 'TypeScript', icon: '💙', level: 85, color: '#3178c6' },
-  { name: 'React', icon: '⚛️', level: 94, color: '#61dafb' },
-  { name: 'Next.js', icon: '⬛', level: 88, color: '#ffffff' },
-  { name: 'Tailwind CSS', icon: '🌊', level: 92, color: '#38bdf8' },
-  { name: 'Git', icon: '🔴', level: 87, color: '#f05032' },
-  { name: 'GitHub', icon: '🐙', level: 90, color: '#ffffff' },
-  { name: 'REST API', icon: '🔌', level: 89, color: '#a78bfa' },
+  // 🧱 Languages
+  { name: 'HTML', icon: '🟠', level: 98, color: '#e34f26', category: 'languages' },
+  { name: 'CSS', icon: '🔵', level: 95, color: '#264de4', category: 'languages' },
+  { name: 'JavaScript', icon: '🟡', level: 93, color: '#f7df1e', category: 'languages' },
+
+  // ⚛️ Frameworks & Libraries
+  { name: 'TypeScript', icon: '💙', level: 85, color: '#3178c6', category: 'frameworks' },
+  { name: 'React', icon: '⚛️', level: 94, color: '#61dafb', category: 'frameworks' },
+  { name: 'Next.js', icon: '⬛', level: 88, color: '#ffffff', category: 'frameworks' },
+  { name: 'Redux Toolkit', icon: '🟣', level: 85, color: '#764abc', category: 'frameworks' },
+  { name: 'Zustand', icon: '🐻', level: 82, color: '#433929', category: 'frameworks' },
+  { name: 'React Hook Form', icon: '📋', level: 90, color: '#ec5990', category: 'frameworks' },
+  { name: 'Axios', icon: '📡', level: 95, color: '#5a29e4', category: 'frameworks' },
+  { name: 'TanStack Query', icon: '🔍', level: 88, color: '#ff4154', category: 'frameworks' },
+  { name: 'Framer Motion', icon: '🎭', level: 85, color: '#00ccff', category: 'frameworks' },
+
+  // 🎨 Styling & UI
+  { name: 'Tailwind CSS', icon: '🌊', level: 92, color: '#38bdf8', category: 'styling' },
+  { name: 'Shadcn/ui', icon: '🔳', level: 90, color: '#ffffff', category: 'styling' },
+  { name: 'Material UI', icon: '🟦', level: 85, color: '#007fff', category: 'styling' },
+  { name: 'Ant Design', icon: '🐜', level: 80, color: '#0170fe', category: 'styling' },
+
+  // 🔧 Tools
+  { name: 'Git', icon: '🔴', level: 87, color: '#f05032', category: 'tools' },
+  { name: 'GitHub', icon: '🐙', level: 90, color: '#ffffff', category: 'tools' },
+  { name: 'VS Code', icon: '💻', level: 95, color: '#007acc', category: 'tools' },
+  { name: 'Figma', icon: '🎨', level: 88, color: '#f24e1e', category: 'tools' },
+  { name: 'Postman', icon: '🚀', level: 85, color: '#ff6c37', category: 'tools' },
+  { name: 'Vercel', icon: '▲', level: 90, color: '#ffffff', category: 'tools' },
+  { name: 'Netlify', icon: '◈', level: 85, color: '#00c7b7', category: 'tools' },
+
+  // 🔥 Backend
+  { name: 'Firebase', icon: '🔥', level: 85, color: '#ffca28', category: 'backend' },
+  { name: 'Supabase', icon: '⚡', level: 80, color: '#3ecf8e', category: 'backend' },
+
+  // 🧠 Additional
+  { name: 'REST API', icon: '🔌', level: 90, color: '#a78bfa', category: 'additional' },
+  { name: 'Responsive Design', icon: '📱', level: 95, color: '#4ade80', category: 'additional' },
+  { name: 'SEO Basics', icon: '📈', level: 80, color: '#fb923c', category: 'additional' },
+  { name: 'Performance Optimization', icon: '⚡', level: 85, color: '#facc15', category: 'additional' },
 ];
 
 const svgIcons = {
+  // ... (keeping existing icons, will add more later if needed)
   'HTML5': (
     <svg viewBox="0 0 24 24" fill="currentColor">
       <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z" />
@@ -78,6 +109,11 @@ const svgIcons = {
       <path d="M14.995 1.772c-4.8-1.762-10.12.695-11.883 5.496-1.762 4.8.695 10.12 5.495 11.882 4.8 1.762 10.12-.695 11.883-5.495 1.762-4.8-.695-10.12-5.495-11.883zm-.626 1.701c3.905 1.434 5.906 5.77 4.474 9.676-1.434 3.905-5.77 5.906-9.675 4.473C5.263 16.187 3.262 11.851 4.696 7.946c1.434-3.905 5.77-5.906 9.673-4.473zM8.19 7.064l-1.367 3.723L5.455 7.07 4.02 7.593l2.353 6.412 1.436-.527 1.372-3.737 1.37 3.73 1.434-.526L14 6.537l-1.434-.527-1.373 3.724-1.368-3.72L8.19 7.064z" />
     </svg>
   ),
+  'Firebase': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3.89 15.672L2.095 4.194a.5.5 0 0 1 .838-.492l1.986 3.737L3.89 15.672zm16.792-6.52L17.72 2.144a.5.5 0 0 0-.84 0l-1.928 3.655 5.73 3.353zM13.23 8.358L12.19 6.42a.5.5 0 0 0-.84 0L3.58 20.66a.5.5 0 0 0 .7.652l8.95-12.954zm1.18-1.513l-.53-1-.07-.132a.5.5 0 0 0-.84 0l-.07.132-5.91 11.235 7.42 4.264 4.18-8.204a.5.5 0 0 0 0-.42l-4.18-5.875z" />
+    </svg>
+  ),
 };
 
 export default function Skills() {
@@ -92,16 +128,36 @@ export default function Skills() {
         dbItems = snap.data().items;
       }
 
-      // 💎 Master Merge: Ensure essential skills from defaultSkills are always present
-      // but prioritize any custom data from DB for those same skills.
-      const essentialNames = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'JS', 'TypeScript'];
-      const merged = [...dbItems];
+      const essentialNames = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'JavaScript (ES6+)', 'JS'];
+
+      // 🚀 Migration logic: Add categories to old DB items if missing
+      const processedDbItems = dbItems.map(s => {
+        // Identity matching & Basic Normalization
+        if (['HTML', 'HTML5'].includes(s.name)) return { ...s, name: 'HTML', icon: '🟠', category: 'languages', color: '#e34f26' };
+        if (['CSS', 'CSS3'].includes(s.name)) return { ...s, name: 'CSS', icon: '🔵', category: 'languages', color: '#264de4' };
+        if (['JavaScript', 'JavaScript (ES6+)', 'JS'].includes(s.name)) return { ...s, name: 'JavaScript', icon: '🟡', category: 'languages', color: '#f7df1e' };
+        if (s.name === 'TypeScript' || s.name === 'TS') return { ...s, name: 'TypeScript', icon: '💙', category: 'frameworks', color: '#3178c6' };
+
+        // Normalize 'libraries' to 'frameworks' for backward compatibility
+        if (s.category === 'libraries') return { ...s, category: 'frameworks' };
+
+        if (s.category) return s;
+
+        let category = 'frameworks'; // Default fallback
+        if (essentialNames.includes(s.name)) category = 'languages';
+        if (['Git', 'GitHub', 'Figma', 'Postman', 'Vercel', 'Netlify', 'VS Code'].includes(s.name)) category = 'tools';
+        if (['Tailwind CSS', 'Sass', 'SCSS', 'Sass / SCSS', 'Bootstrap', 'Shadcn/ui', 'Material UI', 'Ant Design'].includes(s.name)) category = 'styling';
+        if (['Firebase', 'Supabase'].includes(s.name)) category = 'backend';
+        if (['REST API', 'Responsive Design', 'SEO Basics', 'Performance Optimization'].includes(s.name)) category = 'additional';
+
+        return { ...s, category };
+      });
+
+      const merged = [...processedDbItems];
 
       defaultSkills.forEach(defSkill => {
-        const exists = merged.some(s => s.name === defSkill.name ||
-          (essentialNames.includes(s.name) && essentialNames.includes(defSkill.name)));
-
-        if (!exists && essentialNames.includes(defSkill.name)) {
+        const exists = merged.some(s => s.name === defSkill.name);
+        if (!exists) {
           merged.push(defSkill);
         }
       });
@@ -118,22 +174,40 @@ export default function Skills() {
   if (loading) return <section className="section skills-section" id="skills" style={{ minHeight: '400px' }} />;
 
   // 📂 Categorize skills dynamically from DB categories
-  const languagesOrder = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'JS', 'TypeScript'];
+  const languagesOrder = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'JavaScript (ES6+)', 'JS'];
 
   const categorizedSkills = {
     languages: skills
       .filter(s => s.category === 'languages')
       .sort((a, b) => languagesOrder.indexOf(a.name) - languagesOrder.indexOf(b.name)),
-    libraries: skills.filter(s => s.category === 'libraries'),
-    tools: skills.filter(s => s.category === 'tools')
+    frameworks: skills.filter(s => s.category === 'frameworks'),
+    styling: skills.filter(s => s.category === 'styling'),
+    tools: skills.filter(s => s.category === 'tools'),
+    backend: skills.filter(s => s.category === 'backend'),
+    additional: skills.filter(s => s.category === 'additional')
   };
 
-  const renderSkillGroup = (categoryKey, skillList) => {
+  const rainbowColors = ['#8B5CF6', '#06B6D4', '#F43F5E', '#F59E0B', '#10B981', '#3B82F6'];
+
+  const renderSkillGroup = (categoryKey, skillList, groupIndex) => {
     if (skillList.length === 0) return null;
 
     return (
       <div className="skills-category-group animate-fade-up">
-        <h3 className="skills-category-title">{t(`skills.${categoryKey}`)}</h3>
+        <h3 className="skills-category-title">
+          {t(`skills.${categoryKey}`).split('').map((char, i) => {
+            const colorIndex = (i + (groupIndex * 3)) % rainbowColors.length;
+            return (
+              <span
+                key={i}
+                className="title-letter"
+                style={{ color: rainbowColors[colorIndex] }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </span>
+            );
+          })}
+        </h3>
         <div className="skills-grid-minimal">
           {skillList.map((skill, i) => {
             // 🌬 Normalize names for a clean "Quiet Luxury" look
@@ -145,16 +219,16 @@ export default function Skills() {
             return (
               <div
                 key={skill.name}
-                className="skill-card-minimal"
+                className="skill-item-compact"
                 style={{ '--skill-color': skill.color, animationDelay: `${i * 0.05}s` }}
               >
-                <div className="skill-icon-glow" />
-                <div className="skill-icon-container">
-                  <div className="skill-svg-minimal" style={{ color: skill.color }}>
+                <div className="skill-icon-circle">
+                  <div className="skill-circle-glow" />
+                  <div className="skill-svg-wrapper" style={{ color: skill.color }}>
                     {svgIcons[skill.name] || svgIcons[displayName] || <span>{skill.icon}</span>}
                   </div>
                 </div>
-                <span className="skill-name-minimal">{displayName}</span>
+                <span className="skill-name-compact">{displayName}</span>
               </div>
             );
           })}
@@ -179,9 +253,12 @@ export default function Skills() {
         </div>
 
         <div className="skills-container-minimal">
-          {renderSkillGroup('languages', categorizedSkills.languages)}
-          {renderSkillGroup('libraries', categorizedSkills.libraries)}
-          {renderSkillGroup('tools', categorizedSkills.tools)}
+          {renderSkillGroup('languages', categorizedSkills.languages, 0)}
+          {renderSkillGroup('frameworks', categorizedSkills.frameworks, 1)}
+          {renderSkillGroup('styling', categorizedSkills.styling, 2)}
+          {renderSkillGroup('tools', categorizedSkills.tools, 3)}
+          {renderSkillGroup('backend', categorizedSkills.backend, 4)}
+          {renderSkillGroup('additional', categorizedSkills.additional, 5)}
         </div>
       </div>
     </section>
