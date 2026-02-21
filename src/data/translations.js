@@ -37,7 +37,8 @@ export const translations = {
                 projects: 'Bitgan Loyihalar',
                 clients: 'Mamnun Mijozlar',
                 satisfaction: 'Qoniqish Darajasi'
-            }
+            },
+            noInfo: 'Ma\'lumot yo\'q'
         },
         skills: {
             tag: 'TEXNOLOGIYALAR',
@@ -120,7 +121,8 @@ export const translations = {
                 projects: 'Проектов',
                 clients: 'Довольных Клиентов',
                 satisfaction: 'Уровень Удовлетворенности'
-            }
+            },
+            noInfo: 'Информация отсутствует'
         },
         skills: {
             tag: 'ТЕХНОЛОГИИ',
@@ -203,7 +205,8 @@ export const translations = {
                 projects: 'Projects Done',
                 clients: 'Happy Clients',
                 satisfaction: 'Satisfaction Rate'
-            }
+            },
+            noInfo: 'No information'
         },
         skills: {
             tag: 'TECHNOLOGIES',

@@ -78,12 +78,6 @@ export default function Hero({ onPortalOpen }) {
 
           </div>
 
-          <div className="hero-stack animate-fade-up delay-5">
-            <span className="stack-label">Stack:</span>
-            {(fsData?.stack ? fsData.stack.split(',').map(s => s.trim()) : ['React', 'TypeScript', 'Tailwind']).map(tech => (
-              <span key={tech} className={`stack-pill pill-${tech.toLowerCase().replace('.', '').replace(/\s+/g, '')}`}>{tech}</span>
-            ))}
-          </div>
         </div>
 
         {/* RIGHT: AVATAR */}

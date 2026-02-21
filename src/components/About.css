@@ -57,6 +57,24 @@
   color: #fff;
 }
 
+.locked-text {
+  opacity: 0.6;
+  filter: blur(0.5px);
+}
+
+.locked-role {
+  color: var(--accent) !important;
+  opacity: 0.5;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.1em;
+}
+
+.locked-avatar {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--accent) !important;
+}
+
 .about-card-info p {
   color: var(--accent);
   font-weight: 700;
@@ -90,6 +108,22 @@
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-dim);
+}
+
+.locked-info {
+  color: var(--accent) !important;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.locked-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.5;
+  filter: blur(0.5px);
+  cursor: not-allowed;
 }
 
 /* 🖋 MINIMAL TEXT CONTENT */

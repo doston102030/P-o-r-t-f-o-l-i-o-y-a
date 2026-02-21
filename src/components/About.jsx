@@ -34,23 +34,31 @@ export default function About() {
           {/* LEFT: SLEEK MINIMAL CARD */}
           <div className="about-visual animate-fade-up">
             <div className="about-card sleek-card">
-              <div className="about-card-avatar">
-                <span>DA</span>
+              <div className="about-card-avatar locked-avatar">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
               </div>
               <div className="about-card-info">
-                <h4>{val('cardName', 'Adhamjonov Doston')}</h4>
-                <p>{val('cardRole', 'Frontend Developer')}</p>
-                <div className="about-card-location">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                    <circle cx="12" cy="10" r="3" />
+                <h4 className="locked-text">{t('about.noInfo')}</h4>
+                <p className="locked-role">Private Access</p>
+                <div className="about-card-location locked-info">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                   </svg>
-                  {val('cardLocation', 'Tashkent, Uzbekistan')}
+                  {t('about.noInfo')}
                 </div>
               </div>
               <div className="about-card-badges">
-                <span>{val('cardBadge1', 'Open to work')}</span>
-                <span>{val('cardBadge2', 'Remote OK')}</span>
+                <span className="locked-badge">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                  Private
+                </span>
               </div>
             </div>
           </div>
