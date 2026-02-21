@@ -4,11 +4,12 @@
 
 /* ── THEME: DARK (default / Cyber-Premium) ── */
 :root {
-  --bg: #0d0b1e;
-  --bg2: #0a0818;
+  --bg: #000000;
+  /* Absolute Pitch Black */
+  --bg2: #020202;
   --surface: rgba(15, 23, 42, 0.4);
   --surface2: rgba(30, 41, 59, 0.6);
-  --border: rgba(99, 130, 255, 0.15);
+  --border: rgba(255, 255, 255, 0.05);
   --text: #f8fafc;
   --text-muted: #94a3b8;
   --text-dim: #64748b;

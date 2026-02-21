@@ -5,6 +5,32 @@ import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import './Hero.css';
 
+const CinematicBg = () => (
+  <div className="hero-cinematic-bg">
+    <div className="hero-stars-container">
+      {Array.from({ length: 250 }).map((_, i) => {
+        const size = Math.random() * 2 + 0.5;
+        return (
+          <div
+            key={i}
+            className="hero-star"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${size}px`,
+              height: `${size}px`,
+              '--twinkle-duration': `${Math.random() * 4 + 2}s`,
+              '--star-opacity': Math.random() * 0.7 + 0.3,
+              animationDelay: `${Math.random() * 5}s`
+            }}
+          />
+        );
+      })}
+    </div>
+    <div className="hero-red-planet" />
+  </div>
+);
+
 export default function Hero({ onPortalOpen }) {
   const { t } = useLanguage();
   const { theme } = useTheme();
@@ -16,12 +42,19 @@ export default function Hero({ onPortalOpen }) {
     }).catch(err => console.error("Firestore error:", err));
   }, []);
 
-  if (!fsData) return <section className="hero section" id="home" style={{ minHeight: '100vh' }} />;
+  if (!fsData) return (
+    <section className="hero section" id="home" style={{ minHeight: '100vh' }}>
+      {theme === 'dark' && <CinematicBg />}
+    </section>
+  );
 
   const val = (fsKey, tKey) => (fsData && fsData[fsKey]) || t(tKey);
 
   return (
     <section className="hero section" id="home">
+      {/* Cinematic Background (Stars & Red Planet) */}
+      {theme === 'dark' && <CinematicBg />}
+
       {/* Background orbs */}
       <div className="hero-orb hero-orb--1" />
       <div className="hero-orb hero-orb--2" />
@@ -125,10 +158,10 @@ export default function Hero({ onPortalOpen }) {
             </div>
             {/* floating badges */}
             <div className="avatar-badge avatar-badge--tl">
-              <span>⚡</span> {val('badgeTL', 'hero.dev')}
+              {val('badgeTL', 'hero.dev')}
             </div>
             <div className="avatar-badge avatar-badge--br">
-              <span>🏆</span> {val('badgeBR', 'hero.years')}
+              {val('badgeBR', 'hero.years')}
             </div>
           </div>
 

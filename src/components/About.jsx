@@ -67,7 +67,7 @@ export default function About() {
           <div className="about-content animate-fade-up delay-2">
             <p className="section-tag-minimal">{t('about.tag')}</p>
             <h2 className="section-title-minimal">
-              {t('about.title')} <span className="text-gradient-minimal">{t('about.titleGradient')}</span>
+              {t('about.title')} <span className="gradient-text-fix">{t('about.titleGradient')}</span>
             </h2>
 
             <div className="about-bio-minimal">

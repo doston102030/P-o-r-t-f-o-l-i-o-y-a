@@ -522,8 +522,10 @@
 
 @media (max-width: 640px) {
   .navbar {
-    width: 95%;
-    top: 10px;
+    width: 92%;
+    top: 20px;
+    padding: 0 1rem;
+    z-index: 9999;
   }
 
   .nav-container {
