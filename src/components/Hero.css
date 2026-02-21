@@ -336,154 +336,84 @@
   margin-bottom: 36px;
 }
 
-/* 🚀 UNIQUE RADAR AI Portal Trigger */
+/* 🚀 MINIMALIST AI Portal Trigger (Quiet Luxury) */
 .btn-portal-floating {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
+  bottom: 30px;
+  right: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  width: 70px;
-  height: 70px;
+  gap: 6px;
+  width: 64px;
+  height: 64px;
   border-radius: 20px;
-  background: rgba(15, 20, 45, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   color: #fff;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 10000;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-/* Radar Sweep Beam */
-.btn-portal-floating::before {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  background: conic-gradient(from 0deg,
-      transparent 0%,
-      transparent 40%,
-      rgba(124, 58, 237, 0.35) 48%,
-      rgba(124, 58, 237, 0.6) 50%,
-      rgba(124, 58, 237, 0.35) 52%,
-      transparent 60%);
-  animation: radarScan 4s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes radarScan {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Radar Cross/Grid Lines */
-.btn-portal-floating::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 15px 15px;
-  background-position: center;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* Sonar Pulse Ripple */
-.btn-portal-glow {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 2px solid rgba(124, 58, 237, 0.5);
-  border-radius: inherit;
-  animation: sonarPulse 3s cubic-bezier(0, 0, 0.2, 1) infinite;
-  pointer-events: none;
-  display: block !important;
-  /* Re-enable for the ripple */
-}
-
-@keyframes sonarPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn-portal-floating svg {
-  z-index: 1;
-  width: 22px;
-  height: 22px;
-  color: #fff;
-  filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.8));
-  animation: iconPulseSubtle 3s ease-in-out infinite;
-}
-
-@keyframes iconPulseSubtle {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.4s ease;
 }
 
 .btn-portal-floating span {
-  z-index: 1;
   font-family: 'Syne', sans-serif;
   font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
+  transition: all 0.4s ease;
 }
 
 .btn-portal-floating:hover {
-  background: rgba(25, 30, 60, 0.95);
-  transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
-  border-color: rgba(124, 58, 237, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
-.btn-portal-floating:hover::before {
-  animation-duration: 1.5s;
-  /* Speed up on hover like it's scanning faster */
+.btn-portal-floating:hover svg {
+  color: #fff;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.btn-portal-floating:hover span {
+  color: #fff;
+  letter-spacing: 0.12em;
 }
 
 [data-theme='light'] .btn-portal-floating {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(99, 102, 241, 0.2);
-  color: #4338ca;
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #000;
 }
 
-[data-theme='light'] .btn-portal-floating span {
-  color: #4338ca;
-}
-
+[data-theme='light'] .btn-portal-floating span,
 [data-theme='light'] .btn-portal-floating svg {
-  color: #4338ca;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='light'] .btn-portal-floating:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='light'] .btn-portal-floating:hover span,
+[data-theme='light'] .btn-portal-floating:hover svg {
+  color: #000;
 }
 
 /* Responsive FAB */

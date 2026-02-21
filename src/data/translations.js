@@ -22,9 +22,15 @@ export const translations = {
             tag: 'O‘zim haqimda',
             title: 'Raqamli tajribalar',
             titleGradient: 'yaratish',
-            text1: "Assalomu alaykum va vaqt ajratganingiz uchun rahmat.\nMen — Adhamjonov Doston, frontend dasturchiman.\n\nMurakkab muammolarni sodda va intuitiv interfeyslarga aylantirish — mening asosiy kuchli tomonim. Foydalanuvchi tajribasini markazga qo‘ygan holda, tezkor, responsiv va kengaytiriladigan web ilovalar yarataman. Maqsadim — foydalanuvchini jalb qiladigan va real qiymat beradigan mahsulot qurish.",
+            text1: "Assalomu alaykum, vaqt ajratganingiz uchun rahmat\nMen — Adhamjonov Doston, frontend dasturchiman 👨‍💻\n\nMurakkab muammolarni sodda va intuitiv interfeyslarga aylantirish — mening asosiy kuchli tomonim. Foydalanuvchi tajribasini markazga qo‘ygan holda, tezkor, responsiv va kengaytiriladigan web ilovalar yarataman. Maqsadim — foydalanuvchini jalb qiladigan va real qiymat beradigan mahsulot qurish.",
             text2: "Toza va strukturali kod, mustahkam arxitektura hamda yuqori performance — ish uslubimning asosi. Har bir loyihada texnik mukammallik bilan birga biznes qiymatini ham hisobga olaman.\n\nSun’iy intellekt vositalaridan samarali foydalanaman, jarayonlarni optimallashtiraman va innovatsion yechimlar ishlab chiqaman. Yangi texnologiyalarni tez o‘rganaman va doimiy rivojlanishga intilaman.\n\nMen uchun loyiha — bu shunchaki kod emas, balki muammoga aniq va strategik yechimdir.",
-            highlights: ['Toza Kod', 'Yuqori Tezlik', 'UI/UX Ishqibozi', 'Jamoaviy O‘yinchi'],
+            highlights: [
+                { icon: '⚡', title: 'Performance Optimization', desc: 'Core Web Vitals, lazy loading va code splitting orqali tezkor web ilovalar yaratish.' },
+                { icon: '📱', title: 'Responsive & Mobile-First', desc: 'Barcha qurilmalarga mos, pixel-perfect interfeyslar.' },
+                { icon: '📦', title: 'API Integration', desc: 'REST API bilan samarali ishlash (Axios / Fetch).' },
+                { icon: '🛠', title: 'Git & Collaboration', desc: 'Branch strategy, pull request va jamoaviy development tajribasi.' },
+                { icon: '🎯', title: 'Result-Oriented', desc: 'Foydalanuvchi tajribasi va loyiha natijasiga yo‘naltirilgan yondashuv.' }
+            ],
             btn: 'Birga Ishlaymiz',
             stats: {
                 exp: 'Yillik Tajriba',
@@ -37,7 +43,10 @@ export const translations = {
             tag: 'Texnologiyalar',
             title: 'Mening',
             titleGradient: 'Texnik Bilimlarim',
-            subtitle: 'Zamonaviy va tez ishlovchi veb-ilovalarni yaratishda foydalanadigan texnologiyalarim'
+            subtitle: 'Zamonaviy va tez ishlovchi veb-ilovalarni yaratishda foydalanadigan texnologiyalarim',
+            languages: 'Tillarni',
+            libraries: 'Libraries & Frameworks',
+            tools: 'Tools & Libraries'
         },
         projects: {
             tag: 'Portfolio',
@@ -95,7 +104,13 @@ export const translations = {
             titleGradient: 'опыт',
             text1: "Привет! Меня зовут Достон — я увлеченный Frontend-разработчик из Ташкента. Я специализируюсь на создании современных, производительных веб-приложений с использованием React.",
             text2: "Я люблю превращать сложные задачи в простые и интуитивно понятные интерфейсы. Моя цель — писать чистый, поддерживаемый код и создавать отличный пользовательский опыт.",
-            highlights: ['Чистый Код', 'Производительность', 'UI/UX Энтузиаст', 'Командный Игрок'],
+            highlights: [
+                { icon: '⚡', title: 'Performance Optimization', desc: 'Core Web Vitals, ленивая загрузка и code splitting для быстрых веб-приложений.' },
+                { icon: '📱', title: 'Responsive & Mobile-First', desc: 'Пиксель-перфект интерфейсы, адаптированные под все устройства.' },
+                { icon: '📦', title: 'API Integration', desc: 'Эффективная работа с REST API (Axios / Fetch).' },
+                { icon: '🛠', title: 'Git & Team Collaboration', desc: 'Стратегия веток, pull requests и опыт командной разработки.' },
+                { icon: '🎯', title: 'Result-Oriented Development', desc: 'Подход, ориентированный на пользовательский опыт и результат проекта.' }
+            ],
             btn: 'Давайте Работать Вместе',
             stats: {
                 exp: 'Лет Опыта',
@@ -108,7 +123,10 @@ export const translations = {
             tag: 'Стек Технологий',
             title: 'Мои',
             titleGradient: 'Навыки',
-            subtitle: 'Технологии, которые я использую для создания современных веб-приложений'
+            subtitle: 'Технологии, которые я использую для создания современных веб-приложений',
+            languages: 'Языки',
+            libraries: 'Библиотеки и Фреймворки',
+            tools: 'Инструменты и Утилиты'
         },
         projects: {
             tag: 'Портфолио',
@@ -166,7 +184,13 @@ export const translations = {
             titleGradient: 'experiences',
             text1: "Hi! I'm Doston — a passionate Frontend Developer from Tashkent, Uzbekistan. I specialize in building modern, performant, and visually compelling web applications using React ecosystem technologies.",
             text2: "I love turning complex problems into simple, beautiful, and intuitive designs. My goal is to write clean, maintainable code while delivering outstanding user experiences that make a real impact.",
-            highlights: ['Clean Code Advocate', 'Performance-first', 'UI/UX Enthusiast', 'Team Player'],
+            highlights: [
+                { icon: '⚡', title: 'Performance Optimization', desc: 'Core Web Vitals, lazy loading, and code splitting for high-speed web applications.' },
+                { icon: '📱', title: 'Responsive & Mobile-First', desc: 'Pixel-perfect interfaces tailored for all devices.' },
+                { icon: '📦', title: 'API Integration', desc: 'Efficient interaction with REST APIs (Axios / Fetch).' },
+                { icon: '🛠', title: 'Git & Team Collaboration', desc: 'Branch strategies, pull requests, and experience in team development.' },
+                { icon: '🎯', title: 'Result-Oriented Development', desc: 'User experience and project outcome-driven approach.' }
+            ],
             btn: "Let's Work Together",
             stats: {
                 exp: 'Years Experience',
@@ -179,7 +203,10 @@ export const translations = {
             tag: 'What I work with',
             title: 'My',
             titleGradient: 'Tech Stack',
-            subtitle: 'Technologies I use to build modern, performant web applications'
+            subtitle: 'Technologies I use to build modern, performant web applications',
+            languages: 'Languages',
+            libraries: 'Libraries & Frameworks',
+            tools: 'Tools & Libraries'
         },
         projects: {
             tag: 'Portfolio',

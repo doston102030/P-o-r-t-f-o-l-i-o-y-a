@@ -23,7 +23,17 @@ const svgIcons = {
       <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z" />
     </svg>
   ),
+  'HTML': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z" />
+    </svg>
+  ),
   'CSS3': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z" />
+    </svg>
+  ),
+  'CSS': (
     <svg viewBox="0 0 24 24" fill="currentColor">
       <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z" />
     </svg>
@@ -92,6 +102,46 @@ export default function Skills() {
 
   if (loading) return <section className="section skills-section" id="skills" style={{ minHeight: '400px' }} />;
 
+  // 📂 Categorize skills logically
+  const languagesOrder = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'TypeScript'];
+  const categorizedSkills = {
+    languages: skills
+      .filter(s => languagesOrder.includes(s.name))
+      .sort((a, b) => languagesOrder.indexOf(a.name) - languagesOrder.indexOf(b.name)),
+    libraries: skills.filter(s => ['React', 'Next.js', 'Tailwind CSS'].includes(s.name)),
+    tools: skills.filter(s => ['Git', 'GitHub', 'REST API'].includes(s.name))
+  };
+
+  const renderSkillGroup = (categoryKey, skillList) => (
+    <div className="skills-category-group animate-fade-up">
+      <h3 className="skills-category-title">{t(`skills.${categoryKey}`)}</h3>
+      <div className="skills-grid-minimal">
+        {skillList.map((skill, i) => {
+          // Normalize names for minimalist look
+          let displayName = skill.name;
+          if (displayName === 'HTML5') displayName = 'HTML';
+          if (displayName === 'CSS3') displayName = 'CSS';
+
+          return (
+            <div
+              key={skill.name}
+              className="skill-card-minimal"
+              style={{ '--skill-color': skill.color, animationDelay: `${i * 0.05}s` }}
+            >
+              <div className="skill-icon-glow" />
+              <div className="skill-icon-container">
+                <div className="skill-svg-minimal" style={{ color: skill.color }}>
+                  {svgIcons[skill.name] || <span>{skill.icon}</span>}
+                </div>
+              </div>
+              <span className="skill-name-minimal">{displayName}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+
   return (
     <section className="section skills-section" id="skills">
       <div className="skills-bg-pattern" />
@@ -107,31 +157,10 @@ export default function Skills() {
           </p>
         </div>
 
-        <div className="skills-grid animate-fade-up delay-2">
-          {skills.map((skill, i) => (
-            <div
-              key={skill.name}
-              className="skill-card"
-              style={{ '--skill-color': skill.color, animationDelay: `${i * 0.05}s` }}
-            >
-              <div className="skill-icon-wrapper">
-                <div className="skill-svg-icon" style={{ color: skill.color }}>
-                  {svgIcons[skill.name]}
-                </div>
-              </div>
-              <div className="skill-info">
-                <span className="skill-name">{skill.name}</span>
-                <div className="skill-bar">
-                  <div
-                    className="skill-bar-fill"
-                    style={{ '--width': `${skill.level}%`, background: skill.color }}
-                  />
-                </div>
-                <span className="skill-level">{skill.level}%</span>
-              </div>
-              <div className="skill-glow" />
-            </div>
-          ))}
+        <div className="skills-container-minimal">
+          {renderSkillGroup('languages', categorizedSkills.languages)}
+          {renderSkillGroup('libraries', categorizedSkills.libraries)}
+          {renderSkillGroup('tools', categorizedSkills.tools)}
         </div>
       </div>
     </section>

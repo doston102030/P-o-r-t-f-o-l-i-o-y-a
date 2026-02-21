@@ -29,19 +29,11 @@ export default function About() {
 
   return (
     <section className="section about-section" id="about">
-      <div className="about-glow-orbs">
-        <div className="orb orb-1" />
-        <div className="orb orb-2" />
-      </div>
       <div className="container">
         <div className="about-grid">
-          {/* LEFT: IMAGE CARD */}
+          {/* LEFT: SLEEK MINIMAL CARD */}
           <div className="about-visual animate-fade-up">
-            <div className="about-card mega-card">
-              <div className="card-shine" />
-              <div className="card-glow-orb" />
-              <div className="card-aura" />
-
+            <div className="about-card sleek-card">
               <div className="about-card-avatar">
                 <span>DA</span>
               </div>
@@ -63,49 +55,88 @@ export default function About() {
             </div>
           </div>
 
-          {/* RIGHT: TEXT */}
+          {/* RIGHT: TEXT CONTENT */}
           <div className="about-content animate-fade-up delay-2">
-            <p className="section-tag">{t('about.tag')}</p>
-            <h2 className="section-title">
-              {t('about.title')} <br />
-              <span className="gradient-text">{t('about.titleGradient')}</span>
+            <p className="section-tag-minimal">{t('about.tag')}</p>
+            <h2 className="section-title-minimal">
+              {t('about.title')} <span className="text-gradient-minimal">{t('about.titleGradient')}</span>
             </h2>
 
-            {[val('text1', 'about.text1'), val('text2', 'about.text2')].map((text, i) => (
-              text.split('\n').map((p, j) => p.trim() && (
-                <p key={`${i}-${j}`} className="about-text">{p}</p>
-              ))
-            ))}
+            <div className="about-bio-minimal">
+              {(() => {
+                const keywords = [
+                  'Assalomu alaykum', 'rahmat',
+                  'Adhamjonov Doston', 'frontend dasturchiman', 'Murakkab muammolarni',
+                  'Foydalanuvchi tajribasini', 'web ilovalar', 'Toza va strukturali kod',
+                  'mustahkam arxitektura', 'Sun’iy intellekt', 'innovatsion yechimlar',
+                  'Doston', 'Frontend Developer', 'complex problems', 'Достон'
+                ];
 
-            <div className="about-highlights">
+                const renderText = (text) => {
+                  let parts = [{ text: text, isKeyword: false }];
+
+                  keywords.forEach((keyword, idx) => {
+                    let newParts = [];
+                    parts.forEach(part => {
+                      if (!part.isKeyword) {
+                        const regex = new RegExp(`(${keyword})`, 'gi');
+                        const subParts = part.text.split(regex);
+                        subParts.forEach(subPart => {
+                          if (subPart.toLowerCase() === keyword.toLowerCase()) {
+                            newParts.push({ text: subPart, isKeyword: true, index: idx });
+                          } else if (subPart) {
+                            newParts.push({ text: subPart, isKeyword: false });
+                          }
+                        });
+                      } else {
+                        newParts.push(part);
+                      }
+                    });
+                    parts = newParts;
+                  });
+
+                  return parts.map((part, k) =>
+                    part.isKeyword
+                      ? <span key={k} className={`text-accent-minimal ta-${part.index % 5}`}>{part.text}</span>
+                      : part.text
+                  );
+                };
+
+                return [val('text1', 'about.text1'), val('text2', 'about.text2')].map((text, i) => (
+                  text.split('\n').map((p, j) => p.trim() && (
+                    <p key={`${i}-${j}`} className="bio-p-minimal">
+                      {renderText(p)}
+                    </p>
+                  ))
+                ));
+              })()}
+            </div>
+
+            <div className="about-highlights-minimal">
               {Array.isArray(highlights) && highlights.map((h, i) => (
-                <div key={h} className={`highlight-item h-item-${i % 4}`}>
-                  <div className="highlight-shine" />
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  <span>{h}</span>
+                <div key={i} className="h-minimal-item">
+                  <span className="h-minimal-icon">{h.icon}</span>
+                  <span className="h-minimal-title">{h.title}</span>
                 </div>
               ))}
             </div>
 
-            <a href="#contact" className="btn-primary" style={{ marginTop: '8px', display: 'inline-flex' }}>
+            <a href="#contact" className="btn-minimal">
               {t('about.btn')}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
           </div>
         </div>
 
-        {/* STATS */}
-        <div className="about-stats animate-fade-up delay-3">
+        {/* STATS MINIMAL */}
+        <div className="about-stats-minimal animate-fade-up delay-3">
           {stats.map((s, idx) => (
-            <div key={s.labelKey} className={`stat-card-mega s-card-${idx}`}>
-              <div className="stat-shine" />
-              <div className="stat-icon">{s.icon}</div>
-              <div className="stat-value">{s.value}</div>
-              <div className="stat-label">{s.isRawLabel ? s.labelKey : t(s.labelKey)}</div>
+            <div key={s.labelKey} className={`stat-minimal-card ta-${idx % 5}`}>
+              <div className="stat-minimal-icon">{s.icon}</div>
+              <div className="stat-minimal-value">{s.value}</div>
+              <div className="stat-minimal-label">{s.isRawLabel ? s.labelKey : t(s.labelKey)}</div>
             </div>
           ))}
         </div>
