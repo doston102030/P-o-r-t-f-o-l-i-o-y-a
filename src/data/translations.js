@@ -22,8 +22,8 @@ export const translations = {
             tag: 'O‘zim haqimda',
             title: 'Raqamli tajribalar',
             titleGradient: 'yaratish',
-            text1: "Salom! Men Doston — Toshkentdanman va men Frontend dasturlashga qiziqaman. Men React ekotizimidan foydalanib zamonaviy, tez va chiroyli veb-ilovalarni yaratishga ixtisoslashganman.",
-            text2: "Murakkab muammolarni oddiy va tushunarli dizaynlarga aylantirishni yaxshi ko'raman. Mening maqsadim — toza va tushunarli kod yozish orqali foydalanuvchilarga ajoyib tajriba taqdim etish.",
+            text1: "Assalomu alaykum va vaqt ajratganingiz uchun rahmat.\nMen — Adhamjonov Doston, frontend dasturchiman.\n\nMurakkab muammolarni sodda va intuitiv interfeyslarga aylantirish — mening asosiy kuchli tomonim. Foydalanuvchi tajribasini markazga qo‘ygan holda, tezkor, responsiv va kengaytiriladigan web ilovalar yarataman. Maqsadim — foydalanuvchini jalb qiladigan va real qiymat beradigan mahsulot qurish.",
+            text2: "Toza va strukturali kod, mustahkam arxitektura hamda yuqori performance — ish uslubimning asosi. Har bir loyihada texnik mukammallik bilan birga biznes qiymatini ham hisobga olaman.\n\nSun’iy intellekt vositalaridan samarali foydalanaman, jarayonlarni optimallashtiraman va innovatsion yechimlar ishlab chiqaman. Yangi texnologiyalarni tez o‘rganaman va doimiy rivojlanishga intilaman.\n\nMen uchun loyiha — bu shunchaki kod emas, balki muammoga aniq va strategik yechimdir.",
             highlights: ['Toza Kod', 'Yuqori Tezlik', 'UI/UX Ishqibozi', 'Jamoaviy O‘yinchi'],
             btn: 'Birga Ishlaymiz',
             stats: {

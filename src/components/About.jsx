@@ -29,11 +29,19 @@ export default function About() {
 
   return (
     <section className="section about-section" id="about">
+      <div className="about-glow-orbs">
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+      </div>
       <div className="container">
         <div className="about-grid">
           {/* LEFT: IMAGE CARD */}
           <div className="about-visual animate-fade-up">
-            <div className="about-card">
+            <div className="about-card mega-card">
+              <div className="card-shine" />
+              <div className="card-glow-orb" />
+              <div className="card-aura" />
+
               <div className="about-card-avatar">
                 <span>DA</span>
               </div>
@@ -63,16 +71,20 @@ export default function About() {
               <span className="gradient-text">{t('about.titleGradient')}</span>
             </h2>
 
-            <p className="about-text">{val('text1', 'about.text1')}</p>
-            <p className="about-text">{val('text2', 'about.text2')}</p>
+            {[val('text1', 'about.text1'), val('text2', 'about.text2')].map((text, i) => (
+              text.split('\n').map((p, j) => p.trim() && (
+                <p key={`${i}-${j}`} className="about-text">{p}</p>
+              ))
+            ))}
 
             <div className="about-highlights">
-              {Array.isArray(highlights) && highlights.map(h => (
-                <div key={h} className="highlight-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              {Array.isArray(highlights) && highlights.map((h, i) => (
+                <div key={h} className={`highlight-item h-item-${i % 4}`}>
+                  <div className="highlight-shine" />
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  {h}
+                  <span>{h}</span>
                 </div>
               ))}
             </div>
@@ -88,8 +100,9 @@ export default function About() {
 
         {/* STATS */}
         <div className="about-stats animate-fade-up delay-3">
-          {stats.map((s) => (
-            <div key={s.labelKey} className="stat-card">
+          {stats.map((s, idx) => (
+            <div key={s.labelKey} className={`stat-card-mega s-card-${idx}`}>
+              <div className="stat-shine" />
               <div className="stat-icon">{s.icon}</div>
               <div className="stat-value">{s.value}</div>
               <div className="stat-label">{s.isRawLabel ? s.labelKey : t(s.labelKey)}</div>
