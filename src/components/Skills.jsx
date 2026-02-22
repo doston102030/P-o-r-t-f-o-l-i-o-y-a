@@ -114,6 +114,91 @@ const svgIcons = {
       <path d="M3.89 15.672L2.095 4.194a.5.5 0 0 1 .838-.492l1.986 3.737L3.89 15.672zm16.792-6.52L17.72 2.144a.5.5 0 0 0-.84 0l-1.928 3.655 5.73 3.353zM13.23 8.358L12.19 6.42a.5.5 0 0 0-.84 0L3.58 20.66a.5.5 0 0 0 .7.652l8.95-12.954zm1.18-1.513l-.53-1-.07-.132a.5.5 0 0 0-.84 0l-.07.132-5.91 11.235 7.42 4.264 4.18-8.204a.5.5 0 0 0 0-.42l-4.18-5.875z" />
     </svg>
   ),
+  'Redux Toolkit': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0L2.4 5.4v10.8L12 21.6l9.6-5.4V5.4L12 0zm0 18.3l-6.4-3.6V8.1L12 4.5l6.4 3.6v6.6l-6.4 3.6zM12 7.2L8.8 9v3.6l3.2 1.8 3.2-1.8V9L12 7.2z" />
+    </svg>
+  ),
+  'Zustand': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5l-3.5-3.5 1.41-1.41L12 12.67l2.09-2.09L15.5 12 13 14.5z" />
+    </svg>
+  ),
+  'React Hook Form': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm-1 4v6h6v-2h-4V6h-2z" />
+    </svg>
+  ),
+  'Axios': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 5h1.5l-3.5 10H9.5L6 7h1.5l2.75 8L13 7z" />
+    </svg>
+  ),
+  'TanStack Query': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm-1-9v4h4v-2h-2v-2h-2z" />
+    </svg>
+  ),
+  'Framer Motion': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 12l-8 -8v16l16 -16v16l-4 -4 M20 12l-8 8l-4 -4" />
+    </svg>
+  ),
+  'Supabase': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M21.362 9.354l-7.142-4.246a1.42 1.42 0 0 0-1.42 0L5.658 9.354a1.421 1.421 0 0 0-.711 1.23v8.492a1.42 1.42 0 0 0 1.421 1.42h13a1.42 1.42 0 0 0 1.421-1.42v-8.492a1.421 1.421 0 0 0-.711-1.23zM12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" />
+    </svg>
+  ),
+  'Postman': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 14h-2v-3.5L7.5 9h1.5l2.5 2.5 2.5-2.5h1.5L13 12.5V16z" />
+    </svg>
+  ),
+  'Vercel': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 22.525H0L12 .475l12 22.05z" />
+    </svg>
+  ),
+  'Netlify': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 14h-2V7h2v9z" />
+    </svg>
+  ),
+  'VS Code': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z" />
+    </svg>
+  ),
+  'Styled Components': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5l-3.5-3.5 1.41-1.41L12 12.67l2.09-2.09L15.5 12 13 14.5z" />
+    </svg>
+  ),
+  'DaisyUI': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 14h-2V7h2v9z" />
+    </svg>
+  ),
+  'Windsurf': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 14h-2V7h2v9z" />
+    </svg>
+  ),
+  'Performance Optimization': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0L2 12h10v12l10-12H12V0z" />
+    </svg>
+  ),
+  'SEO Basics': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-4h2v4zm0-6h-2V7h2v3z" />
+    </svg>
+  ),
+  'Web Vitals': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-4h2v4zm0-6h-2V7h2v3z" />
+    </svg>
+  ),
 };
 
 export default function Skills() {
@@ -139,10 +224,10 @@ export default function Skills() {
       // 🚀 Migration logic: Add categories to old DB items if missing
       const processedDbItems = dbItems.map(s => {
         // Identity matching & Basic Normalization
-        if (['HTML', 'HTML5'].includes(s.name)) return { ...s, name: 'HTML', icon: '🟠', category: 'languages', color: '#e34f26' };
-        if (['CSS', 'CSS3'].includes(s.name)) return { ...s, name: 'CSS', icon: '🔵', category: 'languages', color: '#264de4' };
-        if (['JavaScript', 'JavaScript (ES6+)', 'JS'].includes(s.name)) return { ...s, name: 'JavaScript', icon: '🟡', category: 'languages', color: '#f7df1e' };
-        if (s.name === 'TypeScript' || s.name === 'TS') return { ...s, name: 'TypeScript', icon: '💙', category: 'frameworks', color: '#3178c6' };
+        if (['HTML', 'HTML5'].includes(s.name)) return { ...s, name: 'HTML', category: 'languages', color: '#e34f26' };
+        if (['CSS', 'CSS3'].includes(s.name)) return { ...s, name: 'CSS', category: 'languages', color: '#264de4' };
+        if (['JavaScript', 'JavaScript (ES6+)', 'JS'].includes(s.name)) return { ...s, name: 'JavaScript', category: 'languages', color: '#f7df1e' };
+        if (s.name === 'TypeScript' || s.name === 'TS') return { ...s, name: 'TypeScript', category: 'frameworks', color: '#3178c6' };
 
         // Normalize 'libraries' to 'frameworks' for backward compatibility
         if (s.category === 'libraries') return { ...s, category: 'frameworks' };

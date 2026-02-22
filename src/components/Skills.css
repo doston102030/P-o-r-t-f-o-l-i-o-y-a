@@ -365,6 +365,13 @@
   border-color: rgba(0, 0, 0, 0.05);
 }
 
+/* 🌙 Fix for white SVGs in light mode (e.g. Next.js, GitHub) */
+[data-theme='light'] .skill-svg-wrapper[style*="color: rgb(255, 255, 255)"],
+[data-theme='light'] .skill-svg-wrapper[style*="color: #ffffff"],
+[data-theme='light'] .skill-svg-wrapper[style*="color:#fff"] {
+  color: #000 !important;
+}
+
 [data-theme='light'] .skill-name-compact {
   color: #666;
 }
