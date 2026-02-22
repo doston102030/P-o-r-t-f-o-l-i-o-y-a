@@ -30,8 +30,8 @@
 /* ── PROJECT CARD (Quiet Luxury / Glassmorphism) ── */
 .project-card {
   position: relative;
-  background: rgba(15, 23, 42, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 28px;
   overflow: hidden;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);

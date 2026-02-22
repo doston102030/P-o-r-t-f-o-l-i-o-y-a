@@ -17,6 +17,11 @@
   overflow: hidden;
   background: black;
   pointer-events: none;
+  transition: background 0.5s ease;
+}
+
+[data-theme='light'] .hero-cinematic-bg {
+  background: var(--bg);
 }
 
 .hero-stars-container {
