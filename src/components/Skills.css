@@ -34,7 +34,7 @@
   position: absolute;
   inset: 0;
   opacity: 0.15;
-  filter: blur(80px);
+  filter: blur(30px);
 }
 
 .aurora-wave {
@@ -297,9 +297,12 @@
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
-  overflow: clip;
-  /* Glow effect boundries */
+  overflow: visible;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
 }
+
+/* Glow effect boundries */
+
 
 .skill-circle-glow {
   position: absolute;

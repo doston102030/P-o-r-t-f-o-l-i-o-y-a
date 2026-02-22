@@ -59,6 +59,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -66,8 +68,18 @@ body {
   min-height: 100vh;
   background: transparent;
   color: var(--text);
-  transition: color 0.4s ease;
+  transition: color 0.4s ease, background-color 0.4s ease;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
 
 a {
