@@ -204,13 +204,20 @@
   text-transform: uppercase;
   letter-spacing: 0.4em;
   opacity: 0.5;
-  /* Increased slightly for rainbow visibility */
   margin-bottom: 30px;
   text-align: center;
   position: relative;
   display: flex;
   justify-content: center;
   gap: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  .skills-category-title {
+    letter-spacing: 0.2em;
+    font-size: 0.6rem;
+  }
 }
 
 .title-letter {
@@ -404,8 +411,8 @@
 
 @media (max-width: 480px) {
   .skills-grid-minimal {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px 5px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 10px;
   }
 
   .skill-item-compact {
