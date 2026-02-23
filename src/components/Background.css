@@ -7,7 +7,7 @@
     z-index: -10;
     overflow: hidden;
     background: var(--bg);
-    transition: background 0.8s ease;
+    transition: background-color 0.8s ease;
 }
 
 [data-theme='light'] .cosmic-background {
@@ -126,7 +126,7 @@
     filter: blur(130px);
     opacity: 0.08;
     pointer-events: none;
-    will-change: transform;
+    will-change: transform, opacity;
 }
 
 .nebula-1 {

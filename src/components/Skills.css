@@ -22,7 +22,7 @@
   overflow: hidden;
   background: #000;
   pointer-events: none;
-  transition: background 0.5s ease;
+  transition: background-color 0.5s ease;
 }
 
 [data-theme='light'] .skills-cinematic-bg {
@@ -91,6 +91,19 @@
   transform: translateY(-50%);
 }
 
+@media (max-width: 768px) {
+
+  .meteor,
+  .aurora-wave,
+  .energy-particle {
+    display: none !important;
+  }
+
+  .skills-nebula {
+    animation-duration: 30s;
+  }
+}
+
 @keyframes meteorMove {
   0% {
     transform: translate(0, 0) rotate(-45deg);
@@ -146,6 +159,7 @@
   background: radial-gradient(circle at center, rgba(139, 92, 246, 0.08) 0%, transparent 80%);
   filter: blur(120px);
   animation: nebulaPulse 15s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes nebulaPulse {

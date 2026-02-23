@@ -74,8 +74,15 @@ export default function Hero({ onPortalOpen }) {
             <div className="premium-badge">
               <span className="badge-glow" />
               <span className="badge-text">
-                {val('role', 'hero.role').split('').map((char, i) => (
-                  <span key={i} className="letter">{char === ' ' ? '\u00A0' : char}</span>
+                {val('role', 'hero.role').split(' ').map((word, wIdx) => (
+                  <span key={wIdx} className="word-wrapper" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }}>
+                    {word.split('').map((char, cIdx) => (
+                      <span key={cIdx} className="letter">{char}</span>
+                    ))}
+                    {wIdx < val('role', 'hero.role').split(' ').length - 1 && (
+                      <span className="letter">&nbsp;</span>
+                    )}
+                  </span>
                 ))}
               </span>
             </div>

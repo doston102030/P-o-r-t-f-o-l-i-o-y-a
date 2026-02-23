@@ -59,8 +59,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
-  overflow-x: clip;
-  width: 100%;
+  overflow-x: hidden;
+  width: 100vw;
+  /* Using vw here carefully with hidden */
+  max-width: 100%;
 }
 
 body {
@@ -69,7 +71,7 @@ body {
   background: transparent;
   color: var(--text);
   transition: color 0.4s ease, background-color 0.4s ease;
-  overflow-x: clip;
+  overflow-x: hidden;
   width: 100%;
   position: relative;
   text-rendering: optimizeLegibility;
@@ -81,6 +83,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   position: relative;
+  max-width: 100%;
 }
 
 a {
@@ -196,7 +199,7 @@ img {
   border-radius: 14px;
   border: none;
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-position 0.35s ease, box-shadow 0.35s ease;
   text-decoration: none;
   position: relative;
   overflow: hidden;
@@ -234,9 +237,16 @@ img {
   border-radius: 14px;
   border: 1.5px solid var(--border);
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease, color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
   text-decoration: none;
   backdrop-filter: blur(8px);
+}
+
+@media (max-width: 768px) {
+  .btn-outline {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 
 [data-theme='light'] .btn-outline {
