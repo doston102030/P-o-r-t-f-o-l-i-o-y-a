@@ -29,125 +29,9 @@
   background: var(--bg);
 }
 
-/* Aurora Waves */
-.aurora-waves {
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
-  filter: blur(30px);
-}
+/* Aurora Waves removed for minimal look */
 
-.aurora-wave {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: conic-gradient(from 0deg at 50% 50%,
-      transparent 0deg,
-      rgba(139, 92, 246, 0.2) 60deg,
-      rgba(6, 182, 212, 0.2) 120deg,
-      transparent 180deg);
-  animation: auroraRotate 20s linear infinite;
-}
-
-.aurora-wave--2 {
-  animation-duration: 35s;
-  animation-direction: reverse;
-  opacity: 0.8;
-}
-
-@keyframes auroraRotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Meteors (Shooting Stars) */
-.meteor {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 2px #fff;
-  opacity: 0;
-  transform: rotate(-45deg);
-  animation: meteorMove var(--animation-duration, 4s) linear infinite;
-}
-
-.meteor::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 150px;
-  height: 1px;
-  background: linear-gradient(90deg, #fff, transparent);
-  transform: translateY(-50%);
-}
-
-@media (max-width: 768px) {
-
-  .meteor,
-  .aurora-wave,
-  .energy-particle {
-    display: none !important;
-  }
-
-  .skills-nebula {
-    animation-duration: 30s;
-  }
-}
-
-@keyframes meteorMove {
-  0% {
-    transform: translate(0, 0) rotate(-45deg);
-    opacity: 0;
-  }
-
-  5% {
-    opacity: 1;
-  }
-
-  20% {
-    transform: translate(-500px, 500px) rotate(-45deg);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate(-500px, 500px) rotate(-45deg);
-    opacity: 0;
-  }
-}
-
-/* Energy Particles */
-.energy-particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 50%;
-  opacity: 0.2;
-  filter: blur(1px);
-  animation: particleFloat 15s ease-in-out infinite;
-}
-
-@keyframes particleFloat {
-
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-
-  50% {
-    transform: translate(var(--move-x), var(--move-y));
-  }
-}
+/* Meteors and Particles removed for minimal look */
 
 .skills-nebula {
   position: absolute;
@@ -212,7 +96,7 @@
 
 .skills-category-title {
   font-family: 'Syne', sans-serif;
-  font-size: 0.65rem;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text-dim);
   text-transform: uppercase;
@@ -236,39 +120,8 @@
 
 .title-letter {
   display: inline-block;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease, text-shadow 0.4s ease;
 }
-
-.title-letter:nth-child(6n+1) {
-  color: #8B5CF6;
-}
-
-/* Violet */
-.title-letter:nth-child(6n+2) {
-  color: #06B6D4;
-}
-
-/* Cyan */
-.title-letter:nth-child(6n+3) {
-  color: #F43F5E;
-}
-
-/* Rose */
-.title-letter:nth-child(6n+4) {
-  color: #F59E0B;
-}
-
-/* Amber */
-.title-letter:nth-child(6n+5) {
-  color: #10B981;
-}
-
-/* Emerald */
-.title-letter:nth-child(6n+0) {
-  color: #3B82F6;
-}
-
-/* Blue */
 
 .skills-category-group:hover .title-letter {
   transform: translateY(-2px) scale(1.1);
@@ -301,24 +154,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   cursor: default;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  width: 100px;
+  width: 110px;
 }
 
 .skill-icon-circle {
   position: relative;
-  width: 52px;
-  height: 52px;
+  width: 68px;
+  height: 68px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
   overflow: visible;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
 }
 
@@ -335,23 +191,25 @@
 }
 
 .skill-item-compact:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
 }
 
 .skill-item-compact:hover .skill-icon-circle {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
 .skill-item-compact:hover .skill-circle-glow {
-  opacity: 0.15;
+  opacity: 0.4;
 }
 
 .skill-svg-wrapper {
-  width: 22px;
-  height: 22px;
-  opacity: 0.7;
+  width: 40px;
+  height: 40px;
+  opacity: 0.85;
   transition: all 0.5s ease;
   display: flex;
   align-items: center;
@@ -361,18 +219,18 @@
 .skill-item-compact:hover .skill-svg-wrapper {
   opacity: 1;
   transform: scale(1.1);
-  filter: drop-shadow(0 0 8px currentColor);
+  filter: drop-shadow(0 0 12px currentColor);
 }
 
 .skill-name-compact {
   font-family: 'Syne', sans-serif;
-  font-weight: 500;
-  font-size: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   transition: all 0.5s ease;
   text-align: center;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .skill-item-compact:hover .skill-name-compact {
@@ -404,37 +262,48 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .skills-grid-minimal {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 30px 15px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 30px 10px;
   }
 
   .skills-container-minimal {
-    gap: 45px;
+    gap: 35px;
   }
 
   .skill-icon-circle {
-    width: 46px;
-    height: 46px;
+    width: 60px;
+    height: 60px;
   }
 
   .skill-svg-wrapper {
-    width: 20px;
-    height: 20px;
+    width: 34px;
+    height: 34px;
   }
 }
 
 @media (max-width: 480px) {
   .skills-grid-minimal {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 8px;
   }
 
   .skill-item-compact {
     width: 100%;
+    gap: 8px;
+  }
+
+  .skill-icon-circle {
+    width: 52px;
+    height: 52px;
+  }
+
+  .skill-svg-wrapper {
+    width: 30px;
+    height: 30px;
   }
 
   .skill-name-compact {
-    font-size: 0.65rem;
-    letter-spacing: 0.02em;
+    font-size: 0.7rem;
+    letter-spacing: 0.01em;
   }
 }

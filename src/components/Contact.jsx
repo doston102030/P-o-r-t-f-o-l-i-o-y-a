@@ -131,15 +131,15 @@ export default function Contact() {
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="name">{t('contact.form.name')}</label>
-                  <input id="name" type="text" placeholder="Adhamjonov Doston" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required />
+                  <input id="name" type="text" placeholder={t('contact.form.namePlaceholder')} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">{t('contact.form.email')}</label>
-                  <input id="email" type="email" placeholder="hello@example.com" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} required />
+                  <input id="email" type="email" placeholder={t('contact.form.emailPlaceholder')} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="message">{t('contact.form.message')}</label>
-                  <textarea id="message" rows={5} placeholder="..." value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} required />
+                  <textarea id="message" rows={5} placeholder={t('contact.form.messagePlaceholder')} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} required />
                 </div>
                 <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>

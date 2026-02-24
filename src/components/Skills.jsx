@@ -278,26 +278,17 @@ export default function Skills() {
     additional: skills.filter(s => s.category === 'additional')
   };
 
-  const rainbowColors = ['#8B5CF6', '#06B6D4', '#F43F5E', '#F59E0B', '#10B981', '#3B82F6'];
-
   const renderSkillGroup = (categoryKey, skillList, groupIndex) => {
     if (skillList.length === 0) return null;
 
     return (
       <div className="skills-category-group animate-fade-up">
         <h3 className="skills-category-title">
-          {t(`skills.${categoryKey}`).split('').map((char, i) => {
-            const colorIndex = (i + (groupIndex * 3)) % rainbowColors.length;
-            return (
-              <span
-                key={i}
-                className="title-letter"
-                style={{ color: rainbowColors[colorIndex] }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </span>
-            );
-          })}
+          {t(`skills.${categoryKey}`).split('').map((char, i) => (
+            <span key={i} className="title-letter">
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+          ))}
         </h3>
         <div className="skills-grid-minimal">
           {skillList.map((skill, i) => {

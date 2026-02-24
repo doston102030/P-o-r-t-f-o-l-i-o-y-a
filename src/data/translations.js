@@ -70,8 +70,11 @@ export const translations = {
             infoText: "Men frilans loyihalar va doimiy ish uchun ochiqman. Yozing va ajoyib narsa yarataylik!",
             form: {
                 name: 'Ismingiz',
+                namePlaceholder: 'Ismingizni yozing',
                 email: 'Email Manzilingiz',
+                emailPlaceholder: 'hello@example.com',
                 message: 'Xabaringiz',
+                messagePlaceholder: 'Xabaringizni bu yerga yozing...',
                 send: 'Xabar Yuborish',
                 success: 'Xabar Yuborildi!',
                 successText: "Bog'langaningiz uchun rahmat. Tez orada javob beraman!"
@@ -154,8 +157,11 @@ export const translations = {
             infoText: 'Я открыт для фриланс-проектов и постоянной работы. Свяжитесь со мной!',
             form: {
                 name: 'Ваше Имя',
+                namePlaceholder: 'Введите ваше имя',
                 email: 'Ваш Email',
+                emailPlaceholder: 'hello@example.com',
                 message: 'Сообщение',
+                messagePlaceholder: 'Введите ваше сообщение здесь...',
                 send: 'Отправить',
                 success: 'Сообщение Отправлено!',
                 successText: 'Спасибо за обращение. Я скоро отвечу!'
@@ -238,8 +244,11 @@ export const translations = {
             infoText: "I'm currently open to freelance projects and full-time opportunities. Reach out and let's build something amazing together!",
             form: {
                 name: 'Your Name',
+                namePlaceholder: 'Write your name',
                 email: 'Email Address',
+                emailPlaceholder: 'hello@example.com',
                 message: 'Message',
+                messagePlaceholder: 'Write your message here...',
                 send: 'Send Message',
                 success: 'Message Sent!',
                 successText: "Thanks for reaching out. I'll get back to you soon!"
