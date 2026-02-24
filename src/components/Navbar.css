@@ -38,6 +38,19 @@
   gap: 16px;
   transition: all 0.3s ease;
   position: relative;
+  animation: navGlowPulse 4s ease-in-out infinite;
+}
+
+@keyframes navGlowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(99, 102, 241, 0.4);
+  }
 }
 
 /* Light Theme */
@@ -65,7 +78,11 @@
 }
 
 .logo-bracket {
-  display: none;
+  display: inline-block;
+  color: var(--accent);
+  margin: 0 2px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
 }
 
 /* ═══════════════════════════════════════════
