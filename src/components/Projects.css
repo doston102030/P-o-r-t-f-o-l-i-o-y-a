@@ -21,15 +21,14 @@
   position: relative;
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .project-card:hover {
   transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow: var(--card-shadow-hover);
+  border-color: var(--text-muted);
 }
 
 .project-card--featured {
