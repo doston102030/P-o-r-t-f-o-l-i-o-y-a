@@ -343,6 +343,29 @@ export default function Skills() {
             />
           ))}
         </div>
+
+        {/* Layer 2: Aurora Waves */}
+        <div className="aurora-waves">
+          <div className="aurora-wave aurora-wave--1" />
+          <div className="aurora-wave aurora-wave--2" />
+        </div>
+
+        {/* Layer 3: Meteors (Shooting Stars) */}
+        <div className="meteors-container">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="meteor"
+              style={{
+                top: `${Math.random() * 50}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 15}s`,
+                animationDuration: `${Math.random() * 3 + 2}s`
+              }}
+            />
+          ))}
+        </div>
+
         <div className="skills-nebula" />
       </div>
 

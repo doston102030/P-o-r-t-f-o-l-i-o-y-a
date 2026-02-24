@@ -109,6 +109,21 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('home');
   const [langOpen, setLangOpen] = useState(false);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const nav = e.currentTarget;
+    const rect = nav.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: x * 10, y: y * -10 });
+    nav.style.setProperty('--mouse-x', `${(e.clientX - rect.left)}px`);
+    nav.style.setProperty('--mouse-y', `${(e.clientY - rect.top)}px`);
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
 
   const navLinks = [
     { key: 'nav.home', href: '#home' },
@@ -158,7 +173,19 @@ export default function Navbar() {
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <Gradients />
-      <div className="nav-container">
+      <div
+        className="nav-container nebula-crystal"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`
+        }}
+      >
+        {/* Nebula Crystal Internal Layers */}
+        <div className="nebula-mesh" />
+        <div className="nebula-reactive-light" />
+        <div className="nebula-grain" />
+
         <a href="#home" className="nav-logo">
           <span className="logo-bracket">&lt;</span>
           <span className="logo-text">Uzdev</span>

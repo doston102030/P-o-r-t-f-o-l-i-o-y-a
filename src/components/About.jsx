@@ -14,8 +14,6 @@ export default function About() {
     }).catch(err => console.error("Firestore error:", err));
   }, []);
 
-  if (!fsData) return <section className="section about-section" id="about" style={{ minHeight: '600px' }} />;
-
   const val = (fsKey, tKey) => (fsData && fsData[fsKey]) || t(tKey);
 
   const stats = [

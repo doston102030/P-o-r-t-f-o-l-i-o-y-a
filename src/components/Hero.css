@@ -47,6 +47,8 @@
   }
 }
 
+
+
 /* ── BACKGROUND ORBS ── */
 .hero-orb {
   position: absolute;
@@ -571,11 +573,60 @@
 
 .hero-avatar-wrapper {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 440px;
+  height: 440px;
 }
 
+/* ── AVATAR RINGS ── */
+.avatar-rings {
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+}
 
+.avatar-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 50%;
+  animation: ringRotate 20s linear infinite;
+}
+
+.ring-1 {
+  border-color: rgba(99, 102, 241, 0.3);
+  animation-duration: 15s;
+  transform: rotateX(60deg) rotateY(30deg);
+}
+
+.ring-2 {
+  border-color: rgba(168, 85, 247, 0.2);
+  animation-duration: 25s;
+  transform: rotateX(45deg) rotateY(-20deg);
+  animation-direction: reverse;
+}
+
+.ring-3 {
+  border-color: rgba(236, 72, 153, 0.2);
+  animation-duration: 35s;
+  transform: rotateZ(45deg);
+}
+
+@keyframes ringRotate {
+  from {
+    transform: rotate(0deg) rotateX(60deg);
+  }
+
+  to {
+    transform: rotate(360deg) rotateX(60deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-avatar-wrapper {
+    width: 320px;
+    height: 320px;
+  }
+}
 
 .hero-avatar {
   width: 100%;
