@@ -124,7 +124,7 @@ export default function AIToolsPortal({ open, onClose }) {
 
                 <div className="portal-sphere">
                     <div className="portal-inner">
-                        <p className="portal-label">🤖 Men ishlatiydigan AI toollar</p>
+                        <p className="portal-label">🤖 Men ishlatadigan AI toollar</p>
 
                         <div className="portal-grid portal-grid--ai">
                             {AI_TOOLS.map((tool, i) => (

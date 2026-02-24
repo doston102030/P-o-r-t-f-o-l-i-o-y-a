@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import './Skills.css';
@@ -203,6 +204,7 @@ const svgIcons = {
 
 export default function Skills() {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const [isMobile, setIsMobile] = useState(false);
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -321,75 +323,15 @@ export default function Skills() {
 
   return (
     <section className="section skills-section" id="skills">
-      {/* Hyper-Space Cinematic Background */}
-      <div className="skills-cinematic-bg">
-        {/* Layer 1: Distant Stars */}
-        <div className="hero-stars-container">
-          {Array.from({ length: isMobile ? 40 : 120 }).map((_, i) => (
-            <div
-              key={i}
-              className="hero-star"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                width: `${Math.random() * 1.5 + 0.5}px`,
-                height: `${Math.random() * 1.5 + 0.5}px`,
-                '--twinkle-duration': `${Math.random() * 3 + 2}s`,
-                '--star-opacity': Math.random() * 0.4 + 0.2,
-                animationDelay: `${Math.random() * 5}s`
-              }}
-            />
-          ))}
-        </div>
 
-        {/* Layer 2: Aurora Waves */}
-        <div className="aurora-waves">
-          <div className="aurora-wave aurora-wave--1" />
-          <div className="aurora-wave aurora-wave--2" />
-        </div>
 
-        {/* Layer 3: Meteors (Shooting Stars) */}
-        <div className="meteors-container">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="meteor"
-              style={{
-                top: `${Math.random() * 50}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 15}s`,
-                animationDuration: `${Math.random() * 3 + 2}s`
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Layer 4: Floating Energy Particles */}
-        <div className="energy-particles">
-          {Array.from({ length: isMobile ? 10 : 25 }).map((_, i) => (
-            <div
-              key={i}
-              className="energy-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 10}s`,
-                '--move-x': `${Math.random() * 100 - 50}px`,
-                '--move-y': `${Math.random() * 100 - 50}px`
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="skills-nebula" />
-      </div>
       <div className="skills-bg-pattern" />
 
       <div className="container">
         <div className="section-header animate-fade-up">
           <p className="section-tag">{t('skills.tag')}</p>
           <h2 className="section-title">
-            {t('skills.title')} <span className="gradient-text">{t('skills.titleGradient')}</span>
+            {t('skills.title')} {t('skills.titleGradient')}
           </h2>
           <p className="section-subtitle">
             {t('skills.subtitle')}

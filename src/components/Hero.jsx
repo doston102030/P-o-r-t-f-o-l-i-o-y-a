@@ -5,31 +5,7 @@ import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import './Hero.css';
 
-const CinematicBg = () => (
-  <div className="hero-cinematic-bg">
-    <div className="hero-stars-container">
-      {Array.from({ length: 250 }).map((_, i) => {
-        const size = Math.random() * 2 + 0.5;
-        return (
-          <div
-            key={i}
-            className="hero-star"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${size}px`,
-              height: `${size}px`,
-              '--twinkle-duration': `${Math.random() * 4 + 2}s`,
-              '--star-opacity': Math.random() * 0.7 + 0.3,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        );
-      })}
-    </div>
-    <div className="hero-red-planet" />
-  </div>
-);
+
 
 export default function Hero({ onPortalOpen }) {
   const { t } = useLanguage();
@@ -43,22 +19,13 @@ export default function Hero({ onPortalOpen }) {
   }, []);
 
   if (!fsData) return (
-    <section className="hero section" id="home" style={{ minHeight: '100vh' }}>
-      {theme === 'dark' && <CinematicBg />}
-    </section>
+    <section className="hero section" id="home" style={{ minHeight: '100vh' }} />
   );
 
   const val = (fsKey, tKey) => (fsData && fsData[fsKey]) || t(tKey);
 
   return (
     <section className="hero section" id="home">
-      {/* Cinematic Background (Stars & Red Planet) */}
-      {theme === 'dark' && <CinematicBg />}
-
-      {/* Background orbs */}
-      <div className="hero-orb hero-orb--1" />
-      <div className="hero-orb hero-orb--2" />
-      <div className="hero-orb hero-orb--3" />
 
       <div className="container hero-container">
         {/* LEFT CONTENT */}
@@ -90,14 +57,13 @@ export default function Hero({ onPortalOpen }) {
 
           <div className="hero-tagline-mega animate-fade-up delay-3">
             {[
-              { icon: '⚡', text: t('hero.tagline').split('.')[0], color: 'emerald' },
-              { icon: '💎', text: t('hero.tagline').split('.')[1], color: 'sky' },
-              { icon: '🚀', text: t('hero.tagline').split('.')[2], color: 'amber' }
+              { icon: '⚡', text: t('hero.tagline').split('.')[0] },
+              { icon: '💎', text: t('hero.tagline').split('.')[1] },
+              { icon: '🚀', text: t('hero.tagline').split('.')[2] }
             ].map((item, idx) => item.text && (
-              <div key={idx} className={`tagline-card card-${item.color}`}>
+              <div key={idx} className="tagline-card">
                 <span className="card-icon">{item.icon}</span>
                 <p className="card-text">{item.text.trim()}</p>
-                <div className="card-shine" />
               </div>
             ))}
           </div>
@@ -123,8 +89,6 @@ export default function Hero({ onPortalOpen }) {
         {/* RIGHT: AVATAR */}
         <div className="hero-visual animate-fade-up delay-3">
           <div className="hero-avatar-wrapper">
-            <div className="hero-avatar-ring" />
-            <div className="hero-avatar-ring hero-avatar-ring--2" />
             <div className="hero-avatar">
               <div className="hero-avatar-inner">
                 {fsData.avatarUrl ? (

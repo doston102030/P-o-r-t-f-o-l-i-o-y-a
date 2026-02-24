@@ -4,27 +4,23 @@
 
 /* ── THEME: DARK (default / Cyber-Premium) ── */
 :root {
-  --bg: #000000;
-  /* Absolute Pitch Black */
-  --bg2: #020202;
-  --surface: rgba(15, 23, 42, 0.4);
-  --surface2: rgba(30, 41, 59, 0.6);
-  --border: rgba(255, 255, 255, 0.05);
-  --text: #f8fafc;
+  --bg: #0a0a0b;
+  --bg2: #0f0f12;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface2: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f1f5f9;
   --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  --accent: #6d63ff;
-  /* Deep Indigo */
-  --accent2: #a78bfa;
-  /* Soft Violet */
-  --accent3: #22d3ee;
-  /* Cyan */
-  --glow: rgba(109, 99, 255, 0.3);
-  --card-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  --card-shadow-hover: 0 30px 80px rgba(109, 99, 255, 0.15);
+  --text-dim: #475569;
+  --accent: #6366f1;
+  --accent2: #818cf8;
+  --accent3: #38bdf8;
+  --glow: rgba(99, 102, 241, 0.1);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --card-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.6);
 
-  font-family: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
   font-weight: 400;
   color: var(--text);
 }
@@ -164,12 +160,12 @@ img {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 4s ease infinite;
+  color: var(--accent);
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  animation: none;
 }
 
 @keyframes gradientShift {
@@ -189,21 +185,17 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 13px 30px;
-  background: linear-gradient(135deg, var(--accent), #5a76e6, var(--accent2));
-  background-size: 200% 200%;
+  padding: 12px 28px;
+  background: var(--accent);
   color: #fff;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 0.88rem;
-  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-position 0.35s ease, box-shadow 0.35s ease;
+  transition: all 0.25s ease;
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px var(--glow);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary::before {
@@ -215,9 +207,8 @@ img {
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 35px var(--glow);
-  background-position: 100% 50%;
+  background: var(--accent2);
+  transform: translateY(-1px);
 }
 
 .btn-primary:active {

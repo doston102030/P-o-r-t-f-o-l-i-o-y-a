@@ -41,6 +41,7 @@ export default function Projects() {
   const { t } = useLanguage();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [imageErrors, setImageErrors] = useState({});
 
   useEffect(() => {
     getDoc(doc(db, 'portfolio', 'projects')).then(snap => {
@@ -95,8 +96,13 @@ export default function Projects() {
                   {p.featured && <div className="featured-badge">⭐ {t('projects.featured')}</div>}
 
                   <div className="project-image-preview">
-                    {p.imageUrl ? (
-                      <img src={p.imageUrl} alt={p.title} className="project-main-image" />
+                    {p.imageUrl && !imageErrors[p.id] ? (
+                      <img
+                        src={p.imageUrl}
+                        alt={p.title}
+                        className="project-main-image"
+                        onError={() => setImageErrors(prev => ({ ...prev, [p.id]: true }))}
+                      />
                     ) : (
                       <div className="project-emoji-box">
                         <span className="project-emoji-large">{p.emoji || '🚀'}</span>
@@ -126,9 +132,10 @@ export default function Projects() {
                     <p className="project-description-new">{p.description}</p>
 
                     <div className="project-tags-list">
-                      {(typeof p.tags === 'string' ? p.tags.split(',').map(s => s.trim()) : p.tags).map(tag => (
-                        tag && <span key={tag} className="project-tag-item">{tag}</span>
-                      ))}
+                      {(Array.isArray(p.tags) ? p.tags : (typeof p.tags === 'string' ? p.tags.split(',') : [])).map(tag => {
+                        const cleanTag = typeof tag === 'string' ? tag.trim() : tag;
+                        return cleanTag && <span key={cleanTag} className="project-tag-item">{cleanTag}</span>;
+                      })}
                     </div>
 
                     <div className="project-footer">
