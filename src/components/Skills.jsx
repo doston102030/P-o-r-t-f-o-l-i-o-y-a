@@ -323,54 +323,6 @@ export default function Skills() {
 
   return (
     <section className="section skills-section" id="skills">
-      {/* Hyper-Space Cinematic Background */}
-      <div className="skills-cinematic-bg">
-        {/* Layer 1: Distant Stars */}
-        <div className="hero-stars-container">
-          {Array.from({ length: isMobile ? 40 : 120 }).map((_, i) => (
-            <div
-              key={i}
-              className="hero-star"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                width: `${Math.random() * 1.5 + 0.5}px`,
-                height: `${Math.random() * 1.5 + 0.5}px`,
-                '--twinkle-duration': `${Math.random() * 3 + 2}s`,
-                '--star-opacity': Math.random() * 0.4 + 0.2,
-                animationDelay: `${Math.random() * 5}s`
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Layer 2: Aurora Waves */}
-        <div className="aurora-waves">
-          <div className="aurora-wave aurora-wave--1" />
-          <div className="aurora-wave aurora-wave--2" />
-        </div>
-
-        {/* Layer 3: Meteors (Shooting Stars) */}
-        <div className="meteors-container">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="meteor"
-              style={{
-                top: `${Math.random() * 50}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 15}s`,
-                animationDuration: `${Math.random() * 3 + 2}s`
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="skills-nebula" />
-      </div>
-
-      <div className="skills-bg-pattern" />
-
       <div className="container">
         <div className="section-header animate-fade-up">
           <p className="section-tag">{t('skills.tag')}</p>

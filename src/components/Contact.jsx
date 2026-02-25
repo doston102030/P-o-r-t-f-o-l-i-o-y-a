@@ -83,7 +83,6 @@ export default function Contact() {
 
   return (
     <section className="section contact-section" id="contact">
-      <div className="contact-bg" />
       <div className="container">
         <div className="section-header animate-fade-up">
           <p className="section-tag">{t('contact.tag')}</p>

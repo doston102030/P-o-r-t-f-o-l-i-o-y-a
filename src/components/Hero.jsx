@@ -6,33 +6,6 @@ import { doc, getDoc } from 'firebase/firestore';
 import './Hero.css';
 
 
-import './Hero.css';
-
-const CinematicBg = () => (
-  <div className="hero-cinematic-bg">
-    <div className="hero-stars-container">
-      {Array.from({ length: 250 }).map((_, i) => {
-        const size = Math.random() * 2 + 0.5;
-        return (
-          <div
-            key={i}
-            className="hero-star"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${size}px`,
-              height: `${size}px`,
-              '--twinkle-duration': `${Math.random() * 4 + 2}s`,
-              '--star-opacity': Math.random() * 0.7 + 0.3,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        );
-      })}
-    </div>
-  </div>
-);
-
 export default function Hero({ onPortalOpen }) {
   const { t } = useLanguage();
   const { theme } = useTheme();
@@ -48,14 +21,6 @@ export default function Hero({ onPortalOpen }) {
 
   return (
     <section className="hero section" id="home">
-      {/* Cinematic Background (Stars) */}
-      <CinematicBg />
-
-      {/* Background orbs */}
-      <div className="hero-orb hero-orb--1" />
-      <div className="hero-orb hero-orb--2" />
-      <div className="hero-orb hero-orb--3" />
-
       <div className="container hero-container">
         {/* LEFT CONTENT */}
         <div className="hero-content">
@@ -63,7 +28,7 @@ export default function Hero({ onPortalOpen }) {
 
           <h1 className="hero-name animate-fade-up delay-1">
             {val('name1', 'Adhamjonov')}<br />
-            <span className="gradient-text">{val('name2', 'Doston')}</span>
+            <span>{val('name2', 'Doston')}</span>
           </h1>
 
           <div className="hero-role-wrapper animate-fade-up delay-2">
