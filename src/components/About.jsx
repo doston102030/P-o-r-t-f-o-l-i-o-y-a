@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { RevealItem } from './ScrollReveal';
 import './About.css';
 
 export default function About() {
@@ -137,13 +138,15 @@ export default function About() {
         </div>
 
         {/* STATS MINIMAL */}
-        <div className="about-stats-minimal animate-fade-up delay-3">
+        <div className="about-stats-minimal">
           {stats.map((s, idx) => (
-            <div key={s.labelKey} className={`stat-minimal-card ta-${idx % 5}`}>
-              <div className="stat-minimal-icon">{s.icon}</div>
-              <div className="stat-minimal-value">{s.value}</div>
-              <div className="stat-minimal-label">{s.isRawLabel ? s.labelKey : t(s.labelKey)}</div>
-            </div>
+            <RevealItem key={s.labelKey} delay={idx * 100}>
+              <div className={`stat-minimal-card ta-${idx % 5}`}>
+                <div className="stat-minimal-icon">{s.icon}</div>
+                <div className="stat-minimal-value">{s.value}</div>
+                <div className="stat-minimal-label">{s.isRawLabel ? s.labelKey : t(s.labelKey)}</div>
+              </div>
+            </RevealItem>
           ))}
         </div>
       </div>

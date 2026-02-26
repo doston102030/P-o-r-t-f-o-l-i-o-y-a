@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { db } from '../firebase';
 import { doc, getDoc, addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { RevealItem } from './ScrollReveal';
 import './Contact.css';
 
 export default function Contact() {
@@ -84,70 +85,74 @@ export default function Contact() {
   return (
     <section className="section contact-section" id="contact">
       <div className="container">
-        <div className="section-header animate-fade-up">
-          <p className="section-tag">{t('contact.tag')}</p>
-          <h2 className="section-title">
-            {t('contact.title')} <span className="gradient-text">{t('contact.titleGradient')}</span>
-          </h2>
-          <p className="section-subtitle">{t('contact.subtitle')}</p>
-        </div>
+        <RevealItem delay={0}>
+          <div className="section-header">
+            <p className="section-tag">{t('contact.tag')}</p>
+            <h2 className="section-title">
+              {t('contact.title')} <span className="gradient-text">{t('contact.titleGradient')}</span>
+            </h2>
+            <p className="section-subtitle">{t('contact.subtitle')}</p>
+          </div>
+        </RevealItem>
 
-        <div className="contact-grid animate-fade-up delay-2">
-          <div className="contact-info">
-            <h3 className="contact-info-title">{t('contact.infoTitle')}</h3>
-            <p className="contact-info-text">{t('contact.infoText')}</p>
-            <div className="contact-details">
-              {contactInfo.map((c) => (
-                <a key={c.label} href={c.href} className="contact-detail-item">
-                  <div className="contact-icon">{c.icon}</div>
-                  <div>
-                    <div className="contact-detail-label">{c.label}</div>
-                    <div className="contact-detail-value">{c.value}</div>
-                  </div>
-                </a>
-              ))}
-            </div>
-            <div className="contact-socials">
-              <p className="socials-label">Follow me on</p>
-              <div className="socials-row">
-                {socialLinks.map((s) => (
-                  <a key={s.name} href={s.href} target="_blank" rel="noreferrer" className="social-btn" style={{ '--social-color': s.color }} title={s.name}>
-                    {s.icon}<span>{s.name}</span>
+        <RevealItem delay={150}>
+          <div className="contact-grid">
+            <div className="contact-info">
+              <h3 className="contact-info-title">{t('contact.infoTitle')}</h3>
+              <p className="contact-info-text">{t('contact.infoText')}</p>
+              <div className="contact-details">
+                {contactInfo.map((c) => (
+                  <a key={c.label} href={c.href} className="contact-detail-item">
+                    <div className="contact-icon">{c.icon}</div>
+                    <div>
+                      <div className="contact-detail-label">{c.label}</div>
+                      <div className="contact-detail-value">{c.value}</div>
+                    </div>
                   </a>
                 ))}
               </div>
+              <div className="contact-socials">
+                <p className="socials-label">Follow me on</p>
+                <div className="socials-row">
+                  {socialLinks.map((s) => (
+                    <a key={s.name} href={s.href} target="_blank" rel="noreferrer" className="social-btn" style={{ '--social-color': s.color }} title={s.name}>
+                      {s.icon}<span>{s.name}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="contact-form-wrapper">
+              {submitted ? (
+                <div className="form-success">
+                  <div className="success-icon">✅</div>
+                  <h4>{t('contact.form.success')}</h4>
+                  <p>{t('contact.form.successText')}</p>
+                </div>
+              ) : (
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="name">{t('contact.form.name')}</label>
+                    <input id="name" type="text" placeholder={t('contact.form.namePlaceholder')} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">{t('contact.form.email')}</label>
+                    <input id="email" type="email" placeholder={t('contact.form.emailPlaceholder')} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} required />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="message">{t('contact.form.message')}</label>
+                    <textarea id="message" rows={5} placeholder={t('contact.form.messagePlaceholder')} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} required />
+                  </div>
+                  <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
+                    {t('contact.form.send')}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
-
-          <div className="contact-form-wrapper">
-            {submitted ? (
-              <div className="form-success">
-                <div className="success-icon">✅</div>
-                <h4>{t('contact.form.success')}</h4>
-                <p>{t('contact.form.successText')}</p>
-              </div>
-            ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="name">{t('contact.form.name')}</label>
-                  <input id="name" type="text" placeholder={t('contact.form.namePlaceholder')} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">{t('contact.form.email')}</label>
-                  <input id="email" type="email" placeholder={t('contact.form.emailPlaceholder')} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="message">{t('contact.form.message')}</label>
-                  <textarea id="message" rows={5} placeholder={t('contact.form.messagePlaceholder')} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} required />
-                </div>
-                <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
-                  {t('contact.form.send')}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
+        </RevealItem>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import Background from './components/Background';
 import CursorLight from './components/CursorLight';
 import Navbar from './components/Navbar';
 import BottomNav from './components/BottomNav';
+import ScrollReveal from './components/ScrollReveal';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -26,10 +27,18 @@ function Portfolio() {
       <Navbar />
       <main>
         <Hero onPortalOpen={() => setPortalOpen(true)} />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
+        <ScrollReveal>
+          <About />
+        </ScrollReveal>
+        <ScrollReveal delay={50}>
+          <Skills />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Projects />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Contact />
+        </ScrollReveal>
       </main>
       <BottomNav />
       <ProjectsPortal open={portalOpen} onClose={() => setPortalOpen(false)} />

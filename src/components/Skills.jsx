@@ -3,6 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { RevealItem } from './ScrollReveal';
 import './Skills.css';
 
 const defaultSkills = [
@@ -284,55 +285,59 @@ export default function Skills() {
     if (skillList.length === 0) return null;
 
     return (
-      <div className="skills-category-group animate-fade-up">
-        <h3 className="skills-category-title">
-          {t(`skills.${categoryKey}`).split('').map((char, i) => (
-            <span key={i} className="title-letter">
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
-        </h3>
-        <div className="skills-grid-minimal">
-          {skillList.map((skill, i) => {
-            // 🌬 Normalize names for a clean "Quiet Luxury" look
-            let displayName = skill.name;
-            if (displayName === 'HTML5' || displayName === 'HTML') displayName = 'HTML';
-            if (displayName === 'CSS3' || displayName === 'CSS') displayName = 'CSS';
-            if (displayName === 'JavaScript' || displayName === 'JS') displayName = 'JavaScript';
+      <RevealItem delay={groupIndex * 150}>
+        <div className="skills-category-group">
+          <h3 className="skills-category-title">
+            {t(`skills.${categoryKey}`).split('').map((char, i) => (
+              <span key={i} className="title-letter">
+                {char === ' ' ? '\u00A0' : char}
+              </span>
+            ))}
+          </h3>
+          <div className="skills-grid-minimal">
+            {skillList.map((skill, i) => {
+              // 🌬 Normalize names for a clean "Quiet Luxury" look
+              let displayName = skill.name;
+              if (displayName === 'HTML5' || displayName === 'HTML') displayName = 'HTML';
+              if (displayName === 'CSS3' || displayName === 'CSS') displayName = 'CSS';
+              if (displayName === 'JavaScript' || displayName === 'JS') displayName = 'JavaScript';
 
-            return (
-              <div
-                key={skill.name}
-                className="skill-item-compact"
-                style={{ '--skill-color': skill.color, animationDelay: `${i * 0.05}s` }}
-              >
-                <div className="skill-icon-circle">
-                  <div className="skill-circle-glow" />
-                  <div className="skill-svg-wrapper" style={{ color: skill.color }}>
-                    {svgIcons[skill.name] || svgIcons[displayName] || <span>{skill.icon}</span>}
+              return (
+                <div
+                  key={skill.name}
+                  className="skill-item-compact"
+                  style={{ '--skill-color': skill.color, animationDelay: `${i * 0.05}s` }}
+                >
+                  <div className="skill-icon-circle">
+                    <div className="skill-circle-glow" />
+                    <div className="skill-svg-wrapper" style={{ color: skill.color }}>
+                      {svgIcons[skill.name] || svgIcons[displayName] || <span>{skill.icon}</span>}
+                    </div>
                   </div>
+                  <span className="skill-name-compact">{displayName}</span>
                 </div>
-                <span className="skill-name-compact">{displayName}</span>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </RevealItem>
     );
   };
 
   return (
     <section className="section skills-section" id="skills">
       <div className="container">
-        <div className="section-header animate-fade-up">
-          <p className="section-tag">{t('skills.tag')}</p>
-          <h2 className="section-title">
-            {t('skills.title')} <span className="gradient-text">{t('skills.titleGradient')}</span>
-          </h2>
-          <p className="section-subtitle">
-            {t('skills.subtitle')}
-          </p>
-        </div>
+        <RevealItem delay={0}>
+          <div className="section-header">
+            <p className="section-tag">{t('skills.tag')}</p>
+            <h2 className="section-title">
+              {t('skills.title')} <span className="gradient-text">{t('skills.titleGradient')}</span>
+            </h2>
+            <p className="section-subtitle">
+              {t('skills.subtitle')}
+            </p>
+          </div>
+        </RevealItem>
 
         <div className="skills-container-minimal">
           {renderSkillGroup('languages', categorizedSkills.languages, 0)}
