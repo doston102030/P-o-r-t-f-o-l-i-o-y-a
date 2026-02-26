@@ -58,7 +58,7 @@
     opacity: 0;
     transform: translateY(10px);
     animation: retroReveal 0.5s ease forwards;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.2);
 }
 
 .preloader-text-cinematic span.space {

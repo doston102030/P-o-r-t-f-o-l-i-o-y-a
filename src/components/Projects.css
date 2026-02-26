@@ -155,7 +155,7 @@
   height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.2);
 }
 
 .project-description-new {
@@ -208,7 +208,7 @@
 }
 
 .premium-link:hover {
-  text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.15);
 }
 
 /* ── RESPONSIVE ── */

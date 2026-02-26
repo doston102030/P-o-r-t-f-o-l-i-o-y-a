@@ -111,7 +111,7 @@
   right: 14px;
   height: 1px;
   background: var(--accent);
-  box-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.2);
 }
 
 /* ── CONTROLS ── */
