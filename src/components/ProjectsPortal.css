@@ -1,14 +1,17 @@
+/* ══════════════════════════════════════════════
+   🖤 RETRO-MINIMAL AI PORTAL
+   ══════════════════════════════════════════════ */
+
 /* ── BACKDROP ── */
 .portal-backdrop {
     position: fixed;
     inset: 0;
     z-index: 100000;
-    background: rgba(4, 7, 18, 0.88);
-    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: backdropIn 0.35s ease;
+    animation: backdropIn 0.3s ease;
 }
 
 @keyframes backdropIn {
@@ -21,18 +24,18 @@
     }
 }
 
-/* ── CLOSE BUTTON ── */
+/* ── CLOSE ── */
 .portal-close {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #fff;
-    font-size: 1.1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -42,25 +45,24 @@
 }
 
 .portal-close:hover {
-    background: rgba(255, 80, 80, 0.2);
-    border-color: rgba(255, 80, 80, 0.4);
-    transform: scale(1.1);
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
-/* ── SPHERE WRAPPER ── */
+/* ── SPHERE → BOX ── */
 .portal-sphere-wrap {
     position: relative;
-    width: 580px;
-    height: 580px;
+    width: 520px;
+    max-width: 90vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: sphereIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: sphereIn 0.4s ease;
 }
 
 @keyframes sphereIn {
     from {
-        transform: scale(0.7);
+        transform: scale(0.9);
         opacity: 0;
     }
 
@@ -70,116 +72,63 @@
     }
 }
 
-/* ── GLOW RINGS ── */
+/* Hide glow rings */
 .portal-ring {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
+    display: none;
 }
 
-.portal-ring--1 {
-    width: 580px;
-    height: 580px;
-    background: radial-gradient(circle, rgba(120, 180, 255, 0.18) 0%, rgba(80, 120, 255, 0.08) 50%, transparent 70%);
-    animation: ringPulse 3s ease-in-out infinite;
-}
-
-.portal-ring--2 {
-    width: 520px;
-    height: 520px;
-    border: 1.5px solid rgba(130, 180, 255, 0.25);
-    animation: ringPulse 3s ease-in-out infinite 0.4s;
-}
-
-.portal-ring--3 {
-    width: 460px;
-    height: 460px;
-    border: 1px solid rgba(160, 200, 255, 0.15);
-    animation: ringPulse 3s ease-in-out infinite 0.8s;
-}
-
-@keyframes ringPulse {
-
-    0%,
-    100% {
-        opacity: 0.6;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.02);
-    }
-}
-
-/* ── SPHERE ── */
 .portal-sphere {
-    width: 440px;
-    height: 440px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%,
-            rgba(160, 210, 255, 0.55) 0%,
-            rgba(100, 160, 255, 0.4) 25%,
-            rgba(60, 120, 240, 0.35) 50%,
-            rgba(30, 80, 200, 0.5) 75%,
-            rgba(10, 40, 140, 0.7) 100%);
-    box-shadow:
-        0 0 80px rgba(80, 150, 255, 0.5),
-        0 0 160px rgba(60, 120, 255, 0.25),
-        inset 0 0 60px rgba(200, 230, 255, 0.15);
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    box-shadow: none;
+    padding: 24px;
 }
 
-/* Glass shine on sphere */
 .portal-sphere::before {
-    content: '';
-    position: absolute;
-    top: 6%;
-    left: 12%;
-    width: 55%;
-    height: 40%;
-    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.28) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
+    display: none;
 }
 
-/* ── INNER CONTENT ── */
+/* ── INNER ── */
 .portal-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 16px;
+    padding: 16px;
     width: 100%;
 }
 
 .portal-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--accent);
     text-align: center;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
-    letter-spacing: 0.02em;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-/* ── PROJECT/AI GRID ── */
+/* ── GRID ── */
 .portal-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    width: 90%;
+    gap: 8px;
+    width: 100%;
 }
 
 .portal-grid--ai {
     grid-template-columns: 1fr;
-    gap: 8px;
-    width: 88%;
-    max-height: 300px;
+    gap: 6px;
+    width: 100%;
+    max-height: 350px;
     overflow-y: auto;
     scrollbar-width: none;
 }
@@ -188,62 +137,42 @@
     display: none;
 }
 
-/* ── OLD PROJECT CARD (kept for reference) ── */
-.portal-card {
-    border-radius: 12px;
-    display: grid;
-    gap: 12px;
-}
-
-/* 📱 AI Tool Card */
+/* ── AI CARD ── */
 .portal-ai-card {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 10px 14px;
-    border-radius: 14px;
-    background: rgba(10, 20, 50, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
     text-decoration: none;
-    animation: cardIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: cardIn 0.4s ease both;
     transition: all 0.25s ease;
-    backdrop-filter: blur(6px);
     position: relative;
-    overflow: hidden;
 }
 
 .portal-ai-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--tool-color) 15%, transparent), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    display: none;
 }
 
 .portal-ai-card:hover {
-    border-color: color-mix(in srgb, var(--tool-color) 60%, transparent);
+    border-color: var(--accent);
     transform: translateX(4px);
-    background: rgba(20, 30, 70, 0.8);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.portal-ai-card:hover::before {
-    opacity: 1;
 }
 
 .portal-ai-icon {
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
-    font-size: 1.2rem;
-    z-index: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 1rem;
 }
 
 .portal-ai-info {
@@ -251,29 +180,26 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
-    z-index: 1;
 }
 
 .portal-ai-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.82rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--text);
 }
 
 .portal-ai-by {
-    font-size: 0.68rem;
-    color: rgba(180, 200, 255, 0.55);
-    font-weight: 500;
+    font-size: 0.65rem;
+    color: var(--text-dim);
 }
 
 .portal-ai-arrow {
-    color: color-mix(in srgb, var(--tool-color) 80%, white);
-    font-size: 1rem;
+    color: var(--accent);
+    font-size: 0.9rem;
     opacity: 0;
-    transform: translateX(-6px);
-    transition: all 0.25s ease;
-    z-index: 1;
+    transform: translateX(-4px);
+    transition: all 0.2s ease;
 }
 
 .portal-ai-card:hover .portal-ai-arrow {
@@ -281,15 +207,21 @@
     transform: translateX(0);
 }
 
+.portal-card {
+    border-radius: 2px;
+    display: grid;
+    gap: 10px;
+}
+
 @keyframes cardIn {
     from {
         opacity: 0;
-        transform: translateY(20px) scale(0.95);
+        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
 }
 
@@ -297,50 +229,23 @@
 @media (max-width: 600px) {
     .portal-sphere-wrap {
         width: 95vw;
-        height: 95vw;
-        max-width: 380px;
-        max-height: 380px;
     }
 
     .portal-sphere {
-        width: 85vw;
-        height: 85vw;
-        max-width: 330px;
-        max-height: 330px;
-    }
-
-    .portal-ring--1 {
-        width: 100%;
-        height: 100%;
-    }
-
-    .portal-ring--2 {
-        width: 90%;
-        height: 90%;
-    }
-
-    .portal-ring--3 {
-        width: 80%;
-        height: 80%;
+        padding: 16px;
     }
 
     .portal-inner {
-        padding: 15px;
-        gap: 12px;
+        padding: 10px;
+        gap: 10px;
     }
 
     .portal-label {
-        font-size: 0.82rem;
-        margin-bottom: 2px;
-    }
-
-    .portal-grid {
-        width: 95%;
-        gap: 6px;
+        font-size: 0.72rem;
     }
 
     .portal-grid--ai {
-        max-height: 220px;
+        max-height: 260px;
     }
 
     .portal-ai-card {
@@ -349,20 +254,15 @@
     }
 
     .portal-ai-icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .portal-ai-icon svg {
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
     }
 
     .portal-ai-name {
-        font-size: 0.75rem;
+        font-size: 0.68rem;
     }
 
     .portal-ai-by {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
     }
 }

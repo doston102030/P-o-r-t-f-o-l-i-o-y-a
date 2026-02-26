@@ -1,228 +1,116 @@
+/* ══════════════════════════════════════════════
+   🖤 RETRO-MINIMAL SKILLS
+   ══════════════════════════════════════════════ */
+
 .skills-section {
-  background: transparent;
   position: relative;
-  overflow: hidden;
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.section-header .section-tag {
-  justify-content: center;
-}
-
-.section-header .section-tag::before {
-  display: none;
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  font-size: 1rem;
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* ── MINIMALIST CATEGORIZED SKILLS ── */
 .skills-container-minimal {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 48px;
 }
 
+/* ── CATEGORY GROUP ── */
 .skills-category-group {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  /* No extra styling needed */
 }
 
 .skills-category-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-dim);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 24px;
-  text-align: center;
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
 }
 
-.skills-category-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 1px;
-  background: var(--accent);
-  opacity: 0.5;
+.title-letter {
+  display: inline;
 }
 
+/* ── SKILLS GRID ── */
 .skills-grid-minimal {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 120px));
-  gap: 40px 20px;
-  justify-content: center;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
 }
 
-/* ── ULTRA-COMPACT ITEM (Quiet Luxury / Space) ── */
+/* ── SKILL ITEM ── */
 .skill-item-compact {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+  padding: 20px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: all 0.3s ease;
   cursor: default;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  width: 110px;
-}
-
-.skill-icon-circle {
-  position: relative;
-  width: 68px;
-  height: 68px;
-  background: rgba(10, 12, 30, 0.35);
-  border: 1px solid rgba(99, 102, 241, 0.15);
-  box-shadow: inset 0 0 10px rgba(99, 102, 241, 0.03);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s ease;
-  overflow: visible;
-  backdrop-filter: blur(25px) saturate(160%);
-  -webkit-backdrop-filter: blur(25px) saturate(160%);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
-}
-
-/* Glow effect boundries */
-
-
-.skill-circle-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, var(--skill-color), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
 }
 
 .skill-item-compact:hover {
-  transform: translateY(-10px);
+  border-color: var(--accent);
+  background: var(--surface2);
+  transform: translateY(-2px);
 }
 
-.skill-item-compact:hover .skill-icon-circle {
-  border-color: rgba(99, 102, 241, 0.4);
-  background: rgba(99, 102, 241, 0.1);
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.5),
-    inset 0 0 15px rgba(99, 102, 241, 0.1);
-}
-
-.skill-item-compact:hover .skill-circle-glow {
-  opacity: 0.4;
-}
-
-.skill-svg-wrapper {
-  width: 40px;
-  height: 40px;
-  opacity: 0.85;
-  transition: all 0.5s ease;
+/* ── SKILL ICON ── */
+.skill-icon-circle {
+  position: relative;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.skill-circle-glow {
+  display: none;
+}
+
+.skill-svg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
 .skill-item-compact:hover .skill-svg-wrapper {
-  opacity: 1;
   transform: scale(1.1);
-  filter: drop-shadow(0 0 12px currentColor);
 }
 
 .skill-name-compact {
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
   color: var(--text-muted);
-  letter-spacing: 0.06em;
-  transition: all 0.5s ease;
   text-align: center;
-  opacity: 0.9;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
 }
 
 .skill-item-compact:hover .skill-name-compact {
-  color: #fff;
-  opacity: 1;
-  letter-spacing: 0.08em;
-}
-
-[data-theme='light'] .skill-icon-circle {
-  background: rgba(0, 0, 0, 0.02);
-  border-color: rgba(0, 0, 0, 0.05);
-}
-
-/* 🌙 Fix for white SVGs in light mode (e.g. Next.js, GitHub) */
-[data-theme='light'] .skill-svg-wrapper[style*="color: rgb(255, 255, 255)"],
-[data-theme='light'] .skill-svg-wrapper[style*="color: #ffffff"],
-[data-theme='light'] .skill-svg-wrapper[style*="color:#fff"] {
-  color: #000 !important;
-}
-
-[data-theme='light'] .skill-name-compact {
-  color: #666;
-}
-
-[data-theme='light'] .skill-item-compact:hover .skill-name-compact {
-  color: #000;
+  color: var(--text);
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .skills-grid-minimal {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 30px 10px;
-  }
-
-  .skills-container-minimal {
-    gap: 35px;
-  }
-
-  .skill-icon-circle {
-    width: 60px;
-    height: 60px;
-  }
-
-  .skill-svg-wrapper {
-    width: 34px;
-    height: 34px;
-  }
-}
-
-@media (max-width: 480px) {
-  .skills-grid-minimal {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px 8px;
-  }
-
-  .skill-item-compact {
-    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 8px;
   }
 
-  .skill-icon-circle {
-    width: 52px;
-    height: 52px;
-  }
-
-  .skill-svg-wrapper {
-    width: 30px;
-    height: 30px;
+  .skill-item-compact {
+    padding: 14px 8px;
   }
 
   .skill-name-compact {
-    font-size: 0.7rem;
-    letter-spacing: 0.01em;
+    font-size: 0.6rem;
   }
 }

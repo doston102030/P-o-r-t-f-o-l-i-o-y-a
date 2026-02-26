@@ -104,26 +104,22 @@ const SunIcon = () => (
 );
 
 const UZGerb = () => (
-  <svg width="28" height="28" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 0 10px rgba(255,215,0,0.3))' }}>
-    {/* Base Circle / Decorative Frame */}
-    <circle cx="250" cy="250" r="230" stroke="#ffd700" strokeWidth="8" strokeDasharray="15 10" opacity="0.4" />
-
-    {/* Rise Sun Waves */}
-    <path d="M150 250 Q250 150 350 250" stroke="#ffd700" strokeWidth="12" opacity="0.6" strokeLinecap="round" />
-
-    {/* Humo Bird (Stylized) */}
-    <path d="M250 380 C360 380 430 260 450 180 C380 200 320 220 250 220 C180 220 120 200 50 180 C70 260 140 380 250 380Z" fill="#ffd700" opacity="0.9" />
-    <path d="M250 380 L250 220" stroke="rgba(0,0,0,0.2)" strokeWidth="4" />
-
-    {/* Rising Sun Core */}
-    <circle cx="250" cy="220" r="35" fill="#ffd700" />
-    <circle cx="250" cy="220" r="45" stroke="#ffd700" strokeWidth="2" strokeDasharray="4 4" opacity="0.5" />
-
-    {/* Rub el Hizb (Octagon) */}
-    <path d="M225 35 L250 20 L275 35 L290 60 L275 85 L250 100 L225 85 L210 60 Z" fill="#1e3a8a" stroke="#ffd700" strokeWidth="4" />
-    <path d="M242 55 Q245 45 258 55 Q255 65 242 55Z" fill="white" /> {/* Crescent */}
-    <path d="M262 48 L265 52 L269 52 L266 54 L267 58 L264 55 L261 58 L262 54 L259 52 L263 52 Z" fill="white" /> {/* Star */}
-  </svg>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Emblem_of_Uzbekistan.svg/512px-Emblem_of_Uzbekistan.svg.png"
+    alt="Uzbekistan Emblem"
+    style={{
+      width: '30px',
+      height: '30px',
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      objectFit: 'contain',
+      marginLeft: '10px',
+      filter: 'drop-shadow(0 0 8px rgba(255,215,0,0.4))'
+    }}
+    onError={(e) => {
+      e.target.src = "/uz-gerb.svg";
+    }}
+  />
 );
 
 export default function Navbar() {
@@ -132,21 +128,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('home');
   const [langOpen, setLangOpen] = useState(false);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e) => {
-    const nav = e.currentTarget;
-    const rect = nav.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setTilt({ x: x * 10, y: y * -10 });
-    nav.style.setProperty('--mouse-x', `${(e.clientX - rect.left)}px`);
-    nav.style.setProperty('--mouse-y', `${(e.clientY - rect.top)}px`);
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-  };
 
   const navLinks = [
     { key: 'nav.home', href: '#home' },
@@ -160,10 +141,9 @@ export default function Navbar() {
     const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
 
-    // Intersection Observer for active section detection
     const options = {
       root: null,
-      rootMargin: '-50% 0px -50% 0px', // Center-of-viewport trigger
+      rootMargin: '-50% 0px -50% 0px',
       threshold: 0
     };
 
@@ -196,24 +176,10 @@ export default function Navbar() {
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <Gradients />
-      <div
-        className="nav-container nebula-crystal"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`
-        }}
-      >
-        {/* Nebula Crystal Internal Layers */}
-        <div className="nebula-mesh" />
-        <div className="nebula-particles" />
-        <div className="nebula-reactive-light" />
-        <div className="nebula-glint" />
-        <div className="nebula-grain" />
+      <div className="nav-container">
 
-        <a href="#home" className="nav-logo">
-          <span className="logo-text">Uzdev</span>
-          <span className="logo-spark"><UZGerb /></span>
+        <a href="#home" className="nav-logo" onClick={() => setActive('home')}>
+          <span className="logo-text">{'<'}Uzdev{'/>'}</span>
         </a>
 
         <nav className="nav-links">
