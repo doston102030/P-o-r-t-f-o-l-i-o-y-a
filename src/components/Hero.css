@@ -263,75 +263,42 @@
 
 .hero-avatar-wrapper {
   position: relative;
-  width: 380px;
-  height: 380px;
+  width: 340px;
+  height: 340px;
 }
 
-/* ── AVATAR RINGS → Retro corner brackets ── */
-.avatar-rings {
-  position: absolute;
-  inset: -16px;
-  pointer-events: none;
-}
-
-/* Hide rotating rings, use corner brackets instead */
+/* Hide all rings and decorations */
+.avatar-rings,
 .avatar-ring {
   display: none;
 }
 
-.avatar-rings::before,
-.avatar-rings::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border-color: var(--accent);
-  border-style: solid;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-}
-
-.avatar-rings::before {
-  top: 0;
-  left: 0;
-  border-width: 2px 0 0 2px;
-}
-
-.avatar-rings::after {
-  bottom: 0;
-  right: 0;
-  border-width: 0 2px 2px 0;
-}
-
-.hero-avatar-wrapper:hover .avatar-rings::before,
-.hero-avatar-wrapper:hover .avatar-rings::after {
-  opacity: 1;
-}
-
 @media (max-width: 1200px) {
   .hero-avatar-wrapper {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
   }
 }
 
 .hero-avatar {
   width: 100%;
   height: 100%;
-  border-radius: 4px;
-  background: var(--bg);
-  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(var(--accent-rgb), 0.12);
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s ease;
+  transition: all 0.5s ease;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 .hero-avatar:hover {
-  border-color: var(--accent);
-  box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.06);
+  border-color: rgba(var(--accent-rgb), 0.25);
+  transform: scale(1.02);
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.5);
 }
 
 .hero-avatar-inner {
@@ -394,75 +361,32 @@
 }
 
 .hero-img {
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid rgba(var(--accent-rgb), 0.15);
-  transition: all 0.4s ease;
-  filter: grayscale(15%) contrast(1.05);
+  transition: all 0.6s ease;
 }
 
 .hero-avatar:hover .hero-img {
-  transform: scale(1.03);
-  filter: grayscale(0%) contrast(1.1);
-  border-color: rgba(var(--accent-rgb), 0.3);
+  transform: scale(1.02);
 }
 
 .placeholder-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%);
+  display: none;
 }
 
 .avatar-initials {
   font-family: 'Space Mono', monospace;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 700;
   color: var(--accent);
-  text-shadow: 0 0 30px rgba(var(--accent-rgb), 0.2);
   position: relative;
   z-index: 1;
 }
 
-/* ── FLOATING BADGES ── */
+/* ── HIDE BADGES — minimal = no extra labels ── */
 .avatar-badge {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  white-space: nowrap;
-  z-index: 10;
-  transition: all 0.3s ease;
-}
-
-.avatar-badge:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-[data-theme='light'] .avatar-badge {
-  background: var(--bg);
-}
-
-.avatar-badge--tl {
-  top: -10px;
-  left: -40px;
-  animation: float 4s ease-in-out infinite;
-}
-
-.avatar-badge--br {
-  bottom: -10px;
-  right: -40px;
-  animation: float 4s ease-in-out infinite reverse;
+  display: none;
 }
 
 /* ── STACK PILLS ── */
