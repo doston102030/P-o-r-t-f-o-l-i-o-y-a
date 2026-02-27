@@ -151,11 +151,9 @@ export default function Hero({ onPortalOpen }) {
 
       {/* Floating AI Portal Trigger */}
       <button className="btn-portal-floating" onClick={onPortalOpen}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 3c.3 1.3 1.2 2.2 2.5 2.5a3 3 0 0 1 0 5c-1.3.3-2.2 1.2-2.5 2.5a3 3 0 0 1-5 0c-.3-1.3-1.2-2.2-2.5-2.5a3 3 0 0 1 0-5c1.3-.3 2.2-1.2 2.5-2.5a3 3 0 0 1 5 0z" />
-          <path d="M19 13c.3 1.3 1.2 2.2 2.5 2.5a3 3 0 0 1 0 5c-1.3.3-2.2 1.2-2.5 2.5a3 3 0 0 1-5 0c-.3-1.3-1.2-2.2-2.5-2.5a3 3 0 0 1 0-5c1.3-.3 2.2-1.2 2.5-2.5a3 3 0 0 1 5 0z" opacity="0.6" />
-        </svg>
-        <span>Top AI</span>
+        <span className="portal-icon">&gt;_</span>
+        <span className="portal-label">AI</span>
+        <span className="portal-cursor" />
       </button>
     </section>
   );

@@ -252,58 +252,95 @@
   margin-bottom: 30px;
 }
 
-/* ── AI PORTAL BUTTON ── */
+/* ── AI PORTAL BUTTON (Retro-Minimal) ── */
 .btn-portal-floating {
   position: fixed;
   bottom: 30px;
   right: 30px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 56px;
-  height: 56px;
-  border-radius: 2px;
-  background: var(--bg2);
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--bg);
   border: 1px solid var(--border);
+  border-radius: 2px;
   color: var(--text-muted);
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10000;
+  font-family: 'Space Mono', monospace;
+  overflow: hidden;
 }
 
 .btn-portal-floating:hover {
   border-color: var(--accent);
   color: var(--accent);
-  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.1);
+  box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.08);
 }
 
-.btn-portal-floating svg {
-  width: 18px;
-  height: 18px;
+.portal-icon {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.05em;
   transition: color 0.3s ease;
 }
 
-.btn-portal-floating span {
+.portal-label {
   font-family: 'Space Mono', monospace;
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
 
+.portal-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--accent);
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 2px;
+  opacity: 0.7;
+}
+
+@keyframes cursorBlink {
+
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.btn-portal-floating:hover .portal-cursor {
+  opacity: 1;
+  animation: none;
+}
+
 [data-theme='light'] .btn-portal-floating {
-  background: var(--bg2);
+  background: var(--bg);
 }
 
 @media (max-width: 768px) {
   .btn-portal-floating {
     bottom: 100px;
     right: 15px;
-    width: 50px;
-    height: 50px;
+    padding: 6px 10px;
+    gap: 4px;
+  }
+
+  .portal-icon {
+    font-size: 0.65rem;
+  }
+
+  .portal-label {
+    font-size: 0.55rem;
   }
 }
 
