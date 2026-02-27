@@ -33,15 +33,61 @@
   display: inline;
 }
 
-/* ── SKILLS GRID ── */
+/* ── SKILLS GRID (STATIC) ── */
 .skills-grid-minimal {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 12px;
 }
 
+/* ── MARQUEE CONTAINER ── */
+.skills-marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+  /* Premium edge fading */
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
+}
+
+.skills-marquee-content {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marqueeScroll 40s linear infinite;
+}
+
+/* Pause on hover for accessibility and engagement */
+.skills-marquee-wrapper:hover .skills-marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.333%);
+  }
+
+  /* Since we duplicated it 3 times */
+}
+
 /* ── SKILL ITEM ── */
 .skill-item-compact {
+  flex-shrink: 0;
+  /* Important for marquee */
+  width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,14 +96,19 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
+  position: relative;
+  overflow: hidden;
+  /* Individual items have randomized delays set via inline styles in JSX */
 }
 
 .skill-item-compact:hover {
   border-color: var(--accent);
   background: var(--surface2);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.02);
+  z-index: 2;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 /* ── SKILL ICON ── */
@@ -68,21 +119,70 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Soft floating animation */
+  animation: skillFloat 6s ease-in-out infinite;
+  animation-delay: inherit;
+  /* Inherits delay from parent item */
+}
+
+@keyframes skillFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .skill-circle-glow {
-  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--skill-color) 0%, transparent 70%);
+  opacity: 0.05;
+  filter: blur(8px);
+  transition: all 0.5s ease;
+  animation: softPulse 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes softPulse {
+
+  0%,
+  100% {
+    opacity: 0.05;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+.skill-item-compact:hover .skill-circle-glow {
+  opacity: 0.3;
+  filter: blur(12px);
+  transform: translate(-50%, -50%) scale(1.5);
 }
 
 .skill-svg-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 5px rgba(var(--skill-color), 0.2));
 }
 
 .skill-item-compact:hover .skill-svg-wrapper {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 0 15px var(--skill-color));
 }
 
 .skill-name-compact {
@@ -91,12 +191,14 @@
   font-weight: 700;
   color: var(--text-muted);
   text-align: center;
-  letter-spacing: 0.02em;
-  transition: color 0.3s ease;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
 }
 
 .skill-item-compact:hover .skill-name-compact {
-  color: var(--text);
+  color: var(--accent);
+  letter-spacing: 0.08em;
 }
 
 /* ── RESPONSIVE ── */

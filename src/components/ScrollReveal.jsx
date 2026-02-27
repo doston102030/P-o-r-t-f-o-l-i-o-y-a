@@ -12,12 +12,13 @@ function getObserver() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                } else {
-                    entry.target.classList.remove('visible');
+                    // Stop observing once visible for maximum performance
+                    globalObserver.unobserve(entry.target);
+                    observedElements.delete(entry.target);
                 }
             });
         },
-        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
     return globalObserver;

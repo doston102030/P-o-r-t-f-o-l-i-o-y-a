@@ -80,9 +80,7 @@ export default function BottomNav() {
                         <span className="bottom-nav-icon">
                             {navIcons[item.icon]()}
                         </span>
-                        {active === item.id && (
-                            <span className="bottom-nav-label">{t(`nav.${item.id}`)}</span>
-                        )}
+                        <span className="bottom-nav-label">{t(`nav.${item.id}`)}</span>
                     </a>
                 ))}
             </div>

@@ -7,15 +7,15 @@ import { RevealItem } from './ScrollReveal';
 import './Skills.css';
 
 const defaultSkills = [
-  // 🧱 Languages
+  // 🧱 Core Stack
   { name: 'HTML', icon: '🟠', level: 98, color: '#e34f26', category: 'languages' },
   { name: 'CSS', icon: '🔵', level: 95, color: '#264de4', category: 'languages' },
   { name: 'JavaScript', icon: '🟡', level: 93, color: '#f7df1e', category: 'languages' },
+  { name: 'TypeScript', icon: '💙', level: 85, color: '#3178c6', category: 'languages' },
+  { name: 'React', icon: '⚛️', level: 94, color: '#61dafb', category: 'languages' },
+  { name: 'Next.js', icon: '⬛', level: 88, color: '#ffffff', category: 'languages' },
 
   // ⚛️ Frameworks & Libraries
-  { name: 'TypeScript', icon: '💙', level: 85, color: '#3178c6', category: 'frameworks' },
-  { name: 'React', icon: '⚛️', level: 94, color: '#61dafb', category: 'frameworks' },
-  { name: 'Next.js', icon: '⬛', level: 88, color: '#ffffff', category: 'frameworks' },
   { name: 'Redux Toolkit', icon: '🟣', level: 85, color: '#764abc', category: 'frameworks' },
   { name: 'Zustand', icon: '🐻', level: 82, color: '#433929', category: 'frameworks' },
   { name: 'React Hook Form', icon: '📋', level: 90, color: '#ec5990', category: 'frameworks' },
@@ -230,7 +230,9 @@ export default function Skills() {
         if (['HTML', 'HTML5'].includes(s.name)) return { ...s, name: 'HTML', category: 'languages', color: '#e34f26' };
         if (['CSS', 'CSS3'].includes(s.name)) return { ...s, name: 'CSS', category: 'languages', color: '#264de4' };
         if (['JavaScript', 'JavaScript (ES6+)', 'JS'].includes(s.name)) return { ...s, name: 'JavaScript', category: 'languages', color: '#f7df1e' };
-        if (s.name === 'TypeScript' || s.name === 'TS') return { ...s, name: 'TypeScript', category: 'frameworks', color: '#3178c6' };
+        if (s.name === 'TypeScript' || s.name === 'TS') return { ...s, name: 'TypeScript', category: 'languages', color: '#3178c6' };
+        if (s.name === 'React' || s.name === 'React.js') return { ...s, name: 'React', category: 'languages', color: '#61dafb' };
+        if (s.name === 'Next.js' || s.name === 'Nextjs') return { ...s, name: 'Next.js', category: 'languages', color: '#ffffff' };
 
         // Normalize 'libraries' to 'frameworks' for backward compatibility
         if (s.category === 'libraries') return { ...s, category: 'frameworks' };
@@ -268,7 +270,7 @@ export default function Skills() {
   if (loading) return <section className="section skills-section" id="skills" style={{ minHeight: '400px' }} />;
 
   // 📂 Categorize skills dynamically from DB categories
-  const languagesOrder = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'JavaScript (ES6+)', 'JS'];
+  const languagesOrder = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JavaScript', 'JavaScript (ES6+)', 'JS', 'TypeScript', 'TS', 'React', 'React.js', 'Next.js', 'Nextjs'];
 
   const categorizedSkills = {
     languages: skills
@@ -277,12 +279,13 @@ export default function Skills() {
     frameworks: skills.filter(s => s.category === 'frameworks'),
     styling: skills.filter(s => s.category === 'styling'),
     tools: skills.filter(s => s.category === 'tools'),
-    backend: skills.filter(s => s.category === 'backend'),
-    additional: skills.filter(s => s.category === 'additional')
+    additional: skills.filter(s => ['backend', 'additional'].includes(s.category))
   };
 
   const renderSkillGroup = (categoryKey, skillList, groupIndex) => {
     if (skillList.length === 0) return null;
+
+    const isStatic = categoryKey === 'languages';
 
     return (
       <RevealItem delay={groupIndex * 150}>
@@ -294,31 +297,60 @@ export default function Skills() {
               </span>
             ))}
           </h3>
-          <div className="skills-grid-minimal">
-            {skillList.map((skill, i) => {
-              // 🌬 Normalize names for a clean "Quiet Luxury" look
-              let displayName = skill.name;
-              if (displayName === 'HTML5' || displayName === 'HTML') displayName = 'HTML';
-              if (displayName === 'CSS3' || displayName === 'CSS') displayName = 'CSS';
-              if (displayName === 'JavaScript' || displayName === 'JS') displayName = 'JavaScript';
 
-              return (
-                <div
-                  key={skill.name}
-                  className="skill-item-compact"
-                  style={{ '--skill-color': skill.color, animationDelay: `${i * 0.05}s` }}
-                >
-                  <div className="skill-icon-circle">
-                    <div className="skill-circle-glow" />
-                    <div className="skill-svg-wrapper" style={{ color: skill.color }}>
-                      {svgIcons[skill.name] || svgIcons[displayName] || <span>{skill.icon}</span>}
+          {isStatic ? (
+            <div className="skills-grid-minimal">
+              {skillList.map((skill, i) => {
+                let displayName = skill.name;
+                if (displayName === 'HTML5' || displayName === 'HTML') displayName = 'HTML';
+                if (displayName === 'CSS3' || displayName === 'CSS') displayName = 'CSS';
+                if (displayName === 'JavaScript' || displayName === 'JS') displayName = 'JavaScript';
+
+                return (
+                  <div
+                    key={skill.name}
+                    className="skill-item-compact"
+                    style={{ '--skill-color': skill.color }}
+                  >
+                    <div className="skill-icon-circle">
+                      <div className="skill-circle-glow" />
+                      <div className="skill-svg-wrapper" style={{ color: skill.color }}>
+                        {svgIcons[skill.name] || svgIcons[displayName] || <span>{skill.icon}</span>}
+                      </div>
                     </div>
+                    <span className="skill-name-compact">{displayName}</span>
                   </div>
-                  <span className="skill-name-compact">{displayName}</span>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="skills-marquee-wrapper">
+              <div className="skills-marquee-content">
+                {[...skillList, ...skillList, ...skillList].map((skill, i) => {
+                  let displayName = skill.name;
+                  if (displayName === 'HTML5' || displayName === 'HTML') displayName = 'HTML';
+                  if (displayName === 'CSS3' || displayName === 'CSS') displayName = 'CSS';
+                  if (displayName === 'JavaScript' || displayName === 'JS') displayName = 'JavaScript';
+
+                  return (
+                    <div
+                      key={`${skill.name}-${i}`}
+                      className="skill-item-compact"
+                      style={{ '--skill-color': skill.color }}
+                    >
+                      <div className="skill-icon-circle">
+                        <div className="skill-circle-glow" />
+                        <div className="skill-svg-wrapper" style={{ color: skill.color }}>
+                          {svgIcons[skill.name] || svgIcons[displayName] || <span>{skill.icon}</span>}
+                        </div>
+                      </div>
+                      <span className="skill-name-compact">{displayName}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       </RevealItem>
     );
@@ -344,8 +376,7 @@ export default function Skills() {
           {renderSkillGroup('frameworks', categorizedSkills.frameworks, 1)}
           {renderSkillGroup('styling', categorizedSkills.styling, 2)}
           {renderSkillGroup('tools', categorizedSkills.tools, 3)}
-          {renderSkillGroup('backend', categorizedSkills.backend, 4)}
-          {renderSkillGroup('additional', categorizedSkills.additional, 5)}
+          {renderSkillGroup('additional', categorizedSkills.additional, 4)}
         </div>
       </div>
     </section>
