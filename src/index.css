@@ -60,7 +60,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   overflow-x: hidden;
-  width: 100vw;
+  width: 100%;
   max-width: 100%;
 }
 
@@ -76,6 +76,15 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   touch-action: pan-y;
+}
+
+/* ── SCROLL LOCK ── */
+.lock-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100% !important;
+  position: fixed !important;
+  touch-action: none !important;
 }
 
 .app {
@@ -380,9 +389,9 @@ img {
    ══════════════════════════════════════════════ */
 .scroll-reveal {
   opacity: 0;
-  transform: translate3d(0, 60px, 0) scale(0.96);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 20px, 0) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .scroll-reveal.visible {
@@ -393,9 +402,9 @@ img {
 /* Per-item reveal */
 .reveal-item {
   opacity: 0;
-  transform: translate3d(0, 50px, 0) scale(0.95);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 20px, 0) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-item.visible {

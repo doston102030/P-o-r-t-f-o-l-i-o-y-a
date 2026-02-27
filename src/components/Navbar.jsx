@@ -143,7 +143,7 @@ export default function Navbar() {
 
     const options = {
       root: null,
-      rootMargin: '-50% 0px -50% 0px',
+      rootMargin: '-30% 0px -30% 0px',
       threshold: 0
     };
 

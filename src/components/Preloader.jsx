@@ -1,74 +1,110 @@
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Preloader.css';
 
-export default function Preloader() {
+const Preloader = () => {
     const [visible, setVisible] = useState(true);
+    const [typedText, setTypedText] = useState("");
+    const [progress, setProgress] = useState(0);
     const [fadeOut, setFadeOut] = useState(false);
-    const text = "Doston Dev Portfolio'ya xush kelibsiz";
+
+    const fullText = "SYSTEM.INITIALIZE('DOSTON_DEV_PORTFOLIO');";
 
     useEffect(() => {
-        // 🔒 Lock scroll
-        document.body.style.overflow = "hidden";
+        // Lock scroll
+        document.documentElement.classList.add('lock-scroll');
+        document.body.classList.add('lock-scroll');
 
-        const timer = setTimeout(() => {
-            setFadeOut(true);
-            setTimeout(() => {
-                setVisible(false);
-                // 🔓 Unlock scroll
-                document.body.style.overflow = "auto";
-            }, 800);
-        }, 2800);
+        // Typing Effect
+        let charIndex = 0;
+        const typingInterval = setInterval(() => {
+            if (charIndex <= fullText.length) {
+                setTypedText(fullText.slice(0, charIndex));
+                charIndex++;
+            } else {
+                clearInterval(typingInterval);
+            }
+        }, 40);
+
+        // Progress Simulation
+        const progressInterval = setInterval(() => {
+            setProgress(prev => {
+                if (prev < 100) {
+                    const diff = Math.random() * 15;
+                    const next = Math.min(prev + diff, 100);
+                    return next;
+                }
+                clearInterval(progressInterval);
+                return 100;
+            });
+        }, 150);
 
         return () => {
-            clearTimeout(timer);
-            document.body.style.overflow = "auto";
+            clearInterval(typingInterval);
+            clearInterval(progressInterval);
+            document.documentElement.classList.remove('lock-scroll');
+            document.body.classList.remove('lock-scroll');
         };
     }, []);
+
+    useEffect(() => {
+        if (progress === 100) {
+            // Wait a bit before fading out
+            const timeout1 = setTimeout(() => {
+                setFadeOut(true);
+                const timeout2 = setTimeout(() => {
+                    setVisible(false);
+                    document.documentElement.classList.remove('lock-scroll');
+                    document.body.classList.remove('lock-scroll');
+                }, 1000);
+            }, 500);
+
+            return () => {
+                clearTimeout(timeout1);
+            };
+        }
+    }, [progress]);
 
     if (!visible) return null;
 
     return (
-        <div className={`preloader-glass-wrapper ${fadeOut ? 'fade-out' : ''}`}>
-            {/* Cinematic Particle Background */}
-            <div className="preloader-particles">
-                {Array.from({ length: 30 }).map((_, i) => (
-                    <div
-                        key={i}
-                        className="magic-particle"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 5}s`,
-                            opacity: Math.random() * 0.5 + 0.1
-                        }}
-                    />
-                ))}
-            </div>
+        <div className={`preloader-retro-wrapper ${fadeOut ? 'exit-sequence' : ''}`}>
+            <div className="retro-scanlines"></div>
+            <div className="retro-grain"></div>
 
-            <div className="preloader-glass-card backdrop-mode">
-                <div className="glass-card-shine" />
-                <div className="preloader-flare" />
+            <div className="preloader-content-minimal">
+                <div className="terminal-header">
+                    <div className="terminal-dot red"></div>
+                    <div className="terminal-dot yellow"></div>
+                    <div className="terminal-dot green"></div>
+                </div>
 
-                <div className="preloader-info">
-                    <div className="preloader-text-cinematic">
-                        {text.split("").map((char, index) => (
-                            <span
-                                key={index}
-                                style={{ animationDelay: `${index * 0.05}s` }}
-                                className={char === " " ? "space" : ""}
-                            >
-                                {char}
-                            </span>
-                        ))}
+                <div className="terminal-body">
+                    <div className="typing-container">
+                        <span className="prompt">&gt;</span>
+                        <span className="typed-text">{typedText}</span>
+                        <span className="cursor-blink"></span>
                     </div>
 
-                    <div className="preloader-loading-bar-mega">
-                        <div className="bar-track">
-                            <div className="bar-progress-glow" />
-                        </div>
+                    <div className="status-container">
+                        <span className="status-text">LOADING_ASSETS...</span>
+                        <span className="status-percent">{Math.floor(progress)}%</span>
                     </div>
+
+                    <div className="minimal-progress-bar">
+                        <div
+                            className="progress-fill"
+                            style={{ width: `${progress}%` }}
+                        ></div>
+                    </div>
+                </div>
+
+                <div className="terminal-footer">
+                    <span>© 2026 ADHAMJONOV_DOSTON</span>
+                    <span>v1.0.42_STABLE</span>
                 </div>
             </div>
         </div>
     );
-}
+};
+
+export default Preloader;
