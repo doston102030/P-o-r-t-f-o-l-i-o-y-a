@@ -22,7 +22,6 @@ function Portfolio() {
   return (
     <div className="app">
       <Background />
-      <CursorLight />
       <Preloader />
       <Navbar />
       <main>

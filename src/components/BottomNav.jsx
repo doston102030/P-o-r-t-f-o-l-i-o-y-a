@@ -47,24 +47,28 @@ export default function BottomNav() {
     const [active, setActive] = useState('home');
 
     useEffect(() => {
-        const handleScroll = () => {
-            const sections = navItems.map(item => document.querySelector(item.href));
-            const scrollPosition = window.scrollY + 200;
+        const observerOptions = {
+            root: null,
+            rootMargin: '-40% 0px -40% 0px',
+            threshold: 0
+        };
 
-            sections.forEach(section => {
-                if (!section) return;
-                const top = section.offsetTop;
-                const height = section.offsetHeight;
-                const id = section.getAttribute('id');
-
-                if (scrollPosition >= top && scrollPosition < top + height) {
-                    setActive(id);
+        const handleIntersect = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActive(entry.target.id);
                 }
             });
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+        navItems.forEach((item) => {
+            const section = document.querySelector(item.href);
+            if (section) observer.observe(section);
+        });
+
+        return () => observer.disconnect();
     }, []);
 
     return (

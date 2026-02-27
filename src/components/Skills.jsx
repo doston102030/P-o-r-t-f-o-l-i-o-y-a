@@ -279,7 +279,10 @@ export default function Skills() {
     frameworks: skills.filter(s => s.category === 'frameworks'),
     styling: skills.filter(s => s.category === 'styling'),
     tools: skills.filter(s => s.category === 'tools'),
-    additional: skills.filter(s => ['backend', 'additional'].includes(s.category))
+    additional: Array.from(new Set(skills
+      .filter(s => ['backend', 'additional'].includes(s.category))
+      .map(s => s.name)))
+      .map(name => skills.find(s => s.name === name))
   };
 
   const renderSkillGroup = (categoryKey, skillList, groupIndex) => {
