@@ -19,6 +19,20 @@ export default function Hero({ onPortalOpen }) {
 
   const val = (fsKey, tKey) => (fsData && fsData[fsKey]) || t(tKey);
 
+  const parseTagline = (text) => {
+    if (!text) return null;
+    const parts = text.split(/(\{y\}.*?\{\/y\}|\{b\}.*?\{\/b\})/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('{y}')) {
+        return <mark key={i} className="mark-yellow">{part.replace(/\{y\}|\{\/y\}/g, '')}</mark>;
+      }
+      if (part.startsWith('{b}')) {
+        return <span key={i} className="mark-blue">{part.replace(/\{b\}|\{\/b\}/g, '')}</span>;
+      }
+      return part;
+    });
+  };
+
   return (
     <section className="hero section" id="home">
       <div className="container hero-container">
@@ -49,18 +63,11 @@ export default function Hero({ onPortalOpen }) {
             </div>
           </div>
 
-          <div className="hero-tagline-mega animate-fade-up delay-3">
-            {[
-              { icon: '⚡', text: t('hero.tagline').split('.')[0], color: 'emerald' },
-              { icon: '💎', text: t('hero.tagline').split('.')[1], color: 'sky' },
-              { icon: '🚀', text: t('hero.tagline').split('.')[2], color: 'amber' }
-            ].map((item, idx) => item.text && (
-              <div key={idx} className={`tagline-card card-${item.color}`}>
-                <span className="card-icon">{item.icon}</span>
-                <p className="card-text">{item.text.trim()}</p>
-                <div className="card-shine" />
-              </div>
-            ))}
+
+          <div className="hero-philosophy animate-fade-up delay-3">
+            <p className="philosophy-text">
+              {parseTagline(val('tagline', 'hero.tagline'))}
+            </p>
           </div>
 
           <div className="hero-actions animate-fade-up delay-4">
