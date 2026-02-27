@@ -2,12 +2,12 @@
    🖤 RETRO-MINIMAL HERO
    ══════════════════════════════════════════════ */
 .hero {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 100px 0 40px;
   overflow: hidden;
   position: relative;
   background: transparent;
@@ -515,8 +515,9 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .hero {
-    padding-top: 140px;
-    justify-content: flex-start;
+    padding-top: 100px;
+    padding-bottom: 30px;
+    justify-content: center;
   }
 
   .hero-container {
@@ -565,8 +566,9 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding-top: 140px;
-    justify-content: flex-start;
+    padding-top: 90px;
+    padding-bottom: 20px;
+    justify-content: center;
   }
 
   .hero-name {
