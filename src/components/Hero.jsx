@@ -66,7 +66,7 @@ export default function Hero({ onPortalOpen }) {
 
           <div className="hero-philosophy animate-fade-up delay-3">
             <p className="philosophy-text">
-              {parseTagline(val('tagline', 'hero.tagline'))}
+              {parseTagline(t('hero.tagline'))}
             </p>
           </div>
 
