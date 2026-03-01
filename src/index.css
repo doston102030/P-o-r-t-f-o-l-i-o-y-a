@@ -133,6 +133,7 @@ img {
 .section {
   padding: 100px 0;
   position: relative;
+  transform: translateZ(0);
 }
 
 /* ── TYPOGRAPHY ── */
@@ -392,11 +393,14 @@ img {
   transform: translate3d(0, 20px, 0) scale(0.98);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  contain: content;
 }
 
 .scroll-reveal.visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
 }
 
 /* Per-item reveal */
@@ -405,11 +409,14 @@ img {
   transform: translate3d(0, 20px, 0) scale(0.98);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  contain: content;
 }
 
 .reveal-item.visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
 }
 
 /* Disable for accessibility */

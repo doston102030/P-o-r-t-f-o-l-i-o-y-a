@@ -11,7 +11,13 @@ const AI_TOOLS = [
         emoji: '🟠',
         icon: (
             <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-                <rect width="48" height="48" rx="12" fill="#D97757" />
+                <defs>
+                    <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#E8845C" />
+                        <stop offset="100%" stopColor="#C9603A" />
+                    </linearGradient>
+                </defs>
+                <rect width="48" height="48" rx="12" fill="url(#claudeGrad)" />
                 <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="22" fill="white">✦</text>
             </svg>
         ),
@@ -25,7 +31,13 @@ const AI_TOOLS = [
         emoji: '🟢',
         icon: (
             <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-                <rect width="48" height="48" rx="12" fill="#10a37f" />
+                <defs>
+                    <linearGradient id="gptGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#15c48a" />
+                        <stop offset="100%" stopColor="#0a8a5e" />
+                    </linearGradient>
+                </defs>
+                <rect width="48" height="48" rx="12" fill="url(#gptGrad)" />
                 <path d="M24 8C15.163 8 8 15.163 8 24s7.163 16 16 16 16-7.163 16-16S32.837 8 24 8zm0 4a12 12 0 110 24 12 12 0 010-24zm-1 6v7h-5l6 9 6-9h-5V18h-2z" fill="white" opacity=".9" />
             </svg>
         ),
@@ -52,50 +64,42 @@ const AI_TOOLS = [
         ),
     },
     {
-        key: 'copilot',
-        name: 'Copilot',
-        by: 'GitHub',
-        href: 'https://github.com/features/copilot',
-        color: '#6e5494',
-        emoji: '🟣',
+        key: 'lovable',
+        name: 'Lovable',
+        by: 'Lovable.dev',
+        href: 'https://lovable.dev',
+        color: '#ff6b8a',
+        emoji: '💖',
         icon: (
             <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-                <rect width="48" height="48" rx="12" fill="#161b22" />
-                <circle cx="24" cy="20" r="8" fill="#58a6ff" opacity=".9" />
-                <ellipse cx="24" cy="34" rx="10" ry="6" fill="#58a6ff" opacity=".7" />
-                <circle cx="21" cy="19" r="2" fill="#161b22" />
-                <circle cx="27" cy="19" r="2" fill="#161b22" />
+                <defs>
+                    <linearGradient id="lovGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ff6b8a" />
+                        <stop offset="100%" stopColor="#e63e6d" />
+                    </linearGradient>
+                </defs>
+                <rect width="48" height="48" rx="12" fill="url(#lovGrad)" />
+                <path d="M24 36 C24 36 12 28 12 20 C12 16 15 13 18.5 13 C20.8 13 22.9 14.3 24 16.2 C25.1 14.3 27.2 13 29.5 13 C33 13 36 16 36 20 C36 28 24 36 24 36Z" fill="white" opacity=".95" />
             </svg>
         ),
     },
     {
-        key: 'perplexity',
-        name: 'Perplexity',
-        by: 'Perplexity AI',
-        href: 'https://www.perplexity.ai',
-        color: '#20b2aa',
-        emoji: '🩵',
+        key: 'base44',
+        name: 'Base44',
+        by: 'Base44.com',
+        href: 'https://base44.com',
+        color: '#6c5ce7',
+        emoji: '🔮',
         icon: (
             <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-                <rect width="48" height="48" rx="12" fill="#1a1a2e" />
-                <polygon points="24,8 40,20 40,36 24,44 8,36 8,20" fill="none" stroke="#20b2aa" strokeWidth="2" />
-                <line x1="24" y1="8" x2="24" y2="44" stroke="#20b2aa" strokeWidth="2" />
-                <line x1="8" y1="28" x2="40" y2="28" stroke="#20b2aa" strokeWidth="1.5" opacity=".6" />
-            </svg>
-        ),
-    },
-    {
-        key: 'midjourney',
-        name: 'Midjourney',
-        by: 'Midjourney',
-        href: 'https://www.midjourney.com',
-        color: '#ffffff',
-        emoji: '🎨',
-        icon: (
-            <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-                <rect width="48" height="48" rx="12" fill="#000" />
-                <path d="M8 32 Q24 8 40 32" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round" />
-                <path d="M16 30 Q24 14 32 30" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" opacity=".6" />
+                <defs>
+                    <linearGradient id="b44Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#6c5ce7" />
+                        <stop offset="100%" stopColor="#4834d4" />
+                    </linearGradient>
+                </defs>
+                <rect width="48" height="48" rx="12" fill="url(#b44Grad)" />
+                <text x="50%" y="54%" dominantBaseline="middle" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white" fontFamily="monospace">B44</text>
             </svg>
         ),
     },

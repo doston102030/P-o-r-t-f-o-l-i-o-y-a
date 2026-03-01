@@ -92,12 +92,12 @@
     gap: 12px;
     font-size: 1rem;
     color: var(--accent);
-    word-break: break-all;
+    word-break: break-word;
     overflow-wrap: break-word;
 }
 
 .typed-text {
-    word-break: break-all;
+    word-break: break-word;
     display: inline;
 }
 
@@ -166,8 +166,8 @@
     }
 
     .typing-container {
-        font-size: 0.75rem;
-        gap: 8px;
+        font-size: 0.6rem;
+        gap: 6px;
     }
 
     .status-container {
@@ -185,10 +185,10 @@
 
 @media (max-width: 400px) {
     .terminal-body {
-        padding: 15px 20px;
+        padding: 15px 16px;
     }
 
     .typing-container {
-        font-size: 0.7rem;
+        font-size: 0.52rem;
     }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import './Navbar.css';
@@ -125,7 +125,7 @@ const UZGerb = () => (
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
-  const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef(null);
   const [active, setActive] = useState('home');
   const [langOpen, setLangOpen] = useState(false);
 
@@ -138,7 +138,9 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30);
+    const handleScroll = () => {
+      headerRef.current?.classList.toggle('scrolled', window.scrollY > 30);
+    };
     window.addEventListener('scroll', handleScroll);
 
     const options = {
@@ -174,7 +176,7 @@ export default function Navbar() {
   }, [langOpen]);
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className="navbar" ref={headerRef}>
       <Gradients />
       <div className="nav-container">
 

@@ -64,6 +64,8 @@
   gap: 12px;
   width: max-content;
   animation: marqueeScroll 40s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Pause on hover for accessibility and engagement */
@@ -100,7 +102,7 @@
   cursor: default;
   position: relative;
   overflow: hidden;
-  /* Individual items have randomized delays set via inline styles in JSX */
+  contain: content;
 }
 
 .skill-item-compact:hover {
@@ -119,22 +121,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Soft floating animation */
-  animation: skillFloat 6s ease-in-out infinite;
-  animation-delay: inherit;
-  /* Inherits delay from parent item */
-}
-
-@keyframes skillFloat {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-5px);
-  }
 }
 
 .skill-circle-glow {
@@ -148,22 +134,7 @@
   opacity: 0.05;
   filter: blur(8px);
   transition: all 0.5s ease;
-  animation: softPulse 4s ease-in-out infinite;
   z-index: -1;
-}
-
-@keyframes softPulse {
-
-  0%,
-  100% {
-    opacity: 0.05;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  50% {
-    opacity: 0.15;
-    transform: translate(-50%, -50%) scale(1.2);
-  }
 }
 
 .skill-item-compact:hover .skill-circle-glow {
