@@ -72,19 +72,21 @@ export default function BottomNav() {
     }, []);
 
     return (
-        <nav className="bottom-nav">
-            <div className="bottom-nav-container">
+        <nav className="fixed bottom-5 left-1/2 -translate-x-1/2 translate-z-0 z-[9999] hidden md:block w-auto max-w-[90vw] will-change-transform max-sm:bottom-4">
+            <div className="bottom-nav-container flex items-center bg-[rgba(10,10,10,0.9)] backdrop-blur-[10px] px-2.5 py-1.5 rounded-full border border-white/[0.06] gap-0.5 shadow-[0_2px_8px_rgba(0,0,0,0.4),0_8px_32px_rgba(0,0,0,0.2)]">
                 {navItems.map((item) => (
                     <a
                         key={item.id}
                         href={item.href}
-                        className={`bottom-nav-item ${active === item.id ? 'active' : ''}`}
+                        className={`bottom-nav-item flex flex-col items-center justify-center min-w-[48px] py-1 text-text-muted no-underline relative gap-0.5 transition-all duration-300 max-sm:min-w-[44px] ${active === item.id ? 'active text-accent' : ''}`}
                         onClick={() => setActive(item.id)}
                     >
-                        <span className="bottom-nav-icon">
+                        <span className={`flex items-center justify-center w-[30px] h-[30px] rounded-full relative z-[1] transition-all duration-300 max-sm:w-[26px] max-sm:h-[26px] ${active === item.id ? 'bg-[rgba(var(--accent-rgb),0.1)] shadow-[0_0_10px_rgba(var(--accent-rgb),0.1)] -translate-y-px' : ''}`}>
                             {navIcons[item.icon]()}
                         </span>
-                        <span className="bottom-nav-label">{t(`nav.${item.id}`)}</span>
+                        <span className={`text-[7px] font-mono font-semibold tracking-wider uppercase transition-all duration-300 max-sm:text-[6px] ${active === item.id ? 'opacity-100 font-bold' : 'opacity-50'}`}>
+                            {t(`nav.${item.id}`)}
+                        </span>
                     </a>
                 ))}
             </div>

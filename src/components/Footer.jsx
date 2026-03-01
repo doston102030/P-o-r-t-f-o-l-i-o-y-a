@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import './Footer.css';
 
 const SOCIAL_META = {
   telegram: {
@@ -47,39 +46,51 @@ export default function Footer() {
   );
 
   return (
-    <footer className="footer">
-      <div className="footer-top-line" />
-      <div className="container footer-container">
-        <div className="footer-brand">
-          <a href="#home" className="footer-logo">
-            <span className="logo-bracket">&lt;</span>Uzdev<span className="logo-bracket">/&gt;</span>
+    <footer className="relative p-0 bg-transparent">
+      {/* Top line */}
+      <div className="h-px bg-border" />
+
+      {/* Main content */}
+      <div className="max-w-[1100px] mx-auto flex items-center justify-between px-8 py-10 gap-6 flex-wrap md:flex-col md:text-center max-sm:px-4 max-sm:py-8">
+        {/* Brand */}
+        <div className="flex flex-col gap-1.5">
+          <a href="#home" className="font-mono text-lg font-bold text-accent no-underline inline-flex items-center">
+            <span className="text-text-dim">&lt;</span>Uzdev<span className="text-text-dim">/&gt;</span>
           </a>
-          <p className="footer-tagline">{t('footer.tagline')}</p>
+          <p className="text-[0.8rem] text-text-dim max-w-[280px] md:mx-auto">{t('footer.tagline')}</p>
         </div>
-        <nav className="footer-nav">
+
+        {/* Nav */}
+        <nav className="flex gap-5 flex-wrap md:justify-center">
           {navKeys.map(link => (
-            <a key={link.key} href={link.href} className="footer-link">{t(link.key)}</a>
+            <a key={link.key} href={link.href} className="font-mono text-[0.7rem] font-bold text-text-dim no-underline uppercase tracking-wider transition-colors duration-300 hover:text-accent">
+              {t(link.key)}
+            </a>
           ))}
         </nav>
-        <div className="footer-socials">
+
+        {/* Socials */}
+        <div className="flex gap-2 md:justify-center">
           {activeSocials.length > 0
             ? activeSocials.map(([key, meta]) => (
-              <a key={key} href={socials[key]} target="_blank" rel="noreferrer" className="footer-social-btn" title={meta.name}>
+              <a key={key} href={socials[key]} target="_blank" rel="noreferrer" className="w-9 h-9 flex items-center justify-center border border-border rounded-sm text-text-dim no-underline transition-all duration-300 hover:border-accent hover:text-accent" title={meta.name}>
                 {meta.icon}
               </a>
             ))
             : Object.entries(SOCIAL_META).map(([key, meta]) => (
-              <a key={key} href="#" className="footer-social-btn" title={meta.name}>
+              <a key={key} href="#" className="w-9 h-9 flex items-center justify-center border border-border rounded-sm text-text-dim no-underline transition-all duration-300 hover:border-accent hover:text-accent" title={meta.name}>
                 {meta.icon}
               </a>
             ))
           }
         </div>
       </div>
-      <div className="footer-bottom">
-        <div className="container footer-bottom-inner">
-          <p className="footer-copy">© {year} <span className="bright-glow-name">Adhamjonov Doston</span>. {t('footer.rights')}</p>
-          <p className="footer-made">{t('footer.made')}</p>
+
+      {/* Bottom */}
+      <div className="border-t border-border py-5">
+        <div className="max-w-[1100px] mx-auto px-8 flex items-center justify-between flex-wrap gap-3 md:flex-col md:text-center">
+          <p className="text-xs text-text-dim">© {year} <span className="text-accent font-semibold">Adhamjonov Doston</span>. {t('footer.rights')}</p>
+          <p className="text-xs text-text-dim">{t('footer.made')}</p>
         </div>
       </div>
     </footer>
