@@ -3,6 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { RevealItem } from './ScrollReveal';
+import ImageCarousel from './ImageCarousel';
 import './About.css';
 
 export default function About() {
@@ -30,36 +31,22 @@ export default function About() {
     <section className="section about-section" id="about">
       <div className="container">
         <div className="about-grid">
-          {/* LEFT: SLEEK MINIMAL CARD */}
+          {/* LEFT: IMAGE CAROUSEL */}
           <div className="about-visual animate-fade-up">
-            <div className="about-card sleek-card">
-              <div className="about-card-avatar locked-avatar">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-              </div>
-              <div className="about-card-info">
-                <h4 className="locked-text">{t('about.noInfo')}</h4>
-                <p className="locked-role">Private Access</p>
-                <div className="about-card-location locked-info">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                  {t('about.noInfo')}
-                </div>
-              </div>
-              <div className="about-card-badges">
-                <span className="locked-badge">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                  Private
-                </span>
-              </div>
-            </div>
+            <ImageCarousel
+              autoPlay={false}
+              images={
+                fsData?.carouselImages?.length > 0
+                  ? fsData.carouselImages.map((img, i) => ({
+                    src: typeof img === 'string' ? img : img.src,
+                    alt: typeof img === 'string' ? `Photo ${i + 1}` : img.alt || `Photo ${i + 1}`,
+                  }))
+                  : [
+                    { src: '/n1.jpg', alt: 'Photo 1' },
+                    { src: '/n2.jpg', alt: 'Photo 2' },
+                  ]
+              }
+            />
           </div>
 
           {/* RIGHT: TEXT CONTENT */}
