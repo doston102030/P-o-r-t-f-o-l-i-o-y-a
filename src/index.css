@@ -57,7 +57,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 80px;
   overflow-x: hidden;
   width: 100%;
@@ -75,7 +74,6 @@ body {
   position: relative;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  touch-action: pan-y;
 }
 
 /* ── SCROLL LOCK ── */
@@ -83,7 +81,6 @@ body {
   overflow: hidden !important;
   height: 100vh !important;
   width: 100% !important;
-  position: fixed !important;
   touch-action: none !important;
 }
 

@@ -48,18 +48,32 @@ const Preloader = () => {
 
     useEffect(() => {
         if (progress === 100) {
+            let timeout2;
             // Wait a bit before fading out
             const timeout1 = setTimeout(() => {
                 setFadeOut(true);
-                const timeout2 = setTimeout(() => {
+                timeout2 = setTimeout(() => {
                     setVisible(false);
+                    // Force-remove lock-scroll from everywhere
                     document.documentElement.classList.remove('lock-scroll');
                     document.body.classList.remove('lock-scroll');
+                    // Reset any inline styles that might block scroll
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.documentElement.style.overflow = '';
+                    window.scrollTo(0, 0);
                 }, 1000);
             }, 500);
 
             return () => {
                 clearTimeout(timeout1);
+                clearTimeout(timeout2);
+                // Safety: always unlock on cleanup
+                document.documentElement.classList.remove('lock-scroll');
+                document.body.classList.remove('lock-scroll');
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.documentElement.style.overflow = '';
             };
         }
     }, [progress]);
